@@ -185,14 +185,14 @@ class BackboneGP_VAE(nn.Module):
 
         recon_error = (self.decode(qz_x.mean).mean -  X_ori)[missing_mask_ori].pow(2).mean()
 
-        nll += recon_error
+        #nll += recon_error
 
         z_mean = qz_x.mean
         loss_mean = (z_mean.pow(2).mean() - X[missing_mask].pow(2).mean()).pow(2) * .1
         loss_mean_variance = (z_mean.var(axis=(0,1)) - 1).pow(2).mean()
         kl = loss_mean + loss_mean_variance
 
-        if True:
+        if False:
             z_var = qz_x.variance.mean(axis=(0,1))
             z_mean_var = z_mean.var(axis=(0,1))
             log_z_ratio = torch.log(z_var/z_mean_var) / torch.log(torch.tensor(10.))
@@ -285,8 +285,28 @@ class BackboneGP_VAE(nn.Module):
             mask_diff_sum[mask_diff_sum == 0] = 1
             X_diff = ((X[i::batch_size, 1:] - X[i::batch_size, :-1]) * mask_diff).pow(2).sum(2) / mask_diff_sum
             #z_diff = ( (z[i::batch_size, 1:] - z[i::batch_size, :-1]).pow(2) * var[i::batch_size,1:].detach()).sum(2)
-            z_diff = ( (z[i::batch_size, 1:] - z[i::batch_size, :-1]).pow(2) / var[i::batch_size,1:]).sum(2)
+            z_diff = ( (z[i::batch_size, 1:] - z[i::batch_size, :-1]).pow(2) / var[i::batch_size,1:]).mean(2)
             temporal_loss += z_diff  / (X_diff + eps)
+
+            assert not torch.isnan(temporal_loss).any(), print(temporal_loss[temporal_loss != temporal_loss], (z_diff / (X_diff + eps))[temporal_loss != temporal_loss])
+            assert not torch.isnan(temporal_loss).any(), print(z_diff[temporal_loss != temporal_loss], z_diff[temporal_loss != temporal_loss])
+
+        return temporal_loss.mean()
+
+    def temporal_loss(self, qz_x, X, missing_mask, batch_size, eps=1e-3):
+        temporal_loss = 0
+
+        z = qz_x.mean
+        var = qz_x.variance
+
+        for i in range(batch_size):
+            mask_diff = (missing_mask[i::batch_size, 1:] * missing_mask[i::batch_size, :-1])
+            mask_diff_sum = mask_diff.sum(2)
+            mask_diff_sum[mask_diff_sum == 0] = 1
+            X_diff = ((X[i::batch_size, 1:] - X[i::batch_size, :-1]) * mask_diff).pow(2).sum(2) / mask_diff_sum
+            #z_diff = ( (z[i::batch_size, 1:] - z[i::batch_size, :-1]).pow(2) * var[i::batch_size,1:].detach()).sum(2)
+            z_diff = (z[i::batch_size, 1:] - z[i::batch_size, :-1]).pow(2).mean(2) 
+            temporal_loss += (z_diff - X_diff).pow(2) / ( var[i::batch_size,1:].mean(2) + eps )
 
             assert not torch.isnan(temporal_loss).any(), print(temporal_loss[temporal_loss != temporal_loss], (z_diff / (X_diff + eps))[temporal_loss != temporal_loss])
             assert not torch.isnan(temporal_loss).any(), print(z_diff[temporal_loss != temporal_loss], z_diff[temporal_loss != temporal_loss])
@@ -319,18 +339,17 @@ class BackboneGP_VAE(nn.Module):
         """
         qz_x_ori = self.encode(X_ori)
 
-        eps = 1e-2
+        eps = 1e-3
 
-        #mu_z, mu_z_ori = qz_x.mean.detach(), qz_x_ori.mean.detach()
-        #var_z, var_z_ori = qz_x.variance, qz_x_ori.variance.detach()
-
+        mu_z, mu_z_ori = qz_x.mean, qz_x_ori.mean.detach()
+        var_z, var_z_ori = qz_x.variance, qz_x_ori.variance.detach()
 
         mu_z, mu_z_ori = qz_x.mean, qz_x_ori.mean
         var_z, var_z_ori = qz_x.variance, qz_x_ori.variance
 
-
+        # detaching here to not encourage the variance to be too big
         kl = .5 * ( torch.log(var_z / var_z_ori) + (var_z_ori + (mu_z - mu_z_ori).pow(2) )/ ( var_z + eps) )
-        kl *= eps
+        #kl *= eps
 
         relative = True
         if relative:
@@ -398,7 +417,7 @@ class BackboneGP_VAE(nn.Module):
             nll_recon = self.compute_nll(px_z_ori, X, X_ori, missing_mask_ori, z, keep_best=False)
 
         else:
-            nll_recon = self.compute_nll(px_z, X, X_ori, missing_mask_ori, z, keep_best=False)
+            nll_recon = self.compute_nll(px_z, X, X_ori, missing_mask_ori, z = z, keep_best=False)
 
         nll_imputation = self.latent_imputation_error(qz_x, X_ori, missing_mask, missing_mask_ori).mean()
 
@@ -477,14 +496,12 @@ class BackboneGP_VAE(nn.Module):
 
         return distances
 
-    def compute_nll(self, px_z, X, X_ori, mask, z = False, keep_best=False):
+    def compute_nll(self, px_z, X, X_ori, mask, z = None, keep_best=False):
         """
         Compute the negative log-likelihood.
         """
         
         # add a tiny bit of noise so that we're not trying to optimize the error AU MAX
-
-
 
         std = 5 * 1e-2
         X_noisy = X_ori + torch.normal(mean = torch.zeros(X.shape)) * std
@@ -499,7 +516,8 @@ class BackboneGP_VAE(nn.Module):
             qz_x = self.encode(X)
 
             compensation = torch.exp( qz_x_ori.log_prob(z) - qz_x.log_prob(z) ).unsqueeze(2)
-            nll *= compensation
+            nll *= compensation.clip(0, 10)
+            #print(torch.min(compensation), torch.max(compensation))
 
         # Use mask.numel() instead of creating a tensor from mask.shape
         scale_factor = condition_mask.numel() / condition_mask.sum()
@@ -656,14 +674,14 @@ class BackboneGP_VAE(nn.Module):
 
         losses = f'kl = {kl.mean().item()} - nll = {nll.mean().item()} - temporal {tl.item()}'
         plt.subplot(4, 1, 1)
-        colors = ['purple', 'brown', 'orange', 'b','g','r','y']
+        colors = ['purple', 'brown', 'orange', 'b','g','r','y','black','cyan','gray']
         for dim in range(latent_dim):
-            plt.plot(range(time_steps), z_mean[:, dim], label=f'Latent dim {dim} Mean', color = colors[dim])
-            plt.fill_between(range(time_steps), z_mean[:, dim] - z_var[:, dim] ** 0.5, z_mean[:, dim] + z_var[:, dim] ** 0.5, alpha=0.2, color = colors[dim])
-            plt.scatter(range(time_steps), z_mean_ori[0][:, dim].numpy(), label=f'Latent dim {dim} Mean', color = colors[dim])
+            plt.plot(range(time_steps), z_mean[:, dim], label=f'Latent dim {dim} Mean', color = colors[dim%10])
+            plt.fill_between(range(time_steps), z_mean[:, dim] - z_var[:, dim] ** 0.5, z_mean[:, dim] + z_var[:, dim] ** 0.5, alpha=0.2, color = colors[dim%10])
+            plt.scatter(range(time_steps), z_mean_ori[0][:, dim].numpy(), label=f'Latent dim {dim} Mean', color = colors[dim%10])
             plt.fill_between(range(time_steps), z_mean_ori[0][:, dim] - z_var_ori[0][:, dim] ** 0.5, z_mean_ori[0][:, dim] + z_var_ori[0][:, dim] ** 0.5, alpha=0.2, color = 'gray')
-        plt.plot([], color = 'gray', alpha = .2, label = 'Z original variance')
-        plt.plot([], color = 'k', alpha = .2, label = 'Z corrupted variance')
+        #plt.plot([], color = 'gray', alpha = .2, label = 'Z original variance')
+        #plt.plot([], color = 'k', alpha = .2, label = 'Z corrupted variance')
 
 
         plt.title('Latent Time Series (Mean and Variance) ' + losses)
@@ -686,6 +704,8 @@ class BackboneGP_VAE(nn.Module):
         plt.subplot(4, 1, 3)
         for i, X_recon_sample in enumerate(reconstructions):
             plt.plot(range(time_steps), X_recon_sample[0, :, :], alpha=0.6)
+        X_recon = self.decode(qz_x.mean[0]).mean.detach().cpu().numpy()
+        plt.plot(range(time_steps), X_recon[:, :], linewidth = 2)
 
         X_np[X_np==0] = np.nan
 
