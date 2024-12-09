@@ -282,13 +282,20 @@ class GP_VAE(BaseNNImputer):
                                 calc_mse(
                                     imputed_data,
                                     inputs["X_ori"],
-                                    inputs["indicating_mask"],
+                                    (inputs["X_ori"]!=0), #modified this
                                 )
                                 .sum()
                                 .detach()
                                 .item()
                             )
+
                             imputation_loss_collector.append(imputation_mse)
+
+                        if False:
+                            plt.plot(imputed_data[0].detach())
+                            plt.gca().set_prop_cycle(None)
+                            plt.plot(inputs["X_ori"][0].detach(),'o')
+                            plt.show()
 
                     mean_val_loss = np.mean(imputation_loss_collector)
 

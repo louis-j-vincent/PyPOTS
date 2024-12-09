@@ -93,11 +93,22 @@ class _GP_VAE(nn.Module):
         X, missing_mask = inputs["X"], inputs["missing_mask"]
         results = {}
 
+        missing_mask = (X!=0)
+
         if training:
             elbo_loss = self.backbone(X, missing_mask)
             results["loss"] = elbo_loss
         else:
-            imputed_data = self.backbone.impute(X, missing_mask, n_sampling_times)
-            results["imputed_data"] = imputed_data
+            elbo_loss = self.backbone(X, missing_mask)
+            results["loss"] = elbo_loss
+            try:
+                imputed_data = self.backbone.impute(X, missing_mask, n_sampling_times)
+            except:
+                #print('Impute not implemented')
+                qz_x = self.backbone.encode(X, missing_mask)
+                z = qz_x.mean.detach()
+                imputed_data = self.backbone.decode(z).mean
+
+            results["imputed_data"] = imputed_data.unsqueeze(1) #because dim 1 is where the samples are
 
         return results
