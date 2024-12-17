@@ -9,6 +9,7 @@ and takes over the forward progress of the algorithm.
 
 
 import torch.nn as nn
+import torch
 
 from ...nn.modules.gp_ae import BackboneGP_VAE
 
@@ -89,9 +90,11 @@ class _GP_VAE(nn.Module):
             window_size,
         )
 
-    def forward(self, inputs, training=True, n_sampling_times=1):
+    def forward(self, inputs, training=True, n_sampling_times=10):
         X, missing_mask = inputs["X"], inputs["missing_mask"]
         results = {}
+
+        n_sampling_times = 10
 
         missing_mask = (X!=0)
 
@@ -101,14 +104,21 @@ class _GP_VAE(nn.Module):
         else:
             elbo_loss = self.backbone(X, missing_mask)
             results["loss"] = elbo_loss
-            try:
-                imputed_data = self.backbone.impute(X, missing_mask, n_sampling_times)
-            except:
-                #print('Impute not implemented')
-                qz_x = self.backbone.encode(X, missing_mask)
-                z = qz_x.mean.detach()
-                imputed_data = self.backbone.decode(z).mean
+            #try:
+            #    imputed_data = self.backbone.impute(X, missing_mask, n_sampling_times)
+            #except:
+            #print('Impute not implemented')
+            qz_x = self.backbone.encode(X, missing_mask)
+            z_samples = qz_x.rsample(torch.tensor([n_sampling_times]))
+            #z = qz_x.mean.detach()
+            reconstructions = [self.backbone.decode(z).mean for z in z_samples]
+            imputed_data = torch.stack(reconstructions).mean(0)
+            imputed_data += torch.rand(imputed_data.shape) * 1e-2
 
             results["imputed_data"] = imputed_data.unsqueeze(1) #because dim 1 is where the samples are
 
         return results
+
+    def encode(self, data, training=False, n_sampling_times=1):
+
+        return self.backbone.encode(data)

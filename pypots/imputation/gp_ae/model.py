@@ -193,7 +193,11 @@ class GP_VAE(BaseNNImputer):
         self.model.backbone.to(device)
 
         # set gp
-        self.gp = ProbabilisticGP(self.model.backbone, assemble_data = self._assemble_input_for_training)
+        #self.gp = ProbabilisticGP(self.model.backbone, assemble_data = self._assemble_input_for_training)
+        self.gp = ProbabilisticGP(self.model.backbone, 
+                            assemble_data = self._assemble_input_for_training, 
+                            n_dims = self.n_features,
+                            latent_size = self.latent_size)
 
     def _assemble_input_for_training(self, data: list) -> dict:
         # fetch data
@@ -255,12 +259,27 @@ class GP_VAE(BaseNNImputer):
                     training_step += 1
                     inputs = self._assemble_input_for_training(data)
                     self.optimizer.zero_grad()
+
                     results = self.model.forward(inputs)
                     # use sum() before backward() in case of multi-gpu training
                     results["loss"].sum().backward()
                     #clip gradients
                     #torch.nn.utils.clip_grad_norm_(v_1, max_norm=1.0, norm_type=2)
                     self.optimizer.step()
+
+                    if False:
+                        try:
+                            results = self.model.forward(inputs)
+                            # use sum() before backward() in case of multi-gpu training
+                            results["loss"].sum().backward()
+                            #clip gradients
+                            #torch.nn.utils.clip_grad_norm_(v_1, max_norm=1.0, norm_type=2)
+                            self.optimizer.step()
+
+                        except: # if nans in inputs
+                            print('Error during training')
+                            results = torch.tensor([1e8,1e8]).to(self.device)
+    
                     epoch_train_loss_collector.append(results["loss"].sum().item())
 
                     # save training loss logs into the tensorboard file for every step if in need
@@ -451,9 +470,9 @@ class GP_VAE(BaseNNImputer):
                 #imputed_data = results["imputed_data"]
 
                 # embed data in latent space
-                embedding = self.model.encode(inputs, training-False, n_sampling_times=n_sampling_times)
+                embedding = self.model.encode(inputs, training=False, n_sampling_times=n_sampling_times)
                 # correct with gaussian process
-                imputed_data = self.gp.infer(embedding)
+                imputed_data = self.gp.infer(embedding, inputs)
                 imputation_collector.append(imputed_data)
 
         imputation = torch.cat(imputation_collector).cpu().detach().numpy()
@@ -527,16 +546,17 @@ class GP_VAE(BaseNNImputer):
         self._auto_save_model_if_necessary(confirm_saving=self.model_saving_strategy == "best")
 
         # deprecated !!!!
-        for dim in self.gp.kernel_params.keys():
-            print(self.gp.kernel_params[dim])
-            l, n = self.gp.kernel_params[dim]['length_scale'], self.gp.kernel_params[dim]['noise']
-            plt.subplot(3,1,1)
-            plt.hist(l)
-            plt.subplot(3,1,2)
-            plt.hist(n)
-            plt.subplot(3,1,3)
-            plt.scatter(l,n, alpha = .5)
-            plt.show()
+        if False:
+            for dim in self.gp.kernel_params.keys():
+                print(self.gp.kernel_params[dim])
+                l, n = self.gp.kernel_params[dim]['length_scale'], self.gp.kernel_params[dim]['noise']
+                plt.subplot(3,1,1)
+                plt.hist(l)
+                plt.subplot(3,1,2)
+                plt.hist(n)
+                plt.subplot(3,1,3)
+                plt.scatter(l,n, alpha = .5)
+                plt.show()
 
     class SequentialGPModel(gpytorch.models.ExactGP):
         def __init__(self, train_x, train_y, likelihood):
