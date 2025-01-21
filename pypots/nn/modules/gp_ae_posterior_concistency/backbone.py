@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from torch.distributions import Normal, Independent
+from torch.distributions import Normal, Independent, kl_divergence
 from .layers import (
     SimpleVAEEncoder,
     SimpleVAEDecoder,
@@ -21,7 +21,7 @@ import numpy as np
 from datetime import datetime
 import time
 
-class BackboneGP_VAE(nn.Module):
+class BackboneGP_VAE_posterior_consistency(nn.Module):
     """Modified GPVAE model with prior variance proportional to missing values.
 
     Parameters
@@ -156,74 +156,42 @@ class BackboneGP_VAE(nn.Module):
         self.batch_size, self.time_steps, _ = X.size()
 
         # Merge prepare_data and simulate_missing_data
-        X, missing_mask, X_corrupted, missing_mask_corrupted = self.prepare_and_simulate(X, missing_mask)
+        X_q, missing_mask_q, X_p, missing_mask_p = self.prepare_and_simulate(X, missing_mask)
+        missing_mask_q, missing_mask_p = (X_q!=0), (X_p!=0)
 
-        nll, kl, prior_loss, temporal_loss = self.elbo(X, missing_mask, X_corrupted, missing_mask_corrupted)
+        # commpute elbos for p and q
+        nll_q, kl_q = self.elbo(X_q, missing_mask_q)
+        nll_p, kl_p = self.elbo(X_p, missing_mask_p)
+        elbo_q, elbo_p = nll_q - kl_q, nll_p - kl_p
 
-        elbo = nll + kl * self.alpha + prior_loss * self.beta + temporal_loss * self.gamma
+        # compute additional terms
+        nll_p_bar, kl_q_p = self.additional_terms(X_p, X_q, missing_mask_p, missing_mask_q)
 
-        self.forward_passes_counter += 1
+        l = self.alpha
 
-        if self.forward_passes_counter % 50 == 0: #plot losses
+        elbo = elbo_q * (1 - l) - l * ( kl_q_p - elbo_p - nll_p_bar )
 
-            self.loss_history['elbo'].append(elbo.item())
-            self.loss_history['nll'].append(nll.item() - .5 * np.log(2 * np.pi * 0.01))
-            self.loss_history['kl'].append(kl.item())
-            self.loss_history['prior_loss'].append(prior_loss.item())
-            self.loss_history['temporal_loss'].append(temporal_loss.item())
+        if torch.rand((1,)).mean() < 1e-2:
+            print(elbo_q.mean().item(), elbo_p.mean().item(), kl_q_p.mean().item(), nll_p_bar.mean().item())
 
-            qz_x = self.encode(X)
+        return -elbo.clip(min = -1e3, max = 1e3).mean()
 
-            # Compute statistics for z_mu and z_var
-            z_mu_mean = qz_x.mean.mean(axis=(0,1)).detach().cpu().numpy()
-            z_mu_var = qz_x.mean.var(axis=(0,1)).detach().cpu().numpy()
-            z_var_mean = qz_x.variance.mean(axis=(0,1)).detach().cpu().numpy()
-            z_var_var = qz_x.variance.var(axis=(0,1)).detach().cpu().numpy()
-            
-            # Append to history
-            self.monitoring_history['z_mu_mean'].append(z_mu_mean)
-            self.monitoring_history['z_mu_var'].append(z_mu_var)
-            self.monitoring_history['z_var_mean'].append(z_var_mean)
-            self.monitoring_history['z_var_var'].append(z_var_var)
-
-            self.plot_losses()
-            self.plot_params()
-
-            if len(self.loss_history['elbo']) == 300 : # Divide number of points by 2
-
-                for key in self.loss_history:
-                    self.loss_history[key] = self.loss_history[key][::2]
-
-        # Validation and optional plotting
-        qz_x = self.encode(X, missing_mask)
-        z = qz_x.rsample()
-        px_z = self.decode(z)
-        self.validate_elbo(-elbo, nll, kl, prior_loss, z, qz_x, X, X_corrupted, px_z, temporal_loss)
-
-        return elbo
-
-    def elbo(self, X, missing_mask, X_corrupted, missing_mask_corrupted):
-
+    def elbo(self, X, missing_mask):
         qz_x = self.encode(X)
-        qz_x_corrupted = self.encode(X_corrupted)
+        z = qz_x.rsample()
+        nll = self.ll(X, z, qz_x, missing_mask).mean()
 
-        z = qz_x_corrupted.rsample()
+        q_dist = Normal(qz_x.mean, qz_x.variance.sqrt())
+        p_dist = Normal(
+            torch.zeros_like(qz_x.mean, device=qz_x.mean.device),
+            torch.ones_like(qz_x.mean,  device=qz_x.mean.device)
+        )
 
-        nll = self.nll(X, z, qz_x, qz_x_corrupted, mean_z = True).mean()
+        kl = kl_divergence(q_dist, p_dist).mean()
 
-        kl = self.kl(qz_x, qz_x_corrupted, eps = 1e-5).mean()
+        return nll, kl
 
-        prior_loss = self.prior(X, qz_x)
-
-        temporal_loss = self.temporal_loss(X, qz_x)
-
-        sampling_error = self.sampling_error(qz_x_corrupted, X, (X!=0))
-
-        nll + sampling_error
-
-        return nll, kl, prior_loss, temporal_loss
-
-    def nll(self, X, z, qz_x, qz_x_corrupted, mean_z = False, eps = 1e-3):
+    def ll(self, X, z, qz_x, mask, mean_z = False, eps = 1e-3):
         """
         Compute the reconstruction part of the elbo loss
         """
@@ -233,187 +201,30 @@ class BackboneGP_VAE(nn.Module):
 
         mu, sigma = px_z.mean, px_z.variance.clip(min = 1e-3) + eps
 
-        mu = mu + torch.normal(mean = torch.zeros(mu.shape)).to(self.device)*.01
-
-        sigma = .01
-        #sigma = qz_x.variance.mean(2).unsqueeze(2)
+        sigma = 1
 
         nll = 0.5 * ( torch.log(2 * torch.tensor(np.pi) * sigma) + (X - mu).pow(2) / sigma) 
 
-        #print(torch.log(2 * torch.tensor(np.pi) * sigma)[0,:2], ((X - mu).pow(2) / sigma)[0,:2])
+        condition_mask = (torch.isfinite(nll)) & (mask)
+        nll = torch.where(condition_mask, nll, torch.zeros_like(nll))
+        nll = nll.sum(axis=2)  # compute the mean along the second dimension only on observed values
 
-        #nll = nll.clip(min = 0, max = 1e5)
-        temp = 1e-2
-        density_quotient = torch.exp( (qz_x.log_prob(z) - qz_x_corrupted.log_prob(z)) * temp ).unsqueeze(2).clip(1e-3, 1e3)
-        density_quotient = 1
+        return - nll
 
-        compensated_nll = nll * density_quotient
+    def additional_terms(self, X_p, X_q, mask_p, mask_q):
 
-        # apply mask to select only observed values
-        mask = (X != 0)
+        mask_p_bar = mask_q ^ mask_p #(mask_q ^- mask_p)
 
-        condition_mask = (torch.isfinite(compensated_nll)) & (mask)
-        compensated_nll = torch.where(condition_mask, compensated_nll, torch.zeros_like(compensated_nll))
-        compensated_nll = compensated_nll.sum(axis=2) / (condition_mask.sum(axis=2) + eps) # compute the mean along the second dimension only on observed values
+        qz_x_q = self.encode(X_q)
+        qz_x_p = self.encode(X_p)
 
-        if mean_z: # no need to multiply by density quotient because we're sampling directly from a proxy of qz_x
+        z_q = qz_x_q.rsample()
 
-            px_mu_z = self.decode(qz_x.mean)
+        nll_p_bar = self.ll(X_q, z_q, qz_x_q, mask_p_bar).mean()
 
-            mu, sigma = px_mu_z.mean, .01
+        kl_q_p = kl_divergence(qz_x_q, qz_x_p)
 
-            nll_mean = 0.5 * ( torch.log(2 * torch.tensor(np.pi) * sigma) + (X - mu).pow(2) / sigma)
-            #nll_mean = nll_mean.clip(min = 0, max = 1e5)
-
-
-            condition_mask = (torch.isfinite(nll_mean)) & (mask)
-            nll_mean = torch.where(condition_mask, nll_mean, torch.zeros_like(nll_mean))
-            nll_mean = nll_mean.sum(axis=2) / (condition_mask.sum(axis=2) + eps) # compute the mean along the second dimension only on observed values
-
-            nll = compensated_nll + nll_mean * .1
-
-        else:
-
-            nll = compensated_nll
-
-        #print(nll)
-
-        return nll
-
-    def kl(self, qz_x, qz_x_corrupted, eps = 1e-3):
-        """
-        Compute the KL divergence between the 2 gaussians
-        """
-
-        mu_z, mu_z_corrupted = qz_x.mean, qz_x_corrupted.mean
-        var_z, var_z_corrupted = qz_x.variance, qz_x_corrupted.variance
-
-        kl = .5 * ( ( torch.log(var_z_corrupted) - torch.log(var_z) ).detach() + (var_z + (mu_z_corrupted - mu_z).pow(2) )/ ( var_z_corrupted + eps) )
-
-        return kl
-
-    def prior(self, X, qz_x):
-
-        mask = (X!=0)
-        mu_z = qz_x.mean
-
-        #print(mask.shape, mu_z.shape)
-
-        mean_prior = (mu_z.mean() - X[mask].mean()).abs() # the mean of the latent data should be close to the mean of the original data
-
-        loss = mean_prior
-
-        where_no_missing_feats = (mask.sum(axis=2)==0)
-        if where_no_missing_feats.int().sum() > 0:
-            #print(where_no_missing_feats)
-            where_no_missing_feats = where_no_missing_feats.unsqueeze(2).repeat(1,1,mu_z.shape[2])
-            #print((mask.sum(axis=2)==0).shape)
-            #print(where_no_missing_feats.shape, qz_x.variance.shape)
-            var_loss = qz_x.variance[where_no_missing_feats].pow(2).mean()
-            #print(qz_x.variance[where_no_missing_feats])
-            #print(var_loss)
-
-            loss += var_loss
-
-        
-        #variance_prior = (mu_z.var(dim=2).mean() - 1).abs() # the variance of the latent data should be close to 1
-
-        return loss #+ variance_prior
-
-    def temporal_loss(self, X, qz_x, eps = 1e-3):
-
-        batch_size = self.batch_size
-
-        mu = qz_x.mean
-        var = qz_x.variance
-
-        mask = (X!=0).int()
-        mask_diff = mask[:,1:] - mask[:,:-1]
-        X_diff = X[:,1:] - X[:,:-1]
-        z_diff = mu[:,1:] - mu[:,:-1]
-
-        std_z = torch.std(mu,axis=(0,1)).unsqueeze(0).unsqueeze(0).detach() + eps
-        #var_X = torch.std(X,axis=(0,1)).unsqueeze(0).unsqueeze(0).detach() + eps
-
-        temporal_loss = 0
-
-        for i in range(self.batch_size):
-
-            mask_diff_i_sum = mask_diff[i::self.batch_size].sum(2)
-            mask_diff_i_sum[mask_diff_i_sum==0] = 1
-
-            mean_X_diff_i = (X_diff[i::self.batch_size] * mask_diff[i::self.batch_size]).pow(2).sum(2) / mask_diff_i_sum
-            mean_z_diff_i = (z_diff[i::self.batch_size] / std_z).pow(2).mean(2)
-
-            #print(mean_z_diff_i.shape, var_z.shape)
-
-            #mean_z_diff_i = mean_z_diff_i / var_z
-            #mean_X_diff_i = mean_X_diff_i / var_X
-
-            #temporal_loss += (mean_X_diff_i - mean_z_diff_i).pow(2)
-            temporal_loss += (mean_z_diff_i / (mean_X_diff_i + eps))
-
-            # mean diff should be on ratio of diff over variance
-
-        return temporal_loss.clip(min = 1e-3, max = 1e3).mean() / (self.batch_size)
-
-    def temporal_loss(self, X, qz_x, eps = 1e-3):
-
-        batch_size = self.batch_size
-
-        z = qz_x.rsample()
-        var = qz_x.variance
-
-        mask = (X!=0).int()
-        mask_diff = mask[:,1:] - mask[:,:-1]
-        X_diff = X[:,1:] - X[:,:-1]
-        z_diff = z[:,1:] - z[:,:-1]
-        std_diff = (var[:,1:] + var[:,:-1]).pow(.5)
-
-        z_diff_normalized = z_diff / std_diff
-
-        temporal_loss = 0
-
-        for i in range(self.batch_size):
-
-            #mask_diff_i_sum = mask_diff[i::self.batch_size].sum(2)
-            #mask_diff_i_sum[mask_diff_i_sum==0] = 1
-
-            #mean_X_diff_i = (X_diff[i::self.batch_size] * mask_diff[i::self.batch_size]).pow(2).sum(2) / mask_diff_i_sum
-            #mean_z_diff_i = (z_diff_normalized[i::self.batch_size]).pow(2).mean(2)
-
-            #temporal_loss += (mean_z_diff_i / (mean_X_diff_i + eps))
-
-            temporal_loss += (z_diff_normalized[i::self.batch_size]).pow(2).mean(2)
-
-        return temporal_loss.clip(min = 1e-3, max = 1e3).mean() #/ (self.batch_size)
-
-    def temporal_loss(self, X, qz_x, eps = 1e-3):
-        """
-        Maximize the log proba of the gaussian process with a given kernel
-        """
-
-        # update kernel parameters
-        kernel_params = self.gp.update_kernel_params(X)
-        z, mu_z = qz_x.rsample(), qz_x.mean
-
-        log_prob = 0
-        for d in self.gp.dims_to_train: # over latent dimension
-            #for b in range(z.shape[0]): # over batch dimension
-            #for b in range(2):
-
-            # select 2 random time coordinates
-            (i,j) = np.random.choice(self.gp.dims_to_train, size = (2,), replace = False)
-            k_0, k_diff = self.gp.kernel_one_point(0, kernel_params[0,d]), self.gp.kernel_one_point(np.abs(i-j), kernel_params[0,d])
-            # !!!  TO DO: THE 0 in the kernel aprams is a trick and needs to be modified
-            # i need to verify why i wanted one kernel per batch element ?
-
-            z_i, z_j, mu_z_j, mu_z_i = z[:,i], z[:,j], mu_z[:,i], mu_z[:,j]
-            log_prob -= log_joint_gaussian_heteroscedastic_from_z(z, qz_x, i, j, k_0, k_0, k_diff)
-            
-
-        b = z.shape[0]
-        return log_prob.mean() / ((d+1) * (b+1))
+        return nll_p_bar, kl_q_p
 
 ## sampling loss
 
@@ -671,7 +482,7 @@ class BackboneGP_VAE(nn.Module):
             X_recon_sample[X_ori_np == 0][:num_missing_vals // 2] == np.nan
             reconstructions.append(X_recon_sample)
 
-            nll_loss += self.nll(X_ori, z_sample, qz_x_ori, qz_x, eps = 1e-3)[0].detach().cpu().numpy()/10.
+            nll_loss += self.ll(X_ori, z_sample, qz_x_ori, qz_x, eps = 1e-3)[0].detach().cpu().numpy()/10.
 
             #print(nll_loss)
         
