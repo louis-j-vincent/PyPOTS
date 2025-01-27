@@ -131,10 +131,8 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
         # For tracking
         self.loss_history = {
             'elbo': [],
-            'nll': [],
-            'kl': [],
-            'prior_loss': [],
-            'temporal_loss': []
+            'elbo_q': [],
+            'other term': []
         }
 
         self.monitoring_history = {
@@ -173,6 +171,42 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
 
         if torch.rand((1,)).mean() < 1e-2:
             print(elbo_q.mean().item(), elbo_p.mean().item(), kl_q_p.mean().item(), nll_p_bar.mean().item())
+
+        self.forward_passes_counter += 1
+
+        if self.forward_passes_counter % 50 == 0: #plot losses
+
+            self.loss_history['elbo'].append(elbo.mean().item())
+            self.loss_history['elbo_q'].append(elbo_q.mean().item())
+            self.loss_history['other term'].append(-( kl_q_p - elbo_p - nll_p_bar ).mean().item())
+
+            qz_x = self.encode(X)
+
+            # Compute statistics for z_mu and z_var
+            z_mu_mean = qz_x.mean.mean(axis=(0,1)).detach().cpu().numpy()
+            z_mu_var = qz_x.mean.var(axis=(0,1)).detach().cpu().numpy()
+            z_var_mean = qz_x.variance.mean(axis=(0,1)).detach().cpu().numpy()
+            z_var_var = qz_x.variance.var(axis=(0,1)).detach().cpu().numpy()
+            
+            # Append to history
+            self.monitoring_history['z_mu_mean'].append(z_mu_mean)
+            self.monitoring_history['z_mu_var'].append(z_mu_var)
+            self.monitoring_history['z_var_mean'].append(z_var_mean)
+            self.monitoring_history['z_var_var'].append(z_var_var)
+
+            self.plot_losses()
+            self.plot_params()
+
+            if len(self.loss_history['elbo']) == 300 : # Divide number of points by 2
+
+                for key in self.loss_history:
+                    self.loss_history[key] = self.loss_history[key][::2]
+
+        # Validation and optional plotting
+        qz_x = self.encode(X, missing_mask)
+        z = qz_x.rsample()
+        px_z = self.decode(z)
+        #self.validate_elbo(-elbo, z, qz_x, X, X_p, px_z)
 
         return -elbo.clip(min = -1e3, max = 1e3).mean()
 
@@ -363,24 +397,20 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
         missing_mask_ori = (X_ori != 0)
         return X_ori, missing_mask_ori, X, missing_mask
 
-    def validate_elbo(self, elbo, nll_recon, nll_imputation, kl, z, qz_x, X_ori, X, px_z, tl):
+    def validate_elbo(self, elbo, z, qz_x, X_q, X_p, px_z):
         """Perform assertions, debugging, and optional plotting."""
-        assert not (elbo.abs() > 1e8).any(), print('elbo too big', nll_recon.mean().item(), nll_imputation.mean().item(), kl.mean().item(), elbo.mean().item())
-        assert not (elbo > 50), print('elbo negative', elbo.item(), nll_recon.mean().item(), nll_imputation.mean().item(), kl.mean().item())
-        assert not (torch.isnan(elbo).any()), print('elbo is nan', elbo.item(), nll_recon.mean().item(), nll_imputation.mean().item(), kl.mean().item())
-
         if len(self.loss_history['elbo']) > 20 and len(self.loss_history['elbo'])%10 == 0:
             loss_ratio = torch.tensor(self.loss_history['temporal_loss'][-20:]).mean().item() / torch.tensor(self.loss_history['nll'][-20:]).mean().item()
             #if loss_ratio < 1: 
             #    self.gamma *= loss_ratio
 
-        if self.forward_passes_counter %800 == 0:
+        if self.forward_passes_counter%100 == 0:
             print('plotting')
             ## Let's shope this doesn't mess up with the optimizer too much, but
             ## I want the recon and temporal losses to be the same order of magnitude, so le'ts 
             ## adapt the gamma
 
-            self.plot_latent_series_and_reconstruction(z, px_z, qz_x, X_ori.detach(), X.detach(), self.latent_dim, -elbo, kl, tl)
+            self.plot_latent_series_and_reconstruction(z, px_z, qz_x, X_q.detach(), X_p.detach(), self.latent_dim, -elbo, torch.ones(5), torch.ones(5))
 
     def plot_params(self):
 
@@ -439,7 +469,7 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
         plt.figure(figsize=(10, 6))
 
         for key in self.loss_history:
-            plt.semilogy(iterations, self.loss_history[key][::n], label=key)
+            plt.plot(iterations, self.loss_history[key][::n], label=key)
 
         plt.xlabel('Iteration')
         plt.ylabel('Loss (log scale)')
@@ -458,6 +488,8 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
         """
         Plots the mean and variance of all latent time series and the original vs reconstructed data.
         """
+        print(0)
+        
         # Convert to CPU numpy arrays for plotting
         z_mean = qz_x.mean[0].detach().cpu().numpy()
         z_var = qz_x.variance[0].detach().cpu().numpy()
@@ -467,26 +499,34 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
 
         qz_x_ori = self.encode(X_ori)
 
-        z_mean_ori, z_var_ori = qz_x_ori.mean.detach().cpu(), qz_x_ori.variance.detach().cpu()
 
+        z_mean_ori, z_var_ori = qz_x_ori.mean.detach().cpu(), qz_x_ori.variance.detach().cpu()
 
         # Sample 10 times from the posterior to get 10 reconstructions
         nll_loss = 0
         reconstructions = []
         for i in range(10):
+            print(1)
             z_sample = qz_x.rsample()  # Sample from the posterior
+            print(qz_x.mean.shape)
             px_z_sample = self.decode(z_sample)  # Reconstruct the data
+            print(2)
+
             X_recon_sample = px_z_sample.mean.detach().cpu().numpy()  # Get the mean of the reconstruction
             # Set first half of non-reconstructed values to NaN
             num_missing_vals = np.sum(X_ori_np == 0)
+            print(X_recon_sample.shape, X_ori_np.shape)
             X_recon_sample[X_ori_np == 0][:num_missing_vals // 2] == np.nan
+
+            print(11)
             reconstructions.append(X_recon_sample)
 
-            nll_loss += self.ll(X_ori, z_sample, qz_x_ori, qz_x, eps = 1e-3)[0].detach().cpu().numpy()/10.
+            print(22)
+            print(33)
 
             #print(nll_loss)
-        
-        kl_loss = self.kl(qz_x_ori, qz_x, eps = 1e-3)[0].detach().cpu().numpy()
+
+        print(3)
 
         X_ori_np[X_ori_np == 0] = np.nan
 
@@ -503,21 +543,8 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
         # Plot all latent dimensions' mean and variance
         plt.figure(figsize=(15, 12))
 
-        plt.subplot(4, 1, 4)
-        #mask, mask_ori = (X != 0).to(self.device), (X_ori != 0).to(self.device)
-        #qz_x = self.encode(X_ori)
-        #qz_x_corrupted = self.encode(X)
-        #z = qz_x.rsample()
-        #imputation_error = self.nll(X, z, qz_x, qz_x_corrupted)[0].detach().cpu().numpy()
-        #plt.semilogy(imputation_error, label = 'nll error')
-        nll_loss = np.array(nll_loss) -  .5 * np.log(2 * np.pi * 0.01)
-        plt.semilogy(kl_loss, label = 'kl_loss')
-        plt.semilogy(nll_loss, label = 'nll error')
-        plt.legend()
+        print(4)
 
-        plt.title('Log probability of original z belonging to the corrupted Gaussian')
-
-        losses = f'kl = {kl.mean().item()} - nll = {nll.mean().item()} - temporal {tl.item()}'
         plt.subplot(4, 1, 1)
         colors = ['purple', 'brown', 'orange', 'b','g','r','y','black','cyan','gray']
         time_steps = z_mean.shape[0]
@@ -530,10 +557,12 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
         #plt.plot([], color = 'k', alpha = .2, label = 'Z corrupted variance')
 
 
-        plt.title('Latent Time Series (Mean and Variance) ' + losses)
+        plt.title('Latent Time Series (Mean and Variance) ')
         plt.xlabel('Time Steps')
         plt.ylabel('Latent Values')
         #plt.legend(bbox_to_anchor=[1.2, 0.3])
+
+        print(5)
 
         # Plot scales for prior and posterior
         plt.subplot(4, 1, 2)
@@ -550,6 +579,8 @@ class BackboneGP_VAE_posterior_consistency(nn.Module):
         plt.subplot(4, 1, 3)
         X_recon = self.decode(qz_x.mean[0]).mean.detach().cpu().numpy()
         X_np[X_np==0] = np.nan
+
+        print(6)
 
         errors = np.array( [np.abs(x_recon - X_ori_np) for x_recon in reconstructions]).mean(0)
         std = reconstructions.std(0)
