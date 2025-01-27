@@ -1,5 +1,5 @@
 """
-The package including the modules of GP-VAE.
+The package of the partially-observed time-series imputation model GP-VAE.
 
 Refer to the paper
 `Vincent Fortuin, Dmitry Baranchuk, Gunnar Rätsch, and Stephan Mandt.
@@ -13,11 +13,11 @@ This implementation is inspired by the official one https://github.com/ratschlab
 
 """
 
-# Created by Jun Wang <jwangfx@connect.ust.hk> and Wenjie Du <wenjay.du@gmail.com>
+# Created by Jun Wang <jwangfx@connect.ust.hk>
 # License: BSD-3-Clause
 
-from .backbone import BackboneGP_VAE_posterior_consistency
+from .model import GP_VAE_posterior_concistency
 
 __all__ = [
-    "BackboneGP_VAE_posterior_consistency",
+    "GP_VAE_posterior_concistency",
 ]
