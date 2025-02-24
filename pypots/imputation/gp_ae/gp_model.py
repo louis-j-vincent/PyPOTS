@@ -15,6 +15,9 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
+import matplotlib.pyplot as plt
+
+
 class ProbabilisticGP:
     """
     A sub-module of a VAE that corrects the latent time-series via the Probabilistic GP regression scheme
@@ -262,47 +265,6 @@ def train_on_batch(model, gp_models, mlls, optimizers, batch_x, z_mu, z_var, n_i
                 model.dims_to_train.remove(j)
                 print(f'No further training for dim {j}')
 
-def plot_gp_reconstruction(x, z_mu_j, gp_model_j, likelihood_j, j, training_step):
-    # Set models to evaluation mode
-    gp_model_j.eval()
-    likelihood_j.eval()
-    
-    with torch.no_grad(), gpytorch.settings.fast_pred_var():
-        # Ensure x is a tensor of shape [num_points]
-        test_x = x.float()
-        
-        # Make predictions
-        predictions = likelihood_j(gp_model_j(test_x))
-        try:
-            mean = predictions.mean[:,0]
-        except:
-            mean = predictions.mean
-        lower, upper = predictions.confidence_region()
-    
-    # Plotting
-    plt.figure(figsize=(8, 4))
-    # Plot observed data as black stars
-    plt.plot(x.numpy(), z_mu_j.detach().numpy(), 'k*', label='Observed Data')
-    # Plot predictive mean as blue line
-    plt.plot(test_x.numpy(), mean.numpy(), 'b', label='Predictive Mean')
-    # Shade in confidence intervals
-    try:
-        plt.fill_between(test_x.numpy(), lower.numpy()[:,0], upper.numpy()[:,0], alpha=0.5, label='Confidence Interval')
-    except:
-        plt.fill_between(test_x.numpy(), lower.numpy(), upper.numpy(), alpha=0.5, label='Confidence Interval')
-    plt.ylim([z_mu_j.min().item() - 1, z_mu_j.max().item() + 1])
-    plt.legend()
-    plt.title(f'GP Reconstruction for Latent Dimension {j} at Step {training_step}')
-    plt.xlabel('Time Steps')
-    plt.ylabel('Latent Variable Value')
-
-    plt.savefig(f'latent_plots/gp_plots/dim_{j}_iter_{training_step}.png')
-    plt.close()
-    #plt.show()
-    
-    # Set models back to training mode
-    gp_model_j.train()
-    likelihood_j.train()
 
 import torch
 import torch.nn as nn
@@ -534,42 +496,275 @@ class ProbabilisticGP:
 
         return z_star
 
-    def infer(self, qz_x, x_input):
+    def correct_with_gp(self, z_mu, z_var, kernel_params, return_variance=False):
+        """
+        Perform Gaussian Process regression in the latent space, returning mean and optionally variance.
+        
+        Parameters:
+            z_mu (torch.Tensor): Mean of the latent variables.
+            z_var (torch.Tensor): Variance of the latent variables.
+            kernel_params (torch.Tensor): Kernel hyperparameters.
+            return_variance (bool): Whether to return predictive variance.
 
-        z_mu, z_var = qz_x.mean, qz_x.variance
+        Returns:
+            z_star (torch.Tensor): GP-corrected latent mean.
+            sigma_star (torch.Tensor, optional): GP-corrected latent variance (if return_variance=True).
+        """
 
-        # Update kernel_params
-        kernel_params = self.update_kernel_params(x_input)
+        T = torch.linspace(0, 1, z_mu.shape[1]).unsqueeze(1).to(z_mu.device)  # Time steps
 
-        # Correct with GP
-        z_star = self.correct_with_gp(z_mu, z_var, kernel_params)
+        z_star = torch.zeros_like(z_mu)  # Corrected latent mean
+        sigma_star = torch.zeros_like(z_var) if return_variance else None  # Corrected variance
 
-        # Reconstruct and compute reconstruction error
-        x_recon = self.decode(z_star).mean
+        self.dims_to_train = np.arange(z_star.shape[2])  # Train over latent dimensions
 
-        return x_recon
+        for j in self.dims_to_train:
+            for b in range(z_mu.shape[0]):  # Iterate over batch dimension
 
-    def kernel(self, X1, X2, params, kernel='rbf'):
-        dists = torch.cdist(X1, X2, p=2)  # Pairwise distances
+                # Compute kernel matrix and observation noise
+                K, noise, var_importance = self.kernel(T, T, kernel_params[b, j])
 
-        if kernel == 'rbf':
-            # Batch parameters
-            length_scale = 10. ** params[:, 0].clamp(min=-3, max=-1)
-            sigma = 10. ** params[:, 1].clamp(min=-1, max=0)
-            noise = 10. ** params[:, 2].clamp(min=-5, max=-3)
-            var_importance = torch.ones(params.size(0), device=params.device)  # Assuming it's constant for all batches
+                # Construct the observed covariance matrix
+                K_obs = K + torch.diag(z_var[b, :, j]) * var_importance + noise
 
-            # Kernel computation
-            K = sigma[:, None, None] * torch.exp(-0.5 * (dists[None, :, :] / length_scale[:, None, None]) ** 2)
+                # Compute correction matrix
+                correction_matrix = torch.linalg.solve(K_obs + 1e-5 * torch.eye(K_obs.size(0), device=K_obs.device), K)
 
-            # Broadcasting noise and importance
-            noise = noise[:, None, None] * torch.eye(X1.size(0), device=X1.device).unsqueeze(0)
-        else:
-            K, noise, var_importance = None, None, None
+                # Compute predictive mean
+                z_star[b, :, j] = torch.matmul(K, torch.linalg.inv(K_obs)) @ z_mu[b, :, j]
 
-        return K, noise, var_importance
+                # Compute predictive variance if requested
+                if return_variance:
+                    k_xx = torch.diagonal(K)  # Extract k(t_*, t_*) elements
+                    sigma_star[b, :, j] = k_xx - torch.einsum('ij,ji->i', correction_matrix, K.T)
 
-    def correct_with_gp(self, z_mu, z_var, kernel_params):
+        return (z_star, sigma_star) if return_variance else z_star
+
+        def infer(self, qz_x, x_input, return_variance=False):
+            """
+            Infer the reconstructed data from the latent GP.
+
+            Parameters:
+                qz_x (torch.Tensor): Latent distribution (mean & variance).
+                x_input (torch.Tensor): Input data.
+                return_variance (bool): Whether to return predictive variance.
+                
+            Returns:
+                x_recon_mean (torch.Tensor): Reconstructed mean.
+                x_recon_var (torch.Tensor, optional): Reconstructed variance.
+            """
+            z_mu, z_var = qz_x.mean, qz_x.variance
+
+            # Update kernel parameters
+            kernel_params = self.update_kernel_params(x_input)
+
+            # Perform GP regression in latent space
+            if return_variance:
+                z_star, sigma_star = self.correct_with_gp(z_mu, z_var, kernel_params, return_variance=True)
+            else:
+                z_star = self.correct_with_gp(z_mu, z_var, kernel_params, return_variance=False)
+                sigma_star = None  # Variance is not computed
+
+            # Decode to reconstruct data
+            x_recon_mean = self.decode(z_star).mean  # Reconstructed mean
+            x_recon_var = sigma_star if return_variance else None  # Uncertainty in the reconstruction
+
+            return (x_recon_mean, x_recon_var) if return_variance else x_recon_mean
+
+
+            def kernel(self, X1, X2, params, kernel='rbf'):
+                dists = torch.cdist(X1, X2, p=2)  # Pairwise distances
+
+                if kernel == 'rbf':
+                    # Batch parameters
+                    length_scale = 10. ** params[:, 0].clamp(min=-3, max=-1)
+                    sigma = 10. ** params[:, 1].clamp(min=-1, max=0)
+                    noise = 10. ** params[:, 2].clamp(min=-5, max=-3)
+                    var_importance = torch.ones(params.size(0), device=params.device)  # Assuming it's constant for all batches
+
+                    # Kernel computation
+                    K = sigma[:, None, None] * torch.exp(-0.5 * (dists[None, :, :] / length_scale[:, None, None]) ** 2)
+
+                    # Broadcasting noise and importance
+                    noise = noise[:, None, None] * torch.eye(X1.size(0), device=X1.device).unsqueeze(0)
+                else:
+                    K, noise, var_importance = None, None, None
+
+                return K, noise, var_importance
+
+            def correct_with_gp(self, z_mu, z_var, kernel_params):
+                T = torch.linspace(0, 1, z_mu.shape[1]).unsqueeze(1).to(z_mu.device)  # Ensure same device
+                z_star = torch.zeros_like(z_mu)
+
+                self.dims_to_train = np.arange(z_mu.shape[2])
+
+                for j in self.dims_to_train:
+                    # Batch-wise computation for all elements in the batch
+                    K, noise, var_importance = self.kernel(T, T, kernel_params[:, j])
+
+                    # Adding batch dimension to T and kernel parameters for broadcasting
+                    K_obs = K + torch.diag_embed(z_var[:, :, j]) * var_importance[:, None, None] + noise
+
+                    #print(var_importance.shape, noise.shape)
+
+                    # Batched solve and correction
+                    correction_matrices = torch.linalg.solve(K_obs + 1e-5 * torch.eye(K_obs.size(-1), device=K_obs.device), K)
+
+                    # Batched matrix multiplication
+                    z_star[:, :, j] = torch.einsum('bij,bi->bj', correction_matrices, z_mu[:, :, j])
+
+                return z_star
+
+            def fit_kernel_(self, training_loader, training_iter=20):
+                for i in range(training_iter):
+                    total_loss = 0.0
+                    num_samples = 0
+
+                    for training_step, data in tqdm(enumerate(training_loader), desc=f"Epoch {i+1}/{training_iter}"):
+                        self.optimizer.zero_grad()
+
+                        inputs = self.assemble_data(data)
+                        x_input = inputs['X']
+
+                        x_corr = mcar(x_input, p=self.p)
+
+                        # Encode the data
+                        qz_x = self.encode(x_input)
+                        z_mu, z_var = qz_x.mean.detach(), qz_x.variance.detach()
+
+                        # Update kernel_params
+                        kernel_params = self.update_kernel_params(x_input)
+
+                        if training_step%5==0:
+                            self.kernel_params_history['a'].append(kernel_params[0,0,0].detach().item())
+                            self.kernel_params_history['b'].append(kernel_params[0,1,0].detach().item())
+                            self.kernel_params_history['c'].append(kernel_params[0,2,0].detach().item())
+                            self.kernel_params_history['d'].append(kernel_params[0,3,0].detach().item())
+
+                        # Correct with GP
+                        z_star = self.correct_with_gp(z_mu, z_var, kernel_params)
+
+                        # Reconstruct and compute reconstruction error
+                        x_recon = self.decode(z_star).mean
+                        x_recon += torch.rand(x_recon.shape) * 1e-2 # add a bit of noise
+                        l2_error = (x_recon - x_input).pow(2)[(x_input != 0)].clip(max = 1)
+
+                        l2_error += (x_recon - x_input).pow(2)[(x_corr != 0)].clip(max = 1).mean()
+
+                        # Backprop on loss
+                        loss = l2_error.mean()
+                        loss.backward()
+                        self.optimizer.step()
+
+                        # Accumulate loss for reporting
+                        total_loss += loss.item() * x_input.size(0)  # Multiply by batch size
+                        num_samples += x_input.size(0)
+
+                    # Compute and print average loss for the epoch
+                    avg_loss = total_loss / num_samples
+                    print(f"Epoch {i+1}/{training_iter}: Average Loss = {avg_loss:.6f}")
+
+            def correct_with_gp_(self, z_mu, z_var, kernel_params):
+
+                T = torch.linspace(0,1,z_mu.shape[1]).unsqueeze(1)
+
+                z_star = torch.zeros(z_mu.shape)
+
+                self.dims_to_train = np.arange(z_star.shape[2])
+
+                for j in self.dims_to_train:
+
+                    for b in range(z_mu.shape[0]): #over batch dim
+
+                        # Compute kernel matrix and observation noise
+                        #K, noise, var_importance = self.kernel(T, T, kernel_params[b, j])
+
+                        # Construct the observed covariance matrix
+                        #K_obs = K + torch.diag(z_var[b, :, j]) * var_importance + noise
+
+                        # Inspect correction matrix
+                        #correction_matrix = torch.linalg.solve(K_obs + 1e-5 * torch.eye(K_obs.size(0), device=K_obs.device), K)
+
+                        # Compare z_star and z_mu
+                        #z_star[b, :, j] = correction_matrix.T @ z_mu[b, :, j]
+
+                        K, noise, var_importance = self.kernel(T, T, kernel_params[b,j])
+
+                        K_obs = K + torch.diag(z_var[b,:,j]) * var_importance + noise
+                        
+                        z_star[b,:,j] = torch.matmul(K ,torch.linalg.inv(K_obs)) @ z_mu[b,:,j]
+
+
+                        if False:   
+
+                            # Visualize the matrices for debugging
+                            plt.figure(figsize=(6, 6))
+                            plt.title("Observed Kernel (K)")
+                            plt.imshow(K.detach().cpu().numpy(), cmap='viridis', aspect='auto')
+                            plt.colorbar()
+                            plt.show()
+
+                            # Visualize the matrices for debugging
+                            plt.figure(figsize=(6, 6))
+                            plt.title("Observed Kernel (K_obs)")
+                            plt.imshow(K_obs.detach().cpu().numpy(), cmap='viridis', aspect='auto')
+                            plt.colorbar()
+                            plt.show()
+
+                            plt.figure(figsize=(6, 6))
+                            plt.title("Correction Matrix (K @ inv(K_obs))")
+                            plt.imshow((torch.eye(K_obs.size(0), device=K_obs.device) - correction_matrix).detach().cpu().numpy(), cmap='viridis', aspect='auto')
+                            plt.colorbar()
+                            plt.show()
+
+
+                            # Update z_star
+                            plt.plot((correction_matrix@z_mu[b, :, j]).detach())
+                            plt.plot(z_mu[b, :, j].detach(),'o')
+                            plt.show()
+
+                        #z_star[b, :, j] = torch.matmul(correction_matrix, z_mu[b, :, j])
+
+
+                return z_star
+
+
+        def plot_gp_regression(self, x_input, qz_x):
+            """
+            Plot the Gaussian Process regression results with confidence intervals.
+
+            Parameters:
+                x_input (torch.Tensor): Original input data.
+                qz_x (torch.Tensor): Latent distribution (mean & variance).
+            """
+            # Run inference to get mean and variance
+            x_recon_mean, x_recon_var = self.infer(qz_x, x_input, return_variance=True)
+
+            # Convert to numpy for plotting
+            x_recon_mean = x_recon_mean.detach().cpu().numpy()
+            x_recon_var = x_recon_var.detach().cpu().numpy()
+            
+            time_steps = np.arange(x_recon_mean.shape[1])  # Time axis
+            
+            plt.figure(figsize=(10, 5))
+
+            for dim in range(x_recon_mean.shape[2]):  # Iterate over latent dimensions
+                plt.subplot(1, x_recon_mean.shape[2], dim + 1)
+                plt.plot(time_steps, x_recon_mean[0, :, dim], label="Mean Prediction", color="blue")
+                plt.fill_between(time_steps, 
+                                x_recon_mean[0, :, dim] - 2 * np.sqrt(x_recon_var[0, :, dim]),
+                                x_recon_mean[0, :, dim] + 2 * np.sqrt(x_recon_var[0, :, dim]),
+                                color="blue", alpha=0.3, label="95% Confidence Interval")
+                
+                plt.xlabel("Time")
+                plt.ylabel(f"Latent Dimension {dim+1}")
+                plt.legend()
+                plt.title(f"GP Regression on Latent Dimension {dim+1}")
+
+            plt.tight_layout()
+            plt.show()
+
+    def correct_with_gp_(self, z_mu, z_var, kernel_params):
         T = torch.linspace(0, 1, z_mu.shape[1]).unsqueeze(1).to(z_mu.device)  # Ensure same device
         z_star = torch.zeros_like(z_mu)
 
@@ -592,120 +787,47 @@ class ProbabilisticGP:
 
         return z_star
 
-    def fit_kernel_(self, training_loader, training_iter=20):
-        for i in range(training_iter):
-            total_loss = 0.0
-            num_samples = 0
+    def plot_gp_reconstruction(x, z_mu_j, gp_model_j, likelihood_j, j, training_step):
+        # Set models to evaluation mode
+        gp_model_j.eval()
+        likelihood_j.eval()
+        
+        with torch.no_grad(), gpytorch.settings.fast_pred_var():
+            # Ensure x is a tensor of shape [num_points]
+            test_x = x.float()
+            
+            # Make predictions
+            predictions = likelihood_j(gp_model_j(test_x))
+            try:
+                mean = predictions.mean[:,0]
+            except:
+                mean = predictions.mean
+            lower, upper = predictions.confidence_region()
+        
+        # Plotting
+        plt.figure(figsize=(8, 4))
+        # Plot observed data as black stars
+        plt.plot(x.numpy(), z_mu_j.detach().numpy(), 'k*', label='Observed Data')
+        # Plot predictive mean as blue line
+        plt.plot(test_x.numpy(), mean.numpy(), 'b', label='Predictive Mean')
+        # Shade in confidence intervals
+        try:
+            plt.fill_between(test_x.numpy(), lower.numpy()[:,0], upper.numpy()[:,0], alpha=0.5, label='Confidence Interval')
+        except:
+            plt.fill_between(test_x.numpy(), lower.numpy(), upper.numpy(), alpha=0.5, label='Confidence Interval')
+        plt.ylim([z_mu_j.min().item() - 1, z_mu_j.max().item() + 1])
+        plt.legend()
+        plt.title(f'GP Reconstruction for Latent Dimension {j} at Step {training_step}')
+        plt.xlabel('Time Steps')
+        plt.ylabel('Latent Variable Value')
 
-            for training_step, data in tqdm(enumerate(training_loader), desc=f"Epoch {i+1}/{training_iter}"):
-                self.optimizer.zero_grad()
-
-                inputs = self.assemble_data(data)
-                x_input = inputs['X']
-
-                x_corr = mcar(x_input, p=self.p)
-
-                # Encode the data
-                qz_x = self.encode(x_input)
-                z_mu, z_var = qz_x.mean.detach(), qz_x.variance.detach()
-
-                # Update kernel_params
-                kernel_params = self.update_kernel_params(x_input)
-
-                if training_step%5==0:
-                    self.kernel_params_history['a'].append(kernel_params[0,0,0].detach().item())
-                    self.kernel_params_history['b'].append(kernel_params[0,1,0].detach().item())
-                    self.kernel_params_history['c'].append(kernel_params[0,2,0].detach().item())
-                    self.kernel_params_history['d'].append(kernel_params[0,3,0].detach().item())
-
-                # Correct with GP
-                z_star = self.correct_with_gp(z_mu, z_var, kernel_params)
-
-                # Reconstruct and compute reconstruction error
-                x_recon = self.decode(z_star).mean
-                x_recon += torch.rand(x_recon.shape) * 1e-2 # add a bit of noise
-                l2_error = (x_recon - x_input).pow(2)[(x_input != 0)].clip(max = 1)
-
-                l2_error += (x_recon - x_input).pow(2)[(x_corr != 0)].clip(max = 1).mean()
-
-                # Backprop on loss
-                loss = l2_error.mean()
-                loss.backward()
-                self.optimizer.step()
-
-                # Accumulate loss for reporting
-                total_loss += loss.item() * x_input.size(0)  # Multiply by batch size
-                num_samples += x_input.size(0)
-
-            # Compute and print average loss for the epoch
-            avg_loss = total_loss / num_samples
-            print(f"Epoch {i+1}/{training_iter}: Average Loss = {avg_loss:.6f}")
-
-    def correct_with_gp_(self, z_mu, z_var, kernel_params):
-
-        T = torch.linspace(0,1,z_mu.shape[1]).unsqueeze(1)
-
-        z_star = torch.zeros(z_mu.shape)
-
-        self.dims_to_train = np.arange(z_star.shape[2])
-
-        for j in self.dims_to_train:
-
-            for b in range(z_mu.shape[0]): #over batch dim
-
-                # Compute kernel matrix and observation noise
-                #K, noise, var_importance = self.kernel(T, T, kernel_params[b, j])
-
-                # Construct the observed covariance matrix
-                #K_obs = K + torch.diag(z_var[b, :, j]) * var_importance + noise
-
-                # Inspect correction matrix
-                #correction_matrix = torch.linalg.solve(K_obs + 1e-5 * torch.eye(K_obs.size(0), device=K_obs.device), K)
-
-                # Compare z_star and z_mu
-                #z_star[b, :, j] = correction_matrix.T @ z_mu[b, :, j]
-
-                K, noise, var_importance = self.kernel(T, T, kernel_params[b,j])
-
-                K_obs = K + torch.diag(z_var[b,:,j]) * var_importance + noise
-                
-                z_star[b,:,j] = torch.matmul(K ,torch.linalg.inv(K_obs)) @ z_mu[b,:,j]
-
-
-                if False:   
-
-                    # Visualize the matrices for debugging
-                    plt.figure(figsize=(6, 6))
-                    plt.title("Observed Kernel (K)")
-                    plt.imshow(K.detach().cpu().numpy(), cmap='viridis', aspect='auto')
-                    plt.colorbar()
-                    plt.show()
-
-                    # Visualize the matrices for debugging
-                    plt.figure(figsize=(6, 6))
-                    plt.title("Observed Kernel (K_obs)")
-                    plt.imshow(K_obs.detach().cpu().numpy(), cmap='viridis', aspect='auto')
-                    plt.colorbar()
-                    plt.show()
-
-                    plt.figure(figsize=(6, 6))
-                    plt.title("Correction Matrix (K @ inv(K_obs))")
-                    plt.imshow((torch.eye(K_obs.size(0), device=K_obs.device) - correction_matrix).detach().cpu().numpy(), cmap='viridis', aspect='auto')
-                    plt.colorbar()
-                    plt.show()
-
-
-                    # Update z_star
-                    plt.plot((correction_matrix@z_mu[b, :, j]).detach())
-                    plt.plot(z_mu[b, :, j].detach(),'o')
-                    plt.show()
-
-                #z_star[b, :, j] = torch.matmul(correction_matrix, z_mu[b, :, j])
-
-
-        return z_star
-
-
+        plt.savefig(f'latent_plots/gp_plots/dim_{j}_iter_{training_step}.png')
+        plt.close()
+        #plt.show()
+        
+        # Set models back to training mode
+        gp_model_j.train()
+        likelihood_j.train()
 
 
 class ProbabilisticGP_:

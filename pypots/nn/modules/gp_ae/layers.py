@@ -181,7 +181,6 @@ class GpvaeEncoder(nn.Module):
 
 
 
-
     def forward(self, x, mask = None):
         batch_size, time_length, input_size = x.size()
         #print(f"Input shape: {x.size()}")  # Debug
@@ -203,7 +202,7 @@ class GpvaeEncoder(nn.Module):
         #print(f"Logvar shape: {logvar.size()}")  # Should be [batch_size * time_length, z_size]
 
         # Compute standard deviation
-        std = torch.exp(0.5 * logvar).clip(min = 1e-3, max = 1)
+        std = torch.exp(0.5 * logvar).clip(min = 1e-3, max = 1e0)
         #print(f"Std shape before reshape: {std.size()}")  # Should be [batch_size * time_length, z_size]
 
         # Reshape tensors back to [batch_size, time_length, z_size]

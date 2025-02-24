@@ -132,7 +132,7 @@ class GP_VAE(BaseNNImputer):
         window_size: int = 3,
         batch_size: int = 32,
         epochs: int = 100,
-        patience: Optional[int] = None,
+        patience: Optional[int] = 100,
         optimizer: Optional[Optimizer] = Adam(),
         num_workers: int = 0,
         device: Optional[Union[str, torch.device, list]] = None,
@@ -166,6 +166,15 @@ class GP_VAE(BaseNNImputer):
         self.length_scale = length_scale
         self.kernel_scales = kernel_scales
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+        # Save patience value for early stopping.
+        # If patience is None, early stopping is disabled.
+        if patience is None:
+            self.patience = float("inf")
+            self.original_patience = float("inf")
+        else:
+            self.patience = patience
+            self.original_patience = patience
 
         # set up the model
         self.model = _GP_VAE(
@@ -294,14 +303,18 @@ class GP_VAE(BaseNNImputer):
                     imputation_loss_collector = []
                     with torch.no_grad():
                         for idx, data in enumerate(val_loader):
+
                             inputs = self._assemble_input_for_validating(data)
-                            results = self.model.forward(inputs, training=False, n_sampling_times=1)
-                            imputed_data = results["imputed_data"].mean(axis=1)
+                            imputed_data = self.impute_with_gp(inputs, gp = True)
+                            #inputs = self._assemble_input_for_validating(data)
+                            
+                            #results = self.model.forward(inputs, training=False, n_sampling_times=1)
+                            #imputed_data = results["imputed_data"].mean(axis=1)
                             imputation_mse = (
                                 calc_mse(
                                     imputed_data,
                                     inputs["X_ori"],
-                                    (inputs["X_ori"]!=0), #modified this
+                                    (inputs["X_ori"]==inputs["X_ori"]), #modified this
                                 )
                                 .sum()
                                 .detach()
@@ -419,11 +432,42 @@ class GP_VAE(BaseNNImputer):
         # Step 3: save the model if necessary
         self._auto_save_model_if_necessary(confirm_saving=self.model_saving_strategy == "best")
 
+    def impute_with_gp(self,
+                    inputs,
+                    n_sampling_times=1,
+                    gp = True):
+
+        #results = self.model.forward(inputs, training=False, n_sampling_times=n_sampling_times)
+        #imputed_data = results["imputed_data"]
+
+        # embed data in latent space
+        x = inputs['X']
+        qz_x = self.model.encode(x, training=False, n_sampling_times=n_sampling_times)
+        z_mu, z_var = qz_x.mean.detach(), qz_x.variance.detach()
+
+        if gp:
+
+            # correct with gaussian process
+            kernel_params = [0.00001,1,.001,0]
+            kernel_params = torch.tensor(kernel_params).reshape(1,1,4).repeat(z_mu.shape[0],z_mu.shape[2],1)
+
+            #print(z_mu[:2].shape, z_var[:2].shape)
+            z_star = self.gp.correct_with_gp(z_mu, z_var, kernel_params)
+
+        else:
+
+            z_star = z_mu
+        #imputed_data = self.gp.infer(embedding, inputs)
+        imputed_data = self.model.backbone.decode(z_star).mean
+
+        return imputed_data
+
     def predict(
         self,
         test_set: Union[dict, str],
         file_type: str = "hdf5",
         n_sampling_times: int = 1,
+        with_gp = False
     ) -> dict:
         """
 
@@ -465,14 +509,9 @@ class GP_VAE(BaseNNImputer):
 
         with torch.no_grad():
             for idx, data in enumerate(test_loader):
-                inputs = self._assemble_input_for_testing(data)
-                #results = self.model.forward(inputs, training=False, n_sampling_times=n_sampling_times)
-                #imputed_data = results["imputed_data"]
 
-                # embed data in latent space
-                embedding = self.model.encode(inputs, training=False, n_sampling_times=n_sampling_times)
-                # correct with gaussian process
-                imputed_data = self.gp.infer(embedding, inputs)
+                inputs = self._assemble_input_for_testing(data)
+                imputed_data = self.impute_with_gp(inputs, n_sampling_times, gp = with_gp)
                 imputation_collector.append(imputed_data)
 
         imputation = torch.cat(imputation_collector).cpu().detach().numpy()
@@ -485,6 +524,7 @@ class GP_VAE(BaseNNImputer):
         self,
         test_set: Union[dict, str],
         file_type: str = "hdf5",
+        with_gp = False
     ) -> np.ndarray:
         """Impute missing values in the given data with the trained model.
 
@@ -503,7 +543,7 @@ class GP_VAE(BaseNNImputer):
             Imputed data.
         """
 
-        results_dict = self.predict(test_set, file_type=file_type)
+        results_dict = self.predict(test_set, file_type=file_type, with_gp = with_gp)
         return results_dict["imputation"]
 
     def _fit_kernel(
