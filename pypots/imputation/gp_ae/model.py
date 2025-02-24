@@ -29,7 +29,7 @@ from ...optim.base import Optimizer
 from ...utils.logging import logger
 from ...utils.metrics import calc_mse
 
-from .gp_model import *
+from .gp_model_BETTER import *
 
 class GP_VAE(BaseNNImputer):
     """The PyTorch implementation of the GPVAE model :cite:`fortuin2020gpvae`.

@@ -15,7 +15,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-class ProbabilisticGP:
+class ProbabilisticGP__:
     """
     A sub-module of a VAE that corrects the latent time-series via the Probabilistic GP regression scheme
     """
