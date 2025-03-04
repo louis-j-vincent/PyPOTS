@@ -90,7 +90,39 @@ class BackboneGP_VAE(nn.Module):
         """Decodes the latent variable z using the decoder network."""
         return self.decoder(z)
 
-    def forward(self, X: torch.Tensor, missing_mask: torch.Tensor) -> torch.Tensor:
+    def log_losses(self, nll, kl, prior_loss, temporal_loss, X):
+        """
+        Log all losses for easy monitoring
+        """
+        self.loss_history["elbo"].append(elbo.item())
+        self.loss_history["nll"].append(nll.item() - 0.5 * np.log(2 * np.pi * self.noise_sigma))
+        self.loss_history["kl"].append(kl.item())
+        self.loss_history["prior_loss"].append(prior_loss.item())
+        self.loss_history["temporal_loss"].append(temporal_loss.item())
+
+        qz_x = self.encode(X)
+        # Compute statistics for monitoring
+        z_mu_mean = qz_x.mean.mean(axis=(0, 1)).detach().cpu().numpy()
+        z_mu_var = qz_x.mean.var(axis=(0, 1)).detach().cpu().numpy()
+        z_var_mean = qz_x.variance.mean(axis=(0, 1)).detach().cpu().numpy()
+        z_var_var = qz_x.variance.var(axis=(0, 1)).detach().cpu().numpy()
+
+        self.monitoring_history["z_mu_mean"].append(z_mu_mean)
+        self.monitoring_history["z_mu_var"].append(z_mu_var)
+        self.monitoring_history["z_var_mean"].append(z_var_mean)
+        self.monitoring_history["z_var_var"].append(z_var_var)
+
+        # Use the external plotting functions:
+        plot_losses(self.loss_history)
+        plot_params(self.monitoring_history, self.loss_history, self.alpha, self.beta, self.gamma)
+
+        if len(self.loss_history["elbo"]) == 300:
+            # Downsample the history if too many points are stored
+            for key in self.loss_history:
+                self.loss_history[key] = self.loss_history[key][::2]
+
+
+    def forward(self, X: torch.Tensor, missing_mask: torch.Tensor, training = True) -> torch.Tensor:
         """Forward pass of the model.
         
         Performs data preparation, computes the ELBO, logs progress, and validates.
@@ -100,44 +132,20 @@ class BackboneGP_VAE(nn.Module):
         # Prepare data and simulate missing data
         X, missing_mask, X_corrupted, missing_mask_corrupted = self.prepare_and_simulate(X, missing_mask)
 
+        # compute losses
         nll, kl, prior_loss, temporal_loss = self.elbo(X, missing_mask, X_corrupted, missing_mask_corrupted)
         elbo = nll + kl * self.alpha + prior_loss * self.beta + temporal_loss * self.gamma
 
-        self.forward_passes_counter += 1
+        if training:
 
-        if self.forward_passes_counter % 50 == 0:  # Log losses every 50 iterations
-            self.loss_history["elbo"].append(elbo.item())
-            self.loss_history["nll"].append(nll.item() - 0.5 * np.log(2 * np.pi * self.noise_sigma))
-            self.loss_history["kl"].append(kl.item())
-            self.loss_history["prior_loss"].append(prior_loss.item())
-            self.loss_history["temporal_loss"].append(temporal_loss.item())
+            self.forward_passes_counter += 1
 
-            qz_x = self.encode(X)
-            # Compute statistics for monitoring
-            z_mu_mean = qz_x.mean.mean(axis=(0, 1)).detach().cpu().numpy()
-            z_mu_var = qz_x.mean.var(axis=(0, 1)).detach().cpu().numpy()
-            z_var_mean = qz_x.variance.mean(axis=(0, 1)).detach().cpu().numpy()
-            z_var_var = qz_x.variance.var(axis=(0, 1)).detach().cpu().numpy()
+            # Log losses every 50 iterations
+            if self.forward_passes_counter % 50 == 0:  
+                self.log_losses(nll, kl, prior_loss, temporal_loss, X)
 
-            self.monitoring_history["z_mu_mean"].append(z_mu_mean)
-            self.monitoring_history["z_mu_var"].append(z_mu_var)
-            self.monitoring_history["z_var_mean"].append(z_var_mean)
-            self.monitoring_history["z_var_var"].append(z_var_var)
-
-            # Use the external plotting functions:
-            plot_losses(self.loss_history)
-            plot_params(self.monitoring_history, self.loss_history, self.alpha, self.beta, self.gamma)
-
-            if len(self.loss_history["elbo"]) == 300:
-                # Downsample the history if too many points are stored
-                for key in self.loss_history:
-                    self.loss_history[key] = self.loss_history[key][::2]
-
-        # Validation and optional plotting
-        qz_x = self.encode(X, missing_mask)
-        z = qz_x.rsample()
-        px_z = self.decode(z)
-        self.validate_elbo(-elbo, nll, kl, prior_loss, z, qz_x, X, X_corrupted, px_z, temporal_loss)
+            # Validation and optional plotting
+            self.validate_elbo(-elbo, nll, kl, X, X_corrupted, temporal_loss)
 
         return elbo
 
@@ -151,18 +159,16 @@ class BackboneGP_VAE(nn.Module):
         """Computes the evidence lower bound (ELBO) components."""
         qz_x = self.encode(X)
         qz_x_corrupted = self.encode(X_corrupted)
-        z = qz_x_corrupted.rsample()
-        nll = self.nll(X, X_corrupted, z, qz_x, qz_x_corrupted, mean_z=self.use_mean).mean()
+        nll = self.nll(X, X_corrupted, qz_x, qz_x_corrupted, mean_z=self.use_mean).mean()
         kl = self.kl(qz_x, qz_x_corrupted, eps=EPSILON).mean()
         prior_loss = self.prior(X, qz_x)
         temporal_loss = torch.ones(1) * 0.01
         return nll, kl, prior_loss, temporal_loss
 
-    def nll(
+    def nll_OLD(
         self,
         X: torch.Tensor,
         X_corrupted: torch.Tensor,
-        z: torch.Tensor,
         qz_x: Any,
         qz_x_corrupted: Any,
         mean_z: bool = False,
@@ -172,17 +178,20 @@ class BackboneGP_VAE(nn.Module):
         
         # Sample z from q(z|x)
         z = qz_x_corrupted.rsample() if self.compensate else qz_x.rsample()
+
+        # Decode z
         px_z = self.decode(z)
         mu, sigma = px_z.mean, torch.clamp(px_z.variance, min=EPSILON) + eps
 
-        # Use zeros_like to ensure proper device and shape
+        # Add noise with level noise_std
         mu = mu + torch.normal(mean=torch.zeros_like(mu), std=self.noise_std)
         sigma = self.noise_sigma
 
+        # Compute NLL
         nll = 0.5 * (torch.log(2 * torch.tensor(np.pi, device=self.device) * sigma) + (X - mu).pow(2) / sigma)
 
         nll_observed = 0.5 * (torch.log(2 * torch.tensor(np.pi, device=self.device) * sigma) + (X - mu).pow(2) / sigma)
-        nll_masked = 0.5 * (torch.log(2 * torch.tensor(np.pi, device=self.device) * sigma*10) + (X - mu).pow(2) / (sigma*10))
+        nll_masked = 0.5 * (torch.log(2 * torch.tensor(np.pi, device=self.device) * sigma*10) + (X - mu).pow(2) / (sigma*10)) #much bigger sigma on observed variables
 
         mask, mask_corrupted = (X!=0), (X_corrupted!=0)
         mask_hidden = (mask) & (~mask_corrupted) 
@@ -216,6 +225,69 @@ class BackboneGP_VAE(nn.Module):
 
         return nll
 
+    def nll(
+        self,
+        X: torch.Tensor,
+        X_corrupted: torch.Tensor,
+        qz_x: Any,
+        qz_x_corrupted: Any,
+        mean_z: bool = False,
+        eps: float = EPSILON,
+    ) -> torch.Tensor:
+        """
+        Computes the reconstruction loss (negative log-likelihood).
+        Uses 2 different sigmas: one for the reconstruction NLL, one for the imputation NLL
+        """
+
+        # get noises
+        sigma1, sigma2 = self.sigma1, self.sigma2
+        
+        # Sample z from q(z|x)
+        z = qz_x_corrupted.rsample() if self.compensate else qz_x.rsample()
+
+        # Decode z
+        px_z = self.decode(z)
+        mu, sigma = px_z.mean, torch.clamp(px_z.variance, min=EPSILON) + eps
+
+        # Add noise with level noise_std
+        mu = mu + torch.normal(mean=torch.zeros_like(mu), std=sigma1)
+
+        # Compute NLL
+        nll_observed = 0.5 * (torch.log(2 * torch.tensor(np.pi, device=self.device) * sigma1) + (X - mu).pow(2) / sigma1)
+        nll_masked = 0.5 * (torch.log(2 * torch.tensor(np.pi, device=self.device) * sigma2) + (X - mu).pow(2) / (sigma2)) 
+
+        mask, mask_corrupted = (X!=0), (X_corrupted!=0)
+        mask_hidden = (mask) & (~mask_corrupted) 
+        nll = nll_observed[mask_corrupted].sum()/mask_corrupted.int().sum() + nll_masked[mask_hidden].mean()/mask_hidden.int().sum()
+
+        if self.compensate: # this means we sample from the corrupted x !
+            density_quotient = torch.exp((qz_x.log_prob(z) - qz_x_corrupted.log_prob(z)) * DENSITY_SCALE).unsqueeze(2)
+            density_quotient = torch.clamp(density_quotient, min=EPSILON, max=1e3)
+            density_quotient = torch.nan_to_num(density_quotient, 1e3)
+            compensated_nll = nll * density_quotient
+
+        else:
+            compensated_nll = nll.mean()
+
+        # Get rid of nans, infs ..
+        condition_mask = torch.isfinite(compensated_nll) & mask
+        compensated_nll = torch.where(condition_mask, compensated_nll, torch.zeros_like(compensated_nll))
+        compensated_nll = compensated_nll.sum(axis=2) / (condition_mask.sum(axis=2) + eps)
+
+        # If mean z, add the mean reconstruction instead of sampling form the latent space
+        if mean_z:
+            px_mu_z = self.decode(qz_x.mean)
+            mu, sigma = px_mu_z.mean, self.noise_sigma
+            nll_mean = 0.5 * (torch.log(2 * torch.tensor(np.pi, device=self.device) * sigma1) + (X - mu).pow(2) / sigma1)
+            condition_mask = torch.isfinite(nll_mean) & mask
+            nll_mean = torch.where(condition_mask, nll_mean, torch.zeros_like(nll_mean))
+            nll_mean = nll_mean.sum(axis=2) / (condition_mask.sum(axis=2) + eps)
+            nll = compensated_nll + nll_mean * RECON_WEIGHT
+        else:
+            nll = compensated_nll
+
+        return nll
+
     def kl(self, qz_x: Any, qz_x_corrupted: Any, eps: float = EPSILON) -> torch.Tensor:
         """Computes the KL divergence between two Gaussian distributions."""
         mu_z, mu_z_corrupted = qz_x.mean, qz_x_corrupted.mean
@@ -225,62 +297,67 @@ class BackboneGP_VAE(nn.Module):
         kl = 0.5 * (
             (torch.log(var_z_corrupted) - torch.log(var_z)).detach()
             + (var_z + (mu_z_corrupted - mu_z).pow(2)) / (var_z_corrupted + eps))
-        return kl.sum
+        return kl.mean(axis = -1)
 
     def prior(self, X: torch.Tensor, qz_x: Any) -> torch.Tensor:
         """Computes a prior loss that encourages latent means to align with observed data."""
-        mask = X != 0
+        mask = (X != 0)
         mu_z = qz_x.mean
         mean_prior = (mu_z.mean() - X[mask].mean()).abs()
         loss = mean_prior
-        where_no_missing_feats = (mask.sum(axis=2) == 0)
-        if where_no_missing_feats.int().sum() > 0:
-            where_no_missing_feats = where_no_missing_feats.unsqueeze(2).repeat(1, 1, mu_z.shape[2])
-            var_loss = qz_x.variance[where_no_missing_feats].pow(2).mean()
-            loss += var_loss
+        #where_no_missing_feats = (mask.sum(axis=2) == 0)
+        #if where_no_missing_feats.int().sum() > 0: # add a l2 penalization on the loss if there are no missing features
+        #    where_no_missing_feats = where_no_missing_feats.unsqueeze(2).repeat(1, 1, mu_z.shape[2])
+        #    var_loss = qz_x.variance[where_no_missing_feats].pow(2).mean()
+        #    loss += var_loss
         return loss
 
     def prepare_and_simulate(
         self, X: torch.Tensor, missing_mask: torch.Tensor
     ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         """Prepares data by repeating it and simulating missing data."""
+        
+        # Repeat K * M times
         X_ori = torch.clone(X.repeat(self.K * self.M, 1, 1))
-        missing_mask_ori = missing_mask.repeat(self.K * self.M, 1, 1).type(torch.bool)
+
+        # add missingness
         X = mcar(X_ori, p=self.p)
-        X, missing_mask = fill_and_get_mask_torch(X)
-        missing_mask = X != 0
-        missing_mask_ori = X_ori != 0
+
+        # get missing masks and replaces nans with 0s
+        X, missing_mask = fill_and_get_mask_torch(X, nan = 0.)
+        missing_mask, missing_mask_ori = (X != 0), (X_ori != 0)
+
         return X_ori, missing_mask_ori, X, missing_mask
 
     def validate_elbo(
         self,
         elbo: torch.Tensor,
-        nll_recon: torch.Tensor,
-        nll_imputation: torch.Tensor,
+        nll: torch.Tensor,
         kl: torch.Tensor,
-        z: torch.Tensor,
-        qz_x: Any,
         X_ori: torch.Tensor,
         X: torch.Tensor,
-        px_z: Any,
         tl: torch.Tensor,
     ) -> None:
         """
         Validates the computed ELBO and raises exceptions if the values are unrealistic.
         """
+        
+        missing_mask = (X_ori!=self.0.)
+        qz_x = self.encode(X_ori, missing_mask)
+        z = qz_x.rsample()
+        px_z = self.decode(z)
         if (elbo.abs() > 1e8).any():
-            raise ValueError(f"ELBO too big: {elbo} with nll: {nll_recon.mean().item()}, "
+            raise ValueError(f"ELBO too big: {elbo} with nll: {nll.mean().item()}, "
                              f"nll_imputation: {nll_imputation.mean().item()}, kl: {kl.mean().item()}")
         if (elbo > 50).any():
-            raise ValueError(f"ELBO too high: {elbo.item()}, nll: {nll_recon.mean().item()}, "
+            raise ValueError(f"ELBO too high: {elbo.item()}, nll: {nll.mean().item()}, "
                              f"nll_imputation: {nll_imputation.mean().item()}, kl: {kl.mean().item()}")
         if torch.isnan(elbo).any():
-            raise ValueError(f"ELBO is NaN: {elbo.item()}, nll: {nll_recon.mean().item()}, "
-                             f"nll_imputation: {nll_imputation.mean().item()}, kl: {kl.mean().item()}")
+            raise ValueError(f"ELBO is NaN: {elbo.item()}, nll: {nll.mean().item()}, kl: {kl.mean().item()}")
 
         # Every 800 forward passes, trigger plotting via external functions.
-        if self.forward_passes_counter % 800 == 0:
+        if self.forward_passes_counter % 800 == 0 and True:
             print("Plotting latent series and reconstruction...")
-            losses = {"kl": kl.mean().item(), "nll": nll_recon.mean().item(), "temporal": tl.item()}
+            losses = {"kl": kl.mean().item(), "nll": nll.mean().item(), "temporal": tl.item()}
             # Pass the decoder as an extra argument
             plot_latent_series_and_reconstruction(qz_x, X_ori.detach(), X.detach(), self.latent_dim, losses, self.decoder)

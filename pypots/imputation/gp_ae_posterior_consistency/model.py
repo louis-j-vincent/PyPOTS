@@ -29,7 +29,7 @@ from ...optim.base import Optimizer
 from ...utils.logging import logger
 from ...utils.metrics import calc_mse
 
-from .gp_model import *
+from .gp_model_from_gpae import *
 
 class GP_VAE_posterior_concistency(BaseNNImputer):
     """The PyTorch implementation of the GPVAE model :cite:`fortuin2020gpvae`.
