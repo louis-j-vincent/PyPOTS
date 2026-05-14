@@ -90,7 +90,7 @@ class BackboneGP_VAE(nn.Module):
         """Decodes the latent variable z using the decoder network."""
         return self.decoder(z)
 
-    def log_losses(self, nll, kl, prior_loss, temporal_loss, X):
+    def log_losses(self, nll, kl, prior_loss, temporal_loss, elbo, X):
         """
         Log all losses for easy monitoring
         """
@@ -121,7 +121,6 @@ class BackboneGP_VAE(nn.Module):
             for key in self.loss_history:
                 self.loss_history[key] = self.loss_history[key][::2]
 
-
     def forward(self, X: torch.Tensor, missing_mask: torch.Tensor, training = True) -> torch.Tensor:
         """Forward pass of the model.
         
@@ -142,7 +141,7 @@ class BackboneGP_VAE(nn.Module):
 
             # Log losses every 50 iterations
             if self.forward_passes_counter % 50 == 0:  
-                self.log_losses(nll, kl, prior_loss, temporal_loss, X)
+                self.log_losses(nll, kl, prior_loss, temporal_loss, elbo, X)
 
             # Validation and optional plotting
             self.validate_elbo(-elbo, nll, kl, X, X_corrupted, temporal_loss)
@@ -342,7 +341,7 @@ class BackboneGP_VAE(nn.Module):
         Validates the computed ELBO and raises exceptions if the values are unrealistic.
         """
         
-        missing_mask = (X_ori!=self.0.)
+        missing_mask = (X_ori!=0.)
         qz_x = self.encode(X_ori, missing_mask)
         z = qz_x.rsample()
         px_z = self.decode(z)
@@ -356,7 +355,7 @@ class BackboneGP_VAE(nn.Module):
             raise ValueError(f"ELBO is NaN: {elbo.item()}, nll: {nll.mean().item()}, kl: {kl.mean().item()}")
 
         # Every 800 forward passes, trigger plotting via external functions.
-        if self.forward_passes_counter % 800 == 0 and True:
+        if self.forward_passes_counter % 500 == 0 and True:
             print("Plotting latent series and reconstruction...")
             losses = {"kl": kl.mean().item(), "nll": nll.mean().item(), "temporal": tl.item()}
             # Pass the decoder as an extra argument

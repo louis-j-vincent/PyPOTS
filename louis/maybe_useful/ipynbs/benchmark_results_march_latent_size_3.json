@@ -1,0 +1,3096 @@
+{
+    "GP_UAE_0.1_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.04168506228672827,
+                "nll": 11125.71463871331,
+                "elbo": -40369.31424808831,
+                "coverage": 0.8896895199745682,
+                "uncertainty_error_corr": 0.098583219743716
+            },
+            "missing": {
+                "rmse": 0.17339535928174263,
+                "nll": 178.35553878334662,
+                "elbo": -29421.955148158348,
+                "coverage": 0.541862652869238,
+                "uncertainty_error_corr": -0.12303161943398169
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.16993795377354814
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8544761904761905
+            }
+        },
+        72.90823817253113
+    ],
+    "GP_UAE_0.1_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.04434949015068621,
+                "nll": 14108.747931118874,
+                "elbo": -42223.71472799387,
+                "coverage": 0.8887005051040232,
+                "uncertainty_error_corr": 0.054872621353258495
+            },
+            "missing": {
+                "rmse": 0.189986339888338,
+                "nll": 301.63389487106997,
+                "elbo": -28416.60069174607,
+                "coverage": 0.5371589840075258,
+                "uncertainty_error_corr": -0.10707210319598504
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.16849313718419268
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8531111111111112
+            }
+        },
+        59.269959926605225
+    ],
+    "GP_UAE_0.1_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.04785413579025229,
+                "nll": 38241.34820589952,
+                "elbo": -70348.01031527453,
+                "coverage": 0.9104941542156759,
+                "uncertainty_error_corr": 0.41232429291643447
+            },
+            "missing": {
+                "rmse": 0.12688336895611174,
+                "nll": 956.5204440225425,
+                "elbo": -33063.18255339754,
+                "coverage": 0.6061461273126372,
+                "uncertainty_error_corr": 0.20224088247431768
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.1534212682877083
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8796825396825397
+            }
+        },
+        115.614910364151
+    ],
+    "GP_UAE_0.1_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.04346238666570478,
+                "nll": 42359.68522140049,
+                "elbo": -75797.18522140049,
+                "coverage": 0.9204196248807884,
+                "uncertainty_error_corr": 0.5305887698569658
+            },
+            "missing": {
+                "rmse": 0.13042761309483727,
+                "nll": 794.5617852917298,
+                "elbo": -34232.06178529173,
+                "coverage": 0.6215114455942302,
+                "uncertainty_error_corr": 0.19447850996318458
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.15396772367100908
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8901587301587301
+            }
+        },
+        141.6010160446167
+    ],
+    "GP_UAE_0.1_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.038663872041361486,
+                "nll": -3085.9913842371298,
+                "elbo": -48656.79767826287,
+                "coverage": 0.9181590194623998,
+                "uncertainty_error_corr": -0.0005956835847680624
+            },
+            "missing": {
+                "rmse": 0.12160821412374327,
+                "nll": -427.65311164746424,
+                "elbo": -51315.135950852535,
+                "coverage": 0.6061461273126372,
+                "uncertainty_error_corr": -0.03800754357148059
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.1525992010269661
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8865714285714286
+            }
+        },
+        112.89027881622314
+    ],
+    "GP_UAE_0.1_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.04242932920744879,
+                "nll": -2613.449144529308,
+                "elbo": -50115.87116797069,
+                "coverage": 0.9149800430927908,
+                "uncertainty_error_corr": -0.015063371524315205
+            },
+            "missing": {
+                "rmse": 0.13372218611475045,
+                "nll": -391.03009562815134,
+                "elbo": -52338.29021687185,
+                "coverage": 0.6111633740984634,
+                "uncertainty_error_corr": -0.08106802208664232
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.14815412503819658
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8842222222222222
+            }
+        },
+        107.46192789077759
+    ],
+    "GP_UAE_0.1_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.034733994371806624,
+                "nll": -2906.2080040431724,
+                "elbo": -51349.034183456824,
+                "coverage": 0.9261417823460846,
+                "uncertainty_error_corr": 0.014963583038995918
+            },
+            "missing": {
+                "rmse": 0.11155523752720767,
+                "nll": -494.52886293328,
+                "elbo": -53760.71332456672,
+                "coverage": 0.6312323612417686,
+                "uncertainty_error_corr": -0.07779844214645888
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.1400707815323372
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8962857142857142
+            }
+        },
+        153.37237572669983
+    ],
+    "GP_UAE_0.1_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.03875249057265636,
+                "nll": -2519.7108816317173,
+                "elbo": -51547.52739961828,
+                "coverage": 0.9256825968704744,
+                "uncertainty_error_corr": 0.018583925022826686
+            },
+            "missing": {
+                "rmse": 0.1217288195190016,
+                "nll": -442.4228411507099,
+                "elbo": -53624.81544009929,
+                "coverage": 0.6437754782063343,
+                "uncertainty_error_corr": -0.006708332189051713
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.12993036252598955
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8971428571428571
+            }
+        },
+        138.30519795417786
+    ],
+    "Posterior_consistency_0.1_0_alpha_1": [
+        {
+            "observed": {
+                "rmse": 0.038289053546501105,
+                "nll": -5136.998233913569,
+                "elbo": -21416.837703586432,
+                "coverage": 0.9994701706050652,
+                "uncertainty_error_corr": 0.5248800124228042
+            },
+            "missing": {
+                "rmse": 0.12798368818226255,
+                "nll": -226.35807251723588,
+                "elbo": -26327.477864982764,
+                "coverage": 0.9855754154907495,
+                "uncertainty_error_corr": 0.6029807109785588
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.623186454597523
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9980634920634921
+            }
+        },
+        116.04804015159607
+    ],
+    "Posterior_consistency_0.1_0_alpha_0.1": [
+        {
+            "observed": {
+                "rmse": 0.035138739015859184,
+                "nll": -5480.45364114147,
+                "elbo": -23026.14010885853,
+                "coverage": 0.9983751898555332,
+                "uncertainty_error_corr": 0.3966641035135009
+            },
+            "missing": {
+                "rmse": 0.16346394120031763,
+                "nll": -152.05072597567244,
+                "elbo": -28354.543024024326,
+                "coverage": 0.9595484477892756,
+                "uncertainty_error_corr": 0.5726137240404299
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.64005933744054
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9944444444444445
+            }
+        },
+        105.39288091659546
+    ],
+    "Posterior_consistency_0.1_0_alpha_0.01": [
+        {
+            "observed": {
+                "rmse": 0.044922542947754836,
+                "nll": -5481.678691723021,
+                "elbo": -23786.07521452698,
+                "coverage": 0.9951962134859242,
+                "uncertainty_error_corr": 0.3374036894239534
+            },
+            "missing": {
+                "rmse": 0.21525008320287048,
+                "nll": 131.30557463266555,
+                "elbo": -29399.059480882665,
+                "coverage": 0.878645343367827,
+                "uncertainty_error_corr": 0.565428779451361
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.688440189186146
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9833968253968254
+            }
+        },
+        77.95850801467896
+    ],
+    "Mean_Imputation_0.1_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -6578.1744703197255,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 1.0371660489676497,
+                "nll": 16411.273423987128,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "KNN_Imputation_0.1_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -6578.1744703197255,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.1719734404686704,
+                "nll": -269.4057382956679,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "MICE_Imputation_0.1_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -6591.651003090682,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.10320725402067511,
+                "nll": -560.747468460996,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "GP_UAE_0.3_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.059123510053837494,
+                "nll": 4910.0401830379205,
+                "elbo": -48575.78627678792,
+                "coverage": 0.7623320407611146,
+                "uncertainty_error_corr": 0.005454625513661527
+            },
+            "missing": {
+                "rmse": 0.23964410889241625,
+                "nll": 1983.5625277245229,
+                "elbo": -45649.30862147452,
+                "coverage": 0.428877923192448,
+                "uncertainty_error_corr": -0.15571088468114522
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.44952617627721025
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6636507936507936
+            }
+        },
+        93.02107071876526
+    ],
+    "GP_UAE_0.3_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.055927436470366035,
+                "nll": 5417.921506537339,
+                "elbo": -48608.36291278734,
+                "coverage": 0.7637298223464695,
+                "uncertainty_error_corr": -0.018379674656608135
+            },
+            "missing": {
+                "rmse": 0.24279309595668386,
+                "nll": 2224.4823077876795,
+                "elbo": -45414.92371403768,
+                "coverage": 0.4340270328255739,
+                "uncertainty_error_corr": -0.17744281117660007
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.4429720495377083
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6661587301587302
+            }
+        },
+        133.47204303741455
+    ],
+    "GP_UAE_0.3_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.047698793390240406,
+                "nll": 12817.766294191737,
+                "elbo": -58789.14129419174,
+                "coverage": 0.8759581567318965,
+                "uncertainty_error_corr": 0.4677497619509363
+            },
+            "missing": {
+                "rmse": 0.18735265827318398,
+                "nll": 2573.13716551433,
+                "elbo": -48544.51216551433,
+                "coverage": 0.5789530143745977,
+                "uncertainty_error_corr": 0.21740410780169306
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.3902367208633919
+            },
+            "reconstruction": {
+                "overall_coverage": 0.788063492063492
+            }
+        },
+        257.8373029232025
+    ],
+    "GP_UAE_0.3_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.0493749965520635,
+                "nll": 14879.346461126013,
+                "elbo": -62765.56130487601,
+                "coverage": 0.8700063125619983,
+                "uncertainty_error_corr": 0.477183126521403
+            },
+            "missing": {
+                "rmse": 0.19577569874454057,
+                "nll": 3388.340722615853,
+                "elbo": -51274.55556636585,
+                "coverage": 0.576271186440678,
+                "uncertainty_error_corr": 0.15474557002700773
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.3656090353165169
+            },
+            "reconstruction": {
+                "overall_coverage": 0.783079365079365
+            }
+        },
+        183.6212341785431
+    ],
+    "GP_UAE_0.3_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.05149866573306828,
+                "nll": -3307.726022880851,
+                "elbo": -60168.46538336915,
+                "coverage": 0.8395707457841104,
+                "uncertainty_error_corr": -0.03310264348608086
+            },
+            "missing": {
+                "rmse": 0.19846033398855914,
+                "nll": -99.77714235029329,
+                "elbo": -63376.41426389971,
+                "coverage": 0.5160909676035186,
+                "uncertainty_error_corr": -0.10470922862483287
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.4302457426224251
+            },
+            "reconstruction": {
+                "overall_coverage": 0.7438412698412699
+            }
+        },
+        171.0693600177765
+    ],
+    "GP_UAE_0.3_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.05234173923673116,
+                "nll": -3151.2875732874927,
+                "elbo": -60073.763207962504,
+                "coverage": 0.8333934529714131,
+                "uncertainty_error_corr": -0.1004141477039442
+            },
+            "missing": {
+                "rmse": 0.20448676896272538,
+                "nll": 61.124802521246025,
+                "elbo": -63286.17558377125,
+                "coverage": 0.512765500965458,
+                "uncertainty_error_corr": -0.0800743667797354
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.3978479955826302
+            },
+            "reconstruction": {
+                "overall_coverage": 0.7385079365079366
+            }
+        },
+        154.82042288780212
+    ],
+    "GP_UAE_0.3_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.1635976223265747,
+                "nll": -971.7256360495744,
+                "elbo": -44443.153270200426,
+                "coverage": 0.6981693570204708,
+                "uncertainty_error_corr": 0.1445496659753368
+            },
+            "missing": {
+                "rmse": 0.31148344699689057,
+                "nll": 2552.9943881312433,
+                "elbo": -47967.87329438124,
+                "coverage": 0.3593649431452478,
+                "uncertainty_error_corr": 0.06503671744140894
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.642903671089222
+            },
+            "reconstruction": {
+                "overall_coverage": 0.5979047619047619
+            }
+        },
+        145.3502480983734
+    ],
+    "GP_UAE_0.3_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.050385772153597186,
+                "nll": -3040.649888037241,
+                "elbo": -60802.97511196276,
+                "coverage": 0.8643700964920191,
+                "uncertainty_error_corr": -0.08425928310643296
+            },
+            "missing": {
+                "rmse": 0.20183354791366787,
+                "nll": 142.91789959617242,
+                "elbo": -63986.54289959617,
+                "coverage": 0.5555674747908175,
+                "uncertainty_error_corr": -0.008109584516432546
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.351096973243763
+            },
+            "reconstruction": {
+                "overall_coverage": 0.772984126984127
+            }
+        },
+        203.38861799240112
+    ],
+    "Posterior_consistency_0.3_0_alpha_1": [
+        {
+            "observed": {
+                "rmse": 0.056104189693657706,
+                "nll": -3435.1037987648338,
+                "elbo": -21085.036826235166,
+                "coverage": 0.998647308143205,
+                "uncertainty_error_corr": 0.3660541613739533
+            },
+            "missing": {
+                "rmse": 0.21253357960630093,
+                "nll": 1518.4361177418327,
+                "elbo": -26038.576742741832,
+                "coverage": 0.9632053207466209,
+                "uncertainty_error_corr": 0.5818086150232231
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.796486720863392
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9881587301587301
+            }
+        },
+        149.51958012580872
+    ],
+    "Posterior_consistency_0.3_0_alpha_0.1": [
+        {
+            "observed": {
+                "rmse": 0.05914600026329649,
+                "nll": -3838.062871945914,
+                "elbo": -23034.401971804087,
+                "coverage": 0.9934168996302642,
+                "uncertainty_error_corr": 0.3264022328913855
+            },
+            "missing": {
+                "rmse": 0.25118751733198896,
+                "nll": 1573.4228708627627,
+                "elbo": -28445.887714612763,
+                "coverage": 0.9126796824715726,
+                "uncertainty_error_corr": 0.6006719397876742
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.8780850027237435
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9695238095238096
+            }
+        },
+        107.5229971408844
+    ],
+    "Posterior_consistency_0.3_0_alpha_0.01": [
+        {
+            "observed": {
+                "rmse": 0.06018517515262132,
+                "nll": -3942.209981316002,
+                "elbo": -22830.852518683998,
+                "coverage": 0.988051221931644,
+                "uncertainty_error_corr": 0.25922021832852116
+            },
+            "missing": {
+                "rmse": 0.27057395138226986,
+                "nll": 1812.1307395011522,
+                "elbo": -28585.193239501154,
+                "coverage": 0.8557176571551169,
+                "uncertainty_error_corr": 0.5379150762322841
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.880119666877796
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9488888888888889
+            }
+        },
+        155.5959300994873
+    ],
+    "Mean_Imputation_0.3_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -5153.147306797742,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 1.0279387914740743,
+                "nll": 47084.83267987949,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "KNN_Imputation_0.3_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -5153.147306797742,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.5074054610138012,
+                "nll": 9834.220558092253,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "MICE_Imputation_0.3_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -5126.426595269122,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.27371824239275844,
+                "nll": 1342.45446893383,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "GP_UAE_0.5_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.07903343018049123,
+                "nll": 1598.7413343174435,
+                "elbo": -43649.43274056744,
+                "coverage": 0.8469297132707435,
+                "uncertainty_error_corr": -0.02026804874086125
+            },
+            "missing": {
+                "rmse": 0.40255395688378154,
+                "nll": 11042.057494876315,
+                "elbo": -53092.74890112632,
+                "coverage": 0.4799186578546009,
+                "uncertainty_error_corr": -0.20852284648932692
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.6761158559952278
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6635873015873016
+            }
+        },
+        59.01451277732849
+    ],
+    "GP_UAE_0.5_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.0756204195347092,
+                "nll": 1631.555885972536,
+                "elbo": -45579.462135972535,
+                "coverage": 0.8281527531083481,
+                "uncertainty_error_corr": -0.06671398236152916
+            },
+            "missing": {
+                "rmse": 0.41938577089014467,
+                "nll": 12288.867823673167,
+                "elbo": -56236.774073673165,
+                "coverage": 0.45646924250127097,
+                "uncertainty_error_corr": -0.2187184993887169
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.6556080434952278
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6424761904761904
+            }
+        },
+        75.49595499038696
+    ],
+    "GP_UAE_0.5_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.06321092139579294,
+                "nll": 3479.3097814768357,
+                "elbo": -26400.782437726837,
+                "coverage": 0.9976528799797005,
+                "uncertainty_error_corr": 0.26248721204480685
+            },
+            "missing": {
+                "rmse": 0.3683271947846232,
+                "nll": 27050.962009019528,
+                "elbo": -49972.434665269524,
+                "coverage": 0.9558973055414337,
+                "uncertainty_error_corr": 0.3688099535299676
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.2755335424576302
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9767936507936508
+            }
+        },
+        268.6035668849945
+    ],
+    "GP_UAE_0.5_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.0754811001076909,
+                "nll": 3062.5177381347457,
+                "elbo": -20692.783363134746,
+                "coverage": 0.9982872367419436,
+                "uncertainty_error_corr": 0.06070269708004136
+            },
+            "missing": {
+                "rmse": 0.393974725705954,
+                "nll": 19626.959203336446,
+                "elbo": -37257.224828336446,
+                "coverage": 0.9556431113370615,
+                "uncertainty_error_corr": 0.4263808182974838
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.3164194677505989
+            },
+            "reconstruction": {
+                "overall_coverage": 0.976984126984127
+            }
+        },
+        88.3225929737091
+    ],
+    "GP_UAE_0.5_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.061259535756524194,
+                "nll": -2816.2513500108403,
+                "elbo": -66991.22521248915,
+                "coverage": 0.838809946714032,
+                "uncertainty_error_corr": 0.002299962908790388
+            },
+            "missing": {
+                "rmse": 0.35842505139937697,
+                "nll": 7106.097091267729,
+                "elbo": -76913.57365376773,
+                "coverage": 0.44318759532282664,
+                "uncertainty_error_corr": 0.10682610176258511
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.7502592657242317
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6411746031746032
+            }
+        },
+        174.67767906188965
+    ],
+    "GP_UAE_0.5_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.05998812723450312,
+                "nll": -2759.2501058199387,
+                "elbo": -66522.67176918006,
+                "coverage": 0.8457244354224817,
+                "uncertainty_error_corr": -0.0628041022599394
+            },
+            "missing": {
+                "rmse": 0.3571677962357354,
+                "nll": 7469.898970235061,
+                "elbo": -76751.82084523507,
+                "coverage": 0.4592653787493645,
+                "uncertainty_error_corr": 0.1403818284614647
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.6711214636002083
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6526666666666666
+            }
+        },
+        182.04855179786682
+    ],
+    "GP_UAE_0.5_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.06764672052571721,
+                "nll": -2732.4564344640503,
+                "elbo": -68581.05919053595,
+                "coverage": 0.8255518903831515,
+                "uncertainty_error_corr": 0.018661383063050156
+            },
+            "missing": {
+                "rmse": 0.3539660950221366,
+                "nll": 6784.344561551549,
+                "elbo": -78097.86018655155,
+                "coverage": 0.4308591764107778,
+                "uncertainty_error_corr": 0.14700429993523279
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.7675112341080208
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6283809523809524
+            }
+        },
+        376.98206901550293
+    ],
+    "GP_UAE_0.5_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.06982194901356051,
+                "nll": -2668.920099258603,
+                "elbo": -67571.7752132414,
+                "coverage": 0.8168612027404212,
+                "uncertainty_error_corr": -0.051379995871899835
+            },
+            "missing": {
+                "rmse": 0.3728875730470672,
+                "nll": 8686.601885995082,
+                "elbo": -78927.29719849509,
+                "coverage": 0.46199796644636504,
+                "uncertainty_error_corr": 0.2994383798234508
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.6966727827225228
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6395873015873016
+            }
+        },
+        159.81798601150513
+    ],
+    "Posterior_consistency_0.5_0_alpha_1": [
+        {
+            "observed": {
+                "rmse": 0.15821286838121668,
+                "nll": -576.9940500017603,
+                "elbo": -16799.166106248238,
+                "coverage": 0.8889241309312357,
+                "uncertainty_error_corr": -0.06560665464340779
+            },
+            "missing": {
+                "rmse": 0.4271025356488576,
+                "nll": 15070.31336743907,
+                "elbo": -32446.47352368907,
+                "coverage": 0.8344560244026437,
+                "uncertainty_error_corr": 0.5369943036491598
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -5.738209590736439
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8617142857142858
+            }
+        },
+        64.48437809944153
+    ],
+    "Posterior_consistency_0.5_0_alpha_0.1": [
+        {
+            "observed": {
+                "rmse": 0.0867765008915929,
+                "nll": -2104.953187792864,
+                "elbo": -19813.285093457136,
+                "coverage": 0.9807789901040345,
+                "uncertainty_error_corr": 0.1498389501047552
+            },
+            "missing": {
+                "rmse": 0.42105059699056846,
+                "nll": 12919.112411665436,
+                "elbo": -34837.35069291544,
+                "coverage": 0.835282155566853,
+                "uncertainty_error_corr": 0.5641882279052197
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -5.34900938016515
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9080952380952381
+            }
+        },
+        82.71079397201538
+    ],
+    "Posterior_consistency_0.5_0_alpha_0.01": [
+        {
+            "observed": {
+                "rmse": 0.07544916813065142,
+                "nll": -2487.35108203018,
+                "elbo": -20577.46141796982,
+                "coverage": 0.9849657447348389,
+                "uncertainty_error_corr": 0.16503847048558215
+            },
+            "missing": {
+                "rmse": 0.42011328889849076,
+                "nll": 12648.831331006526,
+                "elbo": -35713.64383100653,
+                "coverage": 0.8183146924250128,
+                "uncertainty_error_corr": 0.4687679556605211
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -5.290873870674183
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9017142857142857
+            }
+        },
+        159.35067701339722
+    ],
+    "Mean_Imputation_0.5_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -3662.8286655406077,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 1.044133270418151,
+                "nll": 82121.73730031963,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "KNN_Imputation_0.5_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -3662.8286655406077,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.6005505272064943,
+                "nll": 24720.479669910477,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "MICE_Imputation_0.5_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -3664.6874976469467,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.4468446921510263,
+                "nll": 12047.598947912731,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "GP_UAE_0.7_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.07189816429481473,
+                "nll": -219.7038953924168,
+                "elbo": -49168.54219835758,
+                "coverage": 0.8805018073570061,
+                "uncertainty_error_corr": 0.16855875932543804
+            },
+            "missing": {
+                "rmse": 0.5818953500610778,
+                "nll": 34088.41780712575,
+                "elbo": -83476.66390087575,
+                "coverage": 0.3971213904227392,
+                "uncertainty_error_corr": -0.27062960254826757
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.1887305830154915
+            },
+            "reconstruction": {
+                "overall_coverage": 0.5414603174603174
+            }
+        },
+        75.89342474937439
+    ],
+    "GP_UAE_0.7_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.07683868774267201,
+                "nll": -265.66169100125984,
+                "elbo": -48896.65471524874,
+                "coverage": 0.8829470550712312,
+                "uncertainty_error_corr": 0.1016416505125635
+            },
+            "missing": {
+                "rmse": 0.5953521663475829,
+                "nll": 36278.436191292756,
+                "elbo": -85440.75259754276,
+                "coverage": 0.4157689870553091,
+                "uncertainty_error_corr": -0.26097385925335226
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.0158670995865364
+            },
+            "reconstruction": {
+                "overall_coverage": 0.5552698412698412
+            }
+        },
+        103.05797410011292
+    ],
+    "GP_UAE_0.7_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.06924013091213266,
+                "nll": 406.18277158105633,
+                "elbo": -16558.210115331058,
+                "coverage": 0.9978736976398044,
+                "uncertainty_error_corr": 0.07533245197250779
+            },
+            "missing": {
+                "rmse": 0.581825081370413,
+                "nll": 68401.31660830966,
+                "elbo": -84553.34395205966,
+                "coverage": 0.9405721010229021,
+                "uncertainty_error_corr": 0.4138483998293583
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.6918252561722298
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9576825396825397
+            }
+        },
+        124.69945406913757
+    ],
+    "GP_UAE_0.7_0_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.06898934217200044,
+                "nll": 708.9895239032555,
+                "elbo": -18063.675070778256,
+                "coverage": 0.9987242185838826,
+                "uncertainty_error_corr": 0.07772607497475625
+            },
+            "missing": {
+                "rmse": 0.5737617924903519,
+                "nll": 58714.2156463366,
+                "elbo": -76068.9011932116,
+                "coverage": 0.9396668778853987,
+                "uncertainty_error_corr": 0.4513188510190914
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.576929435554554
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9573015873015873
+            }
+        },
+        538.6091687679291
+    ],
+    "GP_UAE_0.7_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.10581678079906921,
+                "nll": -1509.3677511243332,
+                "elbo": -71693.36662387567,
+                "coverage": 0.813098022538805,
+                "uncertainty_error_corr": 0.32622555340268844
+            },
+            "missing": {
+                "rmse": 0.5550311547085434,
+                "nll": 29102.66405537506,
+                "elbo": -102305.39843037506,
+                "coverage": 0.23658006698651218,
+                "uncertainty_error_corr": -0.12522778964997028
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.2374428365860481
+            },
+            "reconstruction": {
+                "overall_coverage": 0.4087301587301587
+            }
+        },
+        179.66049790382385
+    ],
+    "GP_UAE_0.7_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.07401624683398128,
+                "nll": -1757.7398212227847,
+                "elbo": -74040.68205377721,
+                "coverage": 0.8257495215819689,
+                "uncertainty_error_corr": 0.11867415396717804
+            },
+            "missing": {
+                "rmse": 0.5505394269648952,
+                "nll": 28545.44632807415,
+                "elbo": -104343.86820307415,
+                "coverage": 0.2694396668778854,
+                "uncertainty_error_corr": -0.18670857597161766
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.5624183271561165
+            },
+            "reconstruction": {
+                "overall_coverage": 0.43555555555555553
+            }
+        },
+        178.48980236053467
+    ],
+    "GP_UAE_0.7_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.1099189513121696,
+                "nll": -1492.9408058435613,
+                "elbo": -71624.45763165643,
+                "coverage": 0.800446523495641,
+                "uncertainty_error_corr": 0.3088388735608175
+            },
+            "missing": {
+                "rmse": 0.556879917353154,
+                "nll": 29325.320075554988,
+                "elbo": -102442.71851305499,
+                "coverage": 0.2578075495609668,
+                "uncertainty_error_corr": -0.12064693474329799
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.32104192716222
+            },
+            "reconstruction": {
+                "overall_coverage": 0.41984126984126985
+            }
+        },
+        169.9053430557251
+    ],
+    "GP_UAE_0.7_0_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.07614926336874482,
+                "nll": -1737.6309272620445,
+                "elbo": -55029.44329148796,
+                "coverage": 0.858707208165001,
+                "uncertainty_error_corr": 0.13304229856854255
+            },
+            "missing": {
+                "rmse": 0.6101826042567005,
+                "nll": 106332.20862484016,
+                "elbo": -163099.28284359016,
+                "coverage": 0.4157689870553091,
+                "uncertainty_error_corr": 0.3089343153596195
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.556269035163929
+            },
+            "reconstruction": {
+                "overall_coverage": 0.548031746031746
+            }
+        },
+        225.0337429046631
+    ],
+    "Posterior_consistency_0.7_0_alpha_1": [
+        {
+            "observed": {
+                "rmse": 0.15782250365357664,
+                "nll": 124.80388042278598,
+                "elbo": -12749.178880422785,
+                "coverage": 0.9392940676164151,
+                "uncertainty_error_corr": -0.17778771572834265
+            },
+            "missing": {
+                "rmse": 0.5731831170013196,
+                "nll": 48365.35570234798,
+                "elbo": -60989.73070234798,
+                "coverage": 0.8589662351769711,
+                "uncertainty_error_corr": 0.4951150390630164
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -6.128225192848255
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8829523809523809
+            }
+        },
+        38.61361384391785
+    ],
+    "Posterior_consistency_0.7_0_alpha_0.1": [
+        {
+            "observed": {
+                "rmse": 0.13730154703283828,
+                "nll": -664.1771402127623,
+                "elbo": -14462.748641037238,
+                "coverage": 0.8908143738039549,
+                "uncertainty_error_corr": -0.21783788874859225
+            },
+            "missing": {
+                "rmse": 0.6134849711789083,
+                "nll": 51108.874213859024,
+                "elbo": -66235.79999510903,
+                "coverage": 0.7901240155698379,
+                "uncertainty_error_corr": 0.517408882217913
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -6.313598975959827
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8201904761904761
+            }
+        },
+        59.65545701980591
+    ],
+    "Posterior_consistency_0.7_0_alpha_0.01": [
+        {
+            "observed": {
+                "rmse": 0.14114948465857563,
+                "nll": -728.4869990811508,
+                "elbo": -15055.563782168849,
+                "coverage": 0.8641292791834999,
+                "uncertainty_error_corr": -0.174844928676514
+            },
+            "missing": {
+                "rmse": 0.6063825324899645,
+                "nll": 44251.90384289313,
+                "elbo": -60035.95462414313,
+                "coverage": 0.6931293563863492,
+                "uncertainty_error_corr": 0.46522988415677646
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -6.667157993141224
+            },
+            "reconstruction": {
+                "overall_coverage": 0.7441904761904762
+            }
+        },
+        63.498334884643555
+    ],
+    "Mean_Imputation_0.7_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -2185.5218490278457,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 1.0430965531606315,
+                "nll": 115063.30024106504,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "KNN_Imputation_0.7_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -2185.5218490278457,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.6608040902931146,
+                "nll": 43104.42662411262,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "MICE_Imputation_0.7_0": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -2200.8572139051407,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.8069453060447349,
+                "nll": 66600.5482612082,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "GP_UAE_0.1_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.039077098784152386,
+                "nll": 9360.57394298845,
+                "elbo": -37455.09738048845,
+                "coverage": 0.8932391879964695,
+                "uncertainty_error_corr": 0.07892817246149501
+            },
+            "missing": {
+                "rmse": 0.1610555880725326,
+                "nll": 77.94327174296214,
+                "elbo": -28172.466709242963,
+                "coverage": 0.5537007874015748,
+                "uncertainty_error_corr": -0.04351448809198964
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.16408239347081377
+            },
+            "reconstruction": {
+                "overall_coverage": 0.859015873015873
+            }
+        },
+        685.9531471729279
+    ],
+    "GP_UAE_0.1_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.04688096329934013,
+                "nll": 12717.088858379324,
+                "elbo": -40793.49510837933,
+                "coverage": 0.8922859664607238,
+                "uncertainty_error_corr": 0.04838434283896384
+            },
+            "missing": {
+                "rmse": 0.19024752194387787,
+                "nll": 326.80068473982533,
+                "elbo": -28403.206934739825,
+                "coverage": 0.5502362204724409,
+                "uncertainty_error_corr": -0.07558410676575518
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.16347299558263018
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8578095238095238
+            }
+        },
+        72.44654083251953
+    ],
+    "GP_UAE_0.1_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.043528175817696,
+                "nll": 41219.63920437228,
+                "elbo": -71430.28764187227,
+                "coverage": 0.9235657546337158,
+                "uncertainty_error_corr": 0.518987077536669
+            },
+            "missing": {
+                "rmse": 0.11515771011386293,
+                "nll": 922.2590752020093,
+                "elbo": -31132.907512702008,
+                "coverage": 0.6478740157480315,
+                "uncertainty_error_corr": 0.30874068865845716
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.15435491544347002
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8957777777777778
+            }
+        },
+        162.65443515777588
+    ],
+    "GP_UAE_0.1_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.04433592271797999,
+                "nll": 46943.108209969454,
+                "elbo": -81322.78008496945,
+                "coverage": 0.9222594880847308,
+                "uncertainty_error_corr": 0.5569324683032146
+            },
+            "missing": {
+                "rmse": 0.13513972411297293,
+                "nll": 351.56436665210157,
+                "elbo": -34731.2362416521,
+                "coverage": 0.6349606299212598,
+                "uncertainty_error_corr": 0.09367722589593852
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.15268026334386064
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8933015873015873
+            }
+        },
+        108.19017219543457
+    ],
+    "GP_UAE_0.1_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.0352815029919076,
+                "nll": -3548.4778875443635,
+                "elbo": -48893.397112455634,
+                "coverage": 0.9174227714033539,
+                "uncertainty_error_corr": 0.03910670531065858
+            },
+            "missing": {
+                "rmse": 0.10696874597003517,
+                "nll": -499.80174131572187,
+                "elbo": -51942.07325868428,
+                "coverage": 0.6330708661417322,
+                "uncertainty_error_corr": -0.08325729606093793
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.14797674161534502
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8887619047619048
+            }
+        },
+        135.02506804466248
+    ],
+    "GP_UAE_0.1_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.04025199666229778,
+                "nll": -2191.8680182379067,
+                "elbo": -52617.8155755121,
+                "coverage": 0.9144532353772252,
+                "uncertainty_error_corr": -0.01446942739715715
+            },
+            "missing": {
+                "rmse": 0.09762293439605078,
+                "nll": -554.4782974952184,
+                "elbo": -54255.20529625478,
+                "coverage": 0.6251568381430364,
+                "uncertainty_error_corr": -0.21173265842931607
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.1512564275894661
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8851746031746032
+            }
+        },
+        111.18348002433777
+    ],
+    "GP_UAE_0.1_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.036517811016261906,
+                "nll": -2180.271357899504,
+                "elbo": -51981.3302046005,
+                "coverage": 0.9252966939813506,
+                "uncertainty_error_corr": 0.007922550884039004
+            },
+            "missing": {
+                "rmse": 0.08166121968149309,
+                "nll": -564.6938246080173,
+                "elbo": -53596.90773789198,
+                "coverage": 0.657465495608532,
+                "uncertainty_error_corr": -0.21746165511810908
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.14469896298985674
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8981904761904762
+            }
+        },
+        114.43311095237732
+    ],
+    "GP_UAE_0.1_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.03487073530104872,
+                "nll": -1948.2932620317763,
+                "elbo": -51947.37080046823,
+                "coverage": 0.9276631816897428,
+                "uncertainty_error_corr": -0.014430193017785566
+            },
+            "missing": {
+                "rmse": 0.08729302828614285,
+                "nll": -548.8645941054368,
+                "elbo": -53346.799468394565,
+                "coverage": 0.6496235884567126,
+                "uncertainty_error_corr": -0.18217920031738594
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.13102422696690752
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8995238095238095
+            }
+        },
+        126.03683829307556
+    ],
+    "Posterior_consistency_0.1_1_alpha_1": [
+        {
+            "observed": {
+                "rmse": 0.03647077122945094,
+                "nll": -4931.31359985945,
+                "elbo": -23099.73718139055,
+                "coverage": 0.9996467928793444,
+                "uncertainty_error_corr": 0.3173237155053949
+            },
+            "missing": {
+                "rmse": 0.1218611953362306,
+                "nll": -199.17995927426622,
+                "elbo": -27831.870821975735,
+                "coverage": 0.989021329987453,
+                "uncertainty_error_corr": 0.6082944449886099
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.608742103401234
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9985714285714286
+            }
+        },
+        90.04303312301636
+    ],
+    "Posterior_consistency_0.1_1_alpha_0.1": [
+        {
+            "observed": {
+                "rmse": 0.03410078391364409,
+                "nll": -5475.132984096614,
+                "elbo": -24922.154125278386,
+                "coverage": 0.9989050579259677,
+                "uncertainty_error_corr": 0.423599112027853
+            },
+            "missing": {
+                "rmse": 0.14141212110437967,
+                "nll": -221.06015740983153,
+                "elbo": -30176.226951965167,
+                "coverage": 0.9636135508155583,
+                "uncertainty_error_corr": 0.5659403410950747
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.621815547767689
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9953333333333333
+            }
+        },
+        112.14559817314148
+    ],
+    "Posterior_consistency_0.1_1_alpha_0.01": [
+        {
+            "observed": {
+                "rmse": 0.04269976522664634,
+                "nll": -5507.211139200509,
+                "elbo": -25598.49003267449,
+                "coverage": 0.99459593105397,
+                "uncertainty_error_corr": 0.3573941857802843
+            },
+            "missing": {
+                "rmse": 0.19198583954234733,
+                "nll": -2.217695803927569,
+                "elbo": -31103.483476071073,
+                "coverage": 0.8989962358845671,
+                "uncertainty_error_corr": 0.4841445457996616
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.649784908119251
+            },
+            "reconstruction": {
+                "overall_coverage": 0.984920634920635
+            }
+        },
+        1135.5306808948517
+    ],
+    "Mean_Imputation_0.1_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -6578.4068243330175,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.9992016573285049,
+                "nll": 15173.814400631996,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "KNN_Imputation_0.1_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -6578.4068243330175,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.21358928530275792,
+                "nll": -13.555692605493931,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "MICE_Imputation_0.1_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -6578.4068243330175,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.10531231852358394,
+                "nll": -563.959084516976,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "GP_UAE_0.3_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.06283978603423199,
+                "nll": 5487.538739569675,
+                "elbo": -51097.605145819674,
+                "coverage": 0.754637859519577,
+                "uncertainty_error_corr": -0.12212001664088527
+            },
+            "missing": {
+                "rmse": 0.2583718999419021,
+                "nll": 2566.3305762802634,
+                "elbo": -48176.39698253026,
+                "coverage": 0.43028971864867693,
+                "uncertainty_error_corr": -0.28594031864247066
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.45746122342686846
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6561904761904762
+            }
+        },
+        3526.4669618606567
+    ],
+    "GP_UAE_0.3_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.056679913316978275,
+                "nll": 5171.537642576023,
+                "elbo": -49345.350142576026,
+                "coverage": 0.7549569260221524,
+                "uncertainty_error_corr": -0.12266953158848351
+            },
+            "missing": {
+                "rmse": 0.2542322319870364,
+                "nll": 2541.7654447971595,
+                "elbo": -46715.57794479716,
+                "coverage": 0.433009099466583,
+                "uncertainty_error_corr": -0.29335519203259997
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.445638046089222
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6572380952380953
+            }
+        },
+        121.69577217102051
+    ],
+    "GP_UAE_0.3_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.05681393116596781,
+                "nll": 10007.33561062647,
+                "elbo": -27879.29264187647,
+                "coverage": 0.9997720953553033,
+                "uncertainty_error_corr": 0.07401123939098957
+            },
+            "missing": {
+                "rmse": 0.24963511087109705,
+                "nll": 7101.860624597201,
+                "elbo": -24973.8176558472,
+                "coverage": 0.981068925844577,
+                "uncertainty_error_corr": 0.24066445267958725
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.14366422635655596
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9940952380952381
+            }
+        },
+        91.96388816833496
+    ],
+    "GP_UAE_0.3_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.046741063618621286,
+                "nll": 12060.638723843273,
+                "elbo": -65168.54888009327,
+                "coverage": 0.8596107388668581,
+                "uncertainty_error_corr": 0.1814401275346426
+            },
+            "missing": {
+                "rmse": 0.22226987151578476,
+                "nll": 2921.104865129897,
+                "elbo": -56029.0150213799,
+                "coverage": 0.5986821462190147,
+                "uncertainty_error_corr": 0.011093887971758842
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.3523796651993294
+            },
+            "reconstruction": {
+                "overall_coverage": 0.7804126984126984
+            }
+        },
+        160.8344531059265
+    ],
+    "GP_UAE_0.3_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.050121333787045384,
+                "nll": -3226.39068855751,
+                "elbo": -62130.83587394249,
+                "coverage": 0.8481243447741464,
+                "uncertainty_error_corr": -0.13937687081280298
+            },
+            "missing": {
+                "rmse": 0.2218799701485294,
+                "nll": 362.9820638949036,
+                "elbo": -65720.2086263949,
+                "coverage": 0.5417843321828261,
+                "uncertainty_error_corr": -0.24284634573007227
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.3862703893814583
+            },
+            "reconstruction": {
+                "overall_coverage": 0.7551428571428571
+            }
+        },
+        183.65680575370789
+    ],
+    "GP_UAE_0.3_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.052598512582978756,
+                "nll": -3280.7713120275876,
+                "elbo": -62679.08025047241,
+                "coverage": 0.8415151100779434,
+                "uncertainty_error_corr": -0.11370425555591517
+            },
+            "missing": {
+                "rmse": 0.22846291600953006,
+                "nll": 480.9653599169301,
+                "elbo": -66440.81692241693,
+                "coverage": 0.5367639368266918,
+                "uncertainty_error_corr": -0.2389516485848667
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.37837205869298174
+            },
+            "reconstruction": {
+                "overall_coverage": 0.749015873015873
+            }
+        },
+        129.45201301574707
+    ],
+    "GP_UAE_0.3_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.044220311901905264,
+                "nll": -3178.9766880449642,
+                "elbo": -63342.32018695504,
+                "coverage": 0.883631888417886,
+                "uncertainty_error_corr": -0.11907804746559283
+            },
+            "missing": {
+                "rmse": 0.21342862319866346,
+                "nll": 199.71580428111483,
+                "elbo": -66721.01267928112,
+                "coverage": 0.5848760589896455,
+                "uncertainty_error_corr": -0.22918864260488955
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.31466852170567705
+            },
+            "reconstruction": {
+                "overall_coverage": 0.792952380952381
+            }
+        },
+        166.17883801460266
+    ],
+    "GP_UAE_0.3_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.04839672026360273,
+                "nll": -3241.1893945525826,
+                "elbo": -64379.12310544742,
+                "coverage": 0.8645790601212453,
+                "uncertainty_error_corr": -0.13424663791797808
+            },
+            "missing": {
+                "rmse": 0.2237337335343681,
+                "nll": 401.8707759474411,
+                "elbo": -68022.18327594743,
+                "coverage": 0.5679322246626922,
+                "uncertainty_error_corr": -0.230064175572112
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.3565186117325325
+            },
+            "reconstruction": {
+                "overall_coverage": 0.7745396825396825
+            }
+        },
+        130.46466994285583
+    ],
+    "Posterior_consistency_0.3_1_alpha_1": [
+        {
+            "observed": {
+                "rmse": 0.05335438504007774,
+                "nll": -3239.325661814324,
+                "elbo": -22726.135275685676,
+                "coverage": 0.9991339623501527,
+                "uncertainty_error_corr": 0.38946606713497545
+            },
+            "missing": {
+                "rmse": 0.2518888213254646,
+                "nll": 2398.8556502801425,
+                "elbo": -28364.316587780144,
+                "coverage": 0.9643342746574626,
+                "uncertainty_error_corr": 0.582693768937971
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.689161166969349
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9885714285714285
+            }
+        },
+        136.24772787094116
+    ],
+    "Posterior_consistency_0.3_1_alpha_0.1": [
+        {
+            "observed": {
+                "rmse": 0.051652367641594615,
+                "nll": -3806.089759115405,
+                "elbo": -23743.492272134594,
+                "coverage": 0.9965358494006108,
+                "uncertainty_error_corr": 0.34166567504177087
+            },
+            "missing": {
+                "rmse": 0.2541418316370878,
+                "nll": 1865.6769877564248,
+                "elbo": -29415.259019006426,
+                "coverage": 0.9176864344733815,
+                "uncertainty_error_corr": 0.5611335660401702
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.729895458046009
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9726031746031746
+            }
+        },
+        116.61258506774902
+    ],
+    "Posterior_consistency_0.3_1_alpha_0.01": [
+        {
+            "observed": {
+                "rmse": 0.05376904509746426,
+                "nll": -3947.921596599341,
+                "elbo": -24779.515903400657,
+                "coverage": 0.9935275080906149,
+                "uncertainty_error_corr": 0.34733338233359345
+            },
+            "missing": {
+                "rmse": 0.2743158054331708,
+                "nll": 1988.4093886119176,
+                "elbo": -30715.84688861192,
+                "coverage": 0.8683192134713942,
+                "uncertainty_error_corr": 0.44270556900074004
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.753511295143177
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9555238095238096
+            }
+        },
+        117.58814001083374
+    ],
+    "Mean_Imputation_0.3_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -5097.61469762087,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 1.0009179595390563,
+                "nll": 45671.26967331066,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "KNN_Imputation_0.3_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -5097.61469762087,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.6445526861879797,
+                "nll": 17638.962819746506,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "MICE_Imputation_0.3_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -5097.61469762087,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.2803248586675014,
+                "nll": 1535.0770503402077,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "GP_UAE_0.5_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.07126743203131404,
+                "nll": 1521.6093380421962,
+                "elbo": -44243.835900542195,
+                "coverage": 0.8595088520845231,
+                "uncertainty_error_corr": -0.023550142697254386
+            },
+            "missing": {
+                "rmse": 0.40714000251723403,
+                "nll": 11521.482127918927,
+                "elbo": -54243.70869041893,
+                "coverage": 0.493361285814116,
+                "uncertainty_error_corr": -0.3433088396852704
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.5493310545120735
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6765396825396826
+            }
+        },
+        89.49777793884277
+    ],
+    "GP_UAE_0.5_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.07227798824830256,
+                "nll": 1719.5261457027036,
+                "elbo": -47005.9323957027,
+                "coverage": 0.8299384478710579,
+                "uncertainty_error_corr": -0.10883181520606514
+            },
+            "missing": {
+                "rmse": 0.4250401294612137,
+                "nll": 12681.709438690088,
+                "elbo": -57968.115688690086,
+                "coverage": 0.4687758083984499,
+                "uncertainty_error_corr": -0.3534545695155133
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.5698670004044075
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6494603174603175
+            }
+        },
+        129.04363203048706
+    ],
+    "GP_UAE_0.5_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.06420145338782353,
+                "nll": 2873.0590056843293,
+                "elbo": -20381.25627130933,
+                "coverage": 0.9996192651818009,
+                "uncertainty_error_corr": 0.039325377724806314
+            },
+            "missing": {
+                "rmse": 0.3959668777313205,
+                "nll": 20732.147862461592,
+                "elbo": -38240.34512808659,
+                "coverage": 0.9607394701734324,
+                "uncertainty_error_corr": 0.40772262058459735
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.22544942838292314
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9801904761904762
+            }
+        },
+        150.01362419128418
+    ],
+    "GP_UAE_0.5_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.05584731895143467,
+                "nll": 3075.2755988736517,
+                "elbo": -63506.43184887365,
+                "coverage": 0.9117329779808363,
+                "uncertainty_error_corr": 0.03178871600559436
+            },
+            "missing": {
+                "rmse": 0.38170205831575466,
+                "nll": 11997.563292598381,
+                "elbo": -72428.71954259838,
+                "coverage": 0.5937361031700654,
+                "uncertainty_error_corr": -0.0809821861933497
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.4039124105606575
+            },
+            "reconstruction": {
+                "overall_coverage": 0.7528253968253968
+            }
+        },
+        300.2362730503082
+    ],
+    "GP_UAE_0.5_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.062603298725426,
+                "nll": -2649.4269297956744,
+                "elbo": -68250.65900770432,
+                "coverage": 0.8753728028428199,
+                "uncertainty_error_corr": -0.05228005225110246
+            },
+            "missing": {
+                "rmse": 0.38424065814731173,
+                "nll": 8285.300403157518,
+                "elbo": -79185.38634065751,
+                "coverage": 0.46077123435614004,
+                "uncertainty_error_corr": -0.31214983804747803
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.6163772199783821
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6681904761904762
+            }
+        },
+        166.60479307174683
+    ],
+    "GP_UAE_0.5_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.0656283173635337,
+                "nll": -2629.5259260644953,
+                "elbo": -69080.2084489355,
+                "coverage": 0.8279078621739958,
+                "uncertainty_error_corr": -0.09861076806614799
+            },
+            "missing": {
+                "rmse": 0.39402952789945234,
+                "nll": 8866.070777173809,
+                "elbo": -80575.80515217381,
+                "coverage": 0.4319928848230735,
+                "uncertainty_error_corr": -0.3062288673227774
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.6729949567947884
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6300634920634921
+            }
+        },
+        135.84083819389343
+    ],
+    "GP_UAE_0.5_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.07241679324050398,
+                "nll": -2576.76760098997,
+                "elbo": -70417.22458651003,
+                "coverage": 0.8140744971127609,
+                "uncertainty_error_corr": -0.05925059788456224
+            },
+            "missing": {
+                "rmse": 0.38645143057246006,
+                "nll": 8421.022212265038,
+                "elbo": -81415.01439976503,
+                "coverage": 0.4356140016517375,
+                "uncertainty_error_corr": -0.28647656799874427
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.6368106458817024
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6249523809523809
+            }
+        },
+        156.25554299354553
+    ],
+    "GP_UAE_0.5_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.06615733182253739,
+                "nll": -2684.773865247622,
+                "elbo": -70849.19488475237,
+                "coverage": 0.8338727076591155,
+                "uncertainty_error_corr": -0.09448381748247023
+            },
+            "missing": {
+                "rmse": 0.3940346631363478,
+                "nll": 8896.509048712816,
+                "elbo": -82430.47779871282,
+                "coverage": 0.4379645511720983,
+                "uncertainty_error_corr": -0.28957572689346633
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.615865096870472
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6360317460317461
+            }
+        },
+        238.70633029937744
+    ],
+    "Posterior_consistency_0.5_1_alpha_1": [
+        {
+            "observed": {
+                "rmse": 0.08185149078579405,
+                "nll": -1635.4868356912052,
+                "elbo": -20072.132304933795,
+                "coverage": 0.9920045688178184,
+                "uncertainty_error_corr": 0.045186236254512076
+            },
+            "missing": {
+                "rmse": 0.42226288575302334,
+                "nll": 19093.73544462044,
+                "elbo": -40801.35458524544,
+                "coverage": 0.9324693475636872,
+                "uncertainty_error_corr": 0.5674787692653099
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -4.949589118782093
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9622539682539683
+            }
+        },
+        149.33788585662842
+    ],
+    "Posterior_consistency_0.5_1_alpha_0.1": [
+        {
+            "observed": {
+                "rmse": 0.08356228423211003,
+                "nll": -2103.304374944205,
+                "elbo": -22184.808906305796,
+                "coverage": 0.9867377371660638,
+                "uncertainty_error_corr": 0.21682053919386043
+            },
+            "missing": {
+                "rmse": 0.45158836237898553,
+                "nll": 15719.644943757217,
+                "elbo": -40007.758225007216,
+                "coverage": 0.8543294581030431,
+                "uncertainty_error_corr": 0.5450457476298947
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -5.0594886396561165
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9205714285714286
+            }
+        },
+        122.90177893638611
+    ],
+    "Posterior_consistency_0.5_1_alpha_0.01": [
+        {
+            "observed": {
+                "rmse": 0.08548403468199631,
+                "nll": -2263.9706716824894,
+                "elbo": -22928.810578317512,
+                "coverage": 0.9797575988324132,
+                "uncertainty_error_corr": 0.19361817207788928
+            },
+            "missing": {
+                "rmse": 0.4621979501163968,
+                "nll": 14876.591117302156,
+                "elbo": -40069.37236730216,
+                "coverage": 0.7381360777587193,
+                "uncertainty_error_corr": 0.43590951041773107
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -5.201993331733753
+            },
+            "reconstruction": {
+                "overall_coverage": 0.859015873015873
+            }
+        },
+        97.19384789466858
+    ],
+    "Mean_Imputation_0.5_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -3661.6668954741463,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.9948822331372781,
+                "nll": 74243.98919987568,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "KNN_Imputation_0.5_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -3661.6668954741463,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.7000056491074892,
+                "nll": 34908.587937483695,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "MICE_Imputation_0.5_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -3661.6668954741463,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.49350773334632037,
+                "nll": 15511.1090082549,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "GP_UAE_0.7_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.07489397044067832,
+                "nll": -172.086461073588,
+                "elbo": -49839.13228892641,
+                "coverage": 0.9081492442659338,
+                "uncertainty_error_corr": 0.23541718906541037
+            },
+            "missing": {
+                "rmse": 0.6207021747070233,
+                "nll": 39232.69055574054,
+                "elbo": -89243.90930574054,
+                "coverage": 0.3631743727029357,
+                "uncertainty_error_corr": -0.34608143952061465
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.1186030958328743
+            },
+            "reconstruction": {
+                "overall_coverage": 0.5268571428571428
+            }
+        },
+        84.66404414176941
+    ],
+    "GP_UAE_0.7_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.07207562877421976,
+                "nll": -25.850878289036743,
+                "elbo": -50355.125684210965,
+                "coverage": 0.8909206214987845,
+                "uncertainty_error_corr": 0.13999135959252915
+            },
+            "missing": {
+                "rmse": 0.6339951201268778,
+                "nll": 41260.686495468515,
+                "elbo": -91641.66305796852,
+                "coverage": 0.3643087254412632,
+                "uncertainty_error_corr": -0.3420133548734373
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.969240054908802
+            },
+            "reconstruction": {
+                "overall_coverage": 0.5224761904761904
+            }
+        },
+        142.0385401248932
+    ],
+    "GP_UAE_0.7_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.07153779548280104,
+                "nll": 745.5348722362864,
+                "elbo": -14830.107137861287,
+                "coverage": 0.9996829087834267,
+                "uncertainty_error_corr": 0.12155353414915722
+            },
+            "missing": {
+                "rmse": 0.6131207648605713,
+                "nll": 65246.25438762179,
+                "elbo": -79330.8266532468,
+                "coverage": 0.937202232406189,
+                "uncertainty_error_corr": 0.4171726545459979
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.7852452848587532
+            },
+            "reconstruction": {
+                "overall_coverage": 0.955968253968254
+            }
+        },
+        389.3876497745514
+    ],
+    "GP_UAE_0.7_1_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.07229368598014069,
+                "nll": 908.0654703456529,
+                "elbo": -17612.249064095653,
+                "coverage": 0.9992601204946623,
+                "uncertainty_error_corr": 0.0749360705681408
+            },
+            "missing": {
+                "rmse": 0.6294109348229426,
+                "nll": 71765.12042441027,
+                "elbo": -88469.30401816027,
+                "coverage": 0.9422841326738963,
+                "uncertainty_error_corr": 0.41458319089789963
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.5041974638138313
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9593968253968254
+            }
+        },
+        155.15298414230347
+    ],
+    "GP_UAE_0.7_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.06612386826881765,
+                "nll": -1758.7222223267295,
+                "elbo": -73814.66059017327,
+                "coverage": 0.9311912060035937,
+                "uncertainty_error_corr": 0.2686067459457401
+            },
+            "missing": {
+                "rmse": 0.5871359633846852,
+                "nll": 33202.97603487896,
+                "elbo": -108776.35884737896,
+                "coverage": 0.28159172376242114,
+                "uncertainty_error_corr": -0.2739701828256562
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.358860359016468
+            },
+            "reconstruction": {
+                "overall_coverage": 0.4766984126984127
+            }
+        },
+        209.5584681034088
+    ],
+    "GP_UAE_0.7_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.07517629063308875,
+                "nll": -1719.7617240787317,
+                "elbo": -74446.69140092126,
+                "coverage": 0.827185286967551,
+                "uncertainty_error_corr": 0.154050853132117
+            },
+            "missing": {
+                "rmse": 0.6048893980182217,
+                "nll": 35517.62257412802,
+                "elbo": -111684.07569912802,
+                "coverage": 0.2551386179046236,
+                "uncertainty_error_corr": -0.239607793464238
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.4454449270401497
+            },
+            "reconstruction": {
+                "overall_coverage": 0.42695238095238097
+            }
+        },
+        156.91903376579285
+    ],
+    "GP_UAE_0.7_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.08435013918310742,
+                "nll": -1382.023291389353,
+                "elbo": -21076.277489860648,
+                "coverage": 0.9562414121128845,
+                "uncertainty_error_corr": -0.19035690179262735
+            },
+            "missing": {
+                "rmse": 0.6172070667277403,
+                "nll": 56714.23065997279,
+                "elbo": -79172.53144122279,
+                "coverage": 0.8113798266709016,
+                "uncertainty_error_corr": 0.4717694762711837
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.9347604368362923
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8548888888888889
+            }
+        },
+        96.67620730400085
+    ],
+    "GP_UAE_0.7_1_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.07387297882376728,
+                "nll": -1742.5889729587182,
+                "elbo": -76116.26258954128,
+                "coverage": 0.8392347531973364,
+                "uncertainty_error_corr": 0.17138124470280272
+            },
+            "missing": {
+                "rmse": 0.6010029526112817,
+                "nll": 34877.60398356988,
+                "elbo": -112736.45554606989,
+                "coverage": 0.2650301737828395,
+                "uncertainty_error_corr": -0.2485842108458648
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -1.2769187544022103
+            },
+            "reconstruction": {
+                "overall_coverage": 0.4374920634920635
+            }
+        },
+        171.87713885307312
+    ],
+    "Posterior_consistency_0.7_1_alpha_1": [
+        {
+            "observed": {
+                "rmse": 0.14690585737532857,
+                "nll": 129.2488666665889,
+                "elbo": -14022.772304166589,
+                "coverage": 0.9439805517387169,
+                "uncertainty_error_corr": -0.2807849179299668
+            },
+            "missing": {
+                "rmse": 0.640737672506423,
+                "nll": 65659.33544126833,
+                "elbo": -79552.85887876833,
+                "coverage": 0.8633785561958347,
+                "uncertainty_error_corr": 0.4214842067497623
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -5.939062938514759
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8875873015873016
+            }
+        },
+        50.8670711517334
+    ],
+    "Posterior_consistency_0.7_1_alpha_0.1": [
+        {
+            "observed": {
+                "rmse": 0.14484111798151705,
+                "nll": -273.6179877673134,
+                "elbo": -17049.479668482687,
+                "coverage": 0.910474579854138,
+                "uncertainty_error_corr": -0.262080331223933
+            },
+            "missing": {
+                "rmse": 0.6977724974346039,
+                "nll": 59115.64358968332,
+                "elbo": -76438.74124593331,
+                "coverage": 0.7552066790689232,
+                "uncertainty_error_corr": 0.41579475506022956
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -6.13639722806554
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8018412698412698
+            }
+        },
+        556.0878400802612
+    ],
+    "Posterior_consistency_0.7_1_alpha_0.01": [
+        {
+            "observed": {
+                "rmse": 0.20566329590433574,
+                "nll": 880.8909353407071,
+                "elbo": -21228.551091590707,
+                "coverage": 0.875700243103266,
+                "uncertainty_error_corr": -0.15914664927600689
+            },
+            "missing": {
+                "rmse": 0.7708637539931222,
+                "nll": 63112.059134286894,
+                "elbo": -83459.71929053689,
+                "coverage": 0.5483914878170516,
+                "uncertainty_error_corr": 0.33377080200505793
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -6.393858299079945
+            },
+            "reconstruction": {
+                "overall_coverage": 0.6466984126984127
+            }
+        },
+        23.86963987350464
+    ],
+    "Mean_Imputation_0.7_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -2198.301319758925,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.9990421422748276,
+                "nll": 104863.14873996636,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "KNN_Imputation_0.7_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -2198.301319758925,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.7367932657765688,
+                "nll": 54700.08325707333,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "MICE_Imputation_0.7_1": [
+        {
+            "observed": {
+                "rmse": 0.0,
+                "nll": -2198.301319758925,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "missing": {
+                "rmse": 0.823103858135921,
+                "nll": 69536.25813410539,
+                "elbo": NaN,
+                "coverage": NaN,
+                "uncertainty_error_corr": NaN
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": NaN
+            },
+            "reconstruction": {
+                "overall_coverage": NaN
+            }
+        },
+        NaN
+    ],
+    "GP_UAE_0.1_2_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.040186444637869176,
+                "nll": 11861.08551898536,
+                "elbo": -40062.78278461036,
+                "coverage": 0.8906305286250088,
+                "uncertainty_error_corr": -0.004876910697212198
+            },
+            "missing": {
+                "rmse": 0.1423446778159718,
+                "nll": 29.660125363636357,
+                "elbo": -28231.357390988636,
+                "coverage": 0.5392217418159357,
+                "uncertainty_error_corr": -0.2558774109545106
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.16819940549473955
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8545079365079365
+            }
+        },
+        139.25488209724426
+    ],
+    "GP_UAE_0.1_2_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.045041094737393386,
+                "nll": 15306.126101268439,
+                "elbo": -44923.88391376844,
+                "coverage": 0.8899228646238766,
+                "uncertainty_error_corr": 0.010362293077436245
+            },
+            "missing": {
+                "rmse": 0.18853937165625437,
+                "nll": 334.6175171719178,
+                "elbo": -29952.37532967192,
+                "coverage": 0.541692402717727,
+                "uncertainty_error_corr": -0.28185140210457676
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.1664808843765755
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8541269841269842
+            }
+        },
+        94.99628496170044
+    ],
+    "GP_UAE_0.1_2_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.03356457384874175,
+                "nll": 46546.46619211821,
+                "elbo": -83383.48572336821,
+                "coverage": 0.9219800438751681,
+                "uncertainty_error_corr": 0.4506869477981644
+            },
+            "missing": {
+                "rmse": 0.09440247965249941,
+                "nll": 91.30586030492347,
+                "elbo": -36928.32539155492,
+                "coverage": 0.6395923409512044,
+                "uncertainty_error_corr": -0.11609533704031345
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.14538274747472002
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8929523809523809
+            }
+        },
+        245.07826709747314
+    ],
+    "GP_UAE_0.1_2_alpha_0.1_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.04009299297732081,
+                "nll": 52641.10057031323,
+                "elbo": -88882.78807031323,
+                "coverage": 0.920246267072394,
+                "uncertainty_error_corr": 0.5486193159386004
+            },
+            "missing": {
+                "rmse": 0.10323914306463924,
+                "nll": 70.81562434894006,
+                "elbo": -36312.50312434894,
+                "coverage": 0.6457689932056825,
+                "uncertainty_error_corr": -0.0754927359994447
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.14639841062169268
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8920317460317461
+            }
+        },
+        213.27998995780945
+    ],
+    "GP_UAE_0.1_2_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.03644606074291829,
+                "nll": -2971.76934477528,
+                "elbo": -51501.05878022472,
+                "coverage": 0.9187955558700729,
+                "uncertainty_error_corr": -0.06585187715615724
+            },
+            "missing": {
+                "rmse": 0.10296140269556736,
+                "nll": -526.2189716687919,
+                "elbo": -53946.60915333121,
+                "coverage": 0.62816553428042,
+                "uncertainty_error_corr": -0.0972033873705507
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.14472757321934893
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8889206349206349
+            }
+        },
+        189.954087972641
+    ],
+    "GP_UAE_0.1_2_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_True_pre_imputeFalse": [
+        {
+            "observed": {
+                "rmse": 0.034062795256589534,
+                "nll": -2689.527182113752,
+                "elbo": -50904.19156788625,
+                "coverage": 0.9278182718845093,
+                "uncertainty_error_corr": -0.03969440011055188
+            },
+            "missing": {
+                "rmse": 0.08991300019803605,
+                "nll": -564.4298741679895,
+                "elbo": -53029.28887583201,
+                "coverage": 0.654107473749228,
+                "uncertainty_error_corr": -0.17482693743676866
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.1307161901627083
+            },
+            "reconstruction": {
+                "overall_coverage": 0.8996825396825396
+            }
+        },
+        166.63730311393738
+    ],
+    "GP_UAE_0.1_2_alpha_0.8_sigma_0.01_model_p_0.3_detach_False_DAE_False_pre_imputeTrue": [
+        {
+            "observed": {
+                "rmse": 0.03469054867763898,
+                "nll": -2412.8014311653233,
+                "elbo": -53448.694662584676,
+                "coverage": 0.9284551694855283,
+                "uncertainty_error_corr": 0.01445127782137159
+            },
+            "missing": {
+                "rmse": 0.09564963694592225,
+                "nll": -562.5694844057206,
+                "elbo": -55298.92660934428,
+                "coverage": 0.6534898085237801,
+                "uncertainty_error_corr": -0.19305100077861084
+            },
+            "latent": {
+                "latent_ks": NaN,
+                "latent_log_prob": -0.13197980863194658
+            },
+            "reconstruction": {
+                "overall_coverage": 0.9001904761904762
+            }
+        },
+        149.83625173568726
+    ]
+}

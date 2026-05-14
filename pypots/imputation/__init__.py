@@ -39,6 +39,8 @@ from .imputeformer import ImputeFormer
 from .timemixer import TimeMixer
 from .moderntcn import ModernTCN
 from .gp_ae import GP_VAE
+from .gpuae import GP_UAE
+from .gpuae2 import GP_UAE2, GP_UAE_2
 from .gp_ae_posterior_consistency import GP_VAE_posterior_concistency
 
 # naive imputation methods
@@ -83,6 +85,9 @@ __all__ = [
     "TimeMixer",
     "ModernTCN",
     "GP_VAE",
+    "GP_UAE",
+    "GP_UAE2",
+    "GP_UAE_2",
     "GP_VAE_posterior_concistency",
     # naive imputation methods
     "LOCF",

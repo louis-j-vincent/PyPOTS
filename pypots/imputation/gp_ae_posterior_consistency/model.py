@@ -29,7 +29,7 @@ from ...optim.base import Optimizer
 from ...utils.logging import logger
 from ...utils.metrics import calc_mse
 
-from .gp_model_from_gpae import *
+from .gp_model_BETTER import *
 
 class GP_VAE_posterior_concistency(BaseNNImputer):
     """The PyTorch implementation of the GPVAE model :cite:`fortuin2020gpvae`.
@@ -195,7 +195,8 @@ class GP_VAE_posterior_concistency(BaseNNImputer):
         # set gp
         #self.gp = ProbabilisticGP(self.model.backbone, assemble_data = self._assemble_input_for_training)
         self.gp = ProbabilisticGP(self.model.backbone, 
-                            assemble_data = self._assemble_input_for_training, 
+                            assemble_data_train = self._assemble_input_for_training, 
+                            assemble_data_val = self._assemble_input_for_validating,
                             n_dims = self.n_features,
                             latent_size = self.latent_size)
 

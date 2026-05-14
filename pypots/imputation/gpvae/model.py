@@ -279,6 +279,9 @@ class GPVAE(BaseNNImputer):
                                 .item()
                             )
                             imputation_loss_collector.append(imputation_mse)
+                            #imputation_loss_collector.append(results['loss'].sum().item())
+
+    
 
                     mean_val_loss = np.mean(imputation_loss_collector)
 

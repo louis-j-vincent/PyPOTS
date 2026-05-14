@@ -1,0 +1,56 @@
+Mean_Imputation_0.7:
+  RMSE: 0.8717, NLL: 112354.7818, ELBO: 0.0000, Training Time: nan
+KNN_Imputation_0.7:
+  RMSE: 0.8716, NLL: 112338.7841, ELBO: 0.0000, Training Time: nan
+MICE_Imputation_0.7:
+  RMSE: 0.8716, NLL: 112338.7841, ELBO: 0.0000, Training Time: nan
+GP_VAE_0.7:
+  RMSE: 1.0396, NLL: 162895.1429, ELBO: -234551.2601, Training Time: 84.9630
+Posterior_Consistency_0.7:
+  RMSE: 0.8949, NLL: 118813.5043, ELBO: -137447.9203, Training Time: 102.2023
+GP_VAE_1e-1_0.7:
+  RMSE: 0.8280, NLL: 100653.8669, ELBO: -185483.2107, Training Time: 84.9630
+GP_VAE_1e-2_0.7:
+  RMSE: 0.7378, NLL: 78406.0341, ELBO: -226216.6279, Training Time: 84.9630
+Mean_Imputation_0.5:
+  RMSE: 0.7351, NLL: 77792.6377, ELBO: 0.0000, Training Time: nan
+KNN_Imputation_0.5:
+  RMSE: 0.7346, NLL: 77675.9950, ELBO: 0.0000, Training Time: nan
+MICE_Imputation_0.5:
+  RMSE: 0.7346, NLL: 77675.9950, ELBO: 0.0000, Training Time: nan
+GP_VAE_0.5:
+  RMSE: 0.8211, NLL: 98866.6861, ELBO: -193716.0846, Training Time: 83.7227
+Posterior_Consistency_0.5:
+  RMSE: 0.6936, NLL: 68450.4338, ELBO: -101457.2424, Training Time: 92.6502
+GP_VAE_1e-1_0.5:
+  RMSE: 0.6498, NLL: 59177.0493, ELBO: -192895.6743, Training Time: 83.7227
+GP_VAE_1e-2_0.5:
+  RMSE: 0.5278, NLL: 36558.0272, ELBO: -233060.3241, Training Time: 83.7227
+Mean_Imputation_0.3:
+  RMSE: 0.5660, NLL: 43145.4976, ELBO: 0.0000, Training Time: nan
+KNN_Imputation_0.3:
+  RMSE: 0.5661, NLL: 43161.8764, ELBO: 0.0000, Training Time: nan
+MICE_Imputation_0.3:
+  RMSE: 0.5661, NLL: 43161.8764, ELBO: 0.0000, Training Time: nan
+GP_VAE_0.3:
+  RMSE: 0.5216, NLL: 35534.3855, ELBO: -181470.9324, Training Time: 80.1061
+Posterior_Consistency_0.3:
+  RMSE: 0.4733, NLL: 27962.8304, ELBO: -69716.0843, Training Time: 98.4994
+GP_VAE_1e-1_0.3:
+  RMSE: 0.4038, NLL: 18356.3878, ELBO: -224364.9816, Training Time: 80.1061
+GP_VAE_1e-2_0.3:
+  RMSE: 0.3605, NLL: 13154.8986, ELBO: -300929.1173, Training Time: 80.1061
+Mean_Imputation_0.1:
+  RMSE: 0.3313, NLL: 9972.7158, ELBO: 0.0000, Training Time: nan
+KNN_Imputation_0.1:
+  RMSE: 0.3317, NLL: 10009.4678, ELBO: 0.0000, Training Time: nan
+MICE_Imputation_0.1:
+  RMSE: 0.3317, NLL: 10009.4678, ELBO: 0.0000, Training Time: nan
+GP_VAE_0.1:
+  RMSE: 0.2503, NLL: 2549.2716, ELBO: -235498.7403, Training Time: 77.1920
+Posterior_Consistency_0.1:
+  RMSE: 0.2703, NLL: 4188.4448, ELBO: -62998.5932, Training Time: 89.3482
+GP_VAE_1e-1_0.1:
+  RMSE: 0.2028, NLL: -842.7698, ELBO: -224758.9959, Training Time: 77.1920
+GP_VAE_1e-2_0.1:
+  RMSE: 0.2054, NLL: -673.9459, ELBO: -302819.3666, Training Time: 77.1920

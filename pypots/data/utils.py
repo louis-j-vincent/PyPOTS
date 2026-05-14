@@ -23,7 +23,7 @@ def turn_data_into_specified_dtype(
     elif isinstance(data, list):
         data = torch.tensor(data) if dtype == "tensor" else np.asarray(data)
     elif isinstance(data, np.ndarray):
-        data = torch.from_numpy(data) if dtype == "tensor" else data
+        data = torch.tensor(data) if dtype == "tensor" else data
     else:
         raise TypeError(f"data should be an instance of list/np.ndarray/torch.Tensor, but got {type(data)}")
     return data

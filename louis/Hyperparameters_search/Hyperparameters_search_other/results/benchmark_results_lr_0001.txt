@@ -1,0 +1,960 @@
+Mean_Imputation_0.1_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -2828.2130, ELBO (Observed): N/A
+  RMSE (Missing): 1.0100, NLL (Missing): 6464.4289, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.1_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -2828.2130, ELBO (Observed): N/A
+  RMSE (Missing): 1.0132, NLL (Missing): 6508.3814, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.1_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -2828.2130, ELBO (Observed): N/A
+  RMSE (Missing): 1.0132, NLL (Missing): 6508.3814, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.1_0:
+  RMSE (Observed): 0.0241, NLL (Observed): -2144.1078, ELBO (Observed): -24918.7516
+  RMSE (Missing): 0.5174, NLL (Missing): 3411.8545, ELBO (Missing): -30474.7138
+  Latent KS: N/A
+  Coverage (Overall): 0.9981, Coverage (Observed): 1.0000, Coverage (Missing): 0.9804
+  Uncertainty-Error Corr (Observed): -0.0019, Uncertainty-Error Corr (Missing): 0.2337
+  Training Time: 114.8742
+
+GP_VAE_1e-1_0.1_0:
+  RMSE (Observed): 0.0379, NLL (Observed): -2282.7386, ELBO (Observed): -113313.1442
+  RMSE (Missing): 0.5941, NLL (Missing): 2275.1701, ELBO (Missing): -117871.0529
+  Latent KS: N/A
+  Coverage (Overall): 0.9474, Coverage (Observed): 0.9945, Coverage (Missing): 0.5158
+  Uncertainty-Error Corr (Observed): 0.2094, Uncertainty-Error Corr (Missing): 0.1224
+  Training Time: 104.9542
+
+GP_VAE_1e-2_0.1_0:
+  RMSE (Observed): 0.0594, NLL (Observed): -1539.2237, ELBO (Observed): -104033.7294
+  RMSE (Missing): 0.5008, NLL (Missing): 1835.1532, ELBO (Missing): -107408.1064
+  Latent KS: N/A
+  Coverage (Overall): 0.9715, Coverage (Observed): 0.9919, Coverage (Missing): 0.7839
+  Uncertainty-Error Corr (Observed): 0.0761, Uncertainty-Error Corr (Missing): 0.2125
+  Training Time: 104.9542
+
+Mean_Imputation_0.1_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -2815.8983, ELBO (Observed): N/A
+  RMSE (Missing): 0.9819, NLL (Missing): 6335.9274, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.1_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -2815.8983, ELBO (Observed): N/A
+  RMSE (Missing): 0.9849, NLL (Missing): 6377.7062, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.1_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -2815.8983, ELBO (Observed): N/A
+  RMSE (Missing): 0.9849, NLL (Missing): 6377.7062, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.1_1:
+  RMSE (Observed): 0.0230, NLL (Observed): -2130.3035, ELBO (Observed): -24745.9660
+  RMSE (Missing): 0.5067, NLL (Missing): 3488.0028, ELBO (Missing): -30364.2723
+  Latent KS: N/A
+  Coverage (Overall): 0.9981, Coverage (Observed): 1.0000, Coverage (Missing): 0.9812
+  Uncertainty-Error Corr (Observed): 0.0316, Uncertainty-Error Corr (Missing): 0.1050
+  Training Time: 108.1199
+
+GP_VAE_1e-1_0.1_1:
+  RMSE (Observed): 0.0175, NLL (Observed): -2605.9749, ELBO (Observed): -189961.6813
+  RMSE (Missing): 0.5379, NLL (Missing): 3601.5812, ELBO (Missing): -196169.2375
+  Latent KS: N/A
+  Coverage (Overall): 0.9962, Coverage (Observed): 0.9987, Coverage (Missing): 0.9747
+  Uncertainty-Error Corr (Observed): 0.0548, Uncertainty-Error Corr (Missing): 0.0752
+  Training Time: 219.8451
+
+GP_VAE_1e-2_0.1_1:
+  RMSE (Observed): 0.0840, NLL (Observed): -1218.9526, ELBO (Observed): -84185.4536
+  RMSE (Missing): 0.4881, NLL (Missing): 1785.8657, ELBO (Missing): -87190.2720
+  Latent KS: N/A
+  Coverage (Overall): 0.9678, Coverage (Observed): 0.9917, Coverage (Missing): 0.7574
+  Uncertainty-Error Corr (Observed): 0.0897, Uncertainty-Error Corr (Missing): 0.1243
+  Training Time: 219.8451
+
+Mean_Imputation_0.1_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -2832.1631, ELBO (Observed): N/A
+  RMSE (Missing): 0.9869, NLL (Missing): 6079.4865, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.1_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -2832.1631, ELBO (Observed): N/A
+  RMSE (Missing): 0.9883, NLL (Missing): 6098.4606, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.1_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -2832.1631, ELBO (Observed): N/A
+  RMSE (Missing): 0.9883, NLL (Missing): 6098.4606, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.1_2:
+  RMSE (Observed): 0.0239, NLL (Observed): -2128.2828, ELBO (Observed): -24862.3598
+  RMSE (Missing): 0.4967, NLL (Missing): 3282.7745, ELBO (Missing): -30273.4170
+  Latent KS: N/A
+  Coverage (Overall): 0.9987, Coverage (Observed): 1.0000, Coverage (Missing): 0.9870
+  Uncertainty-Error Corr (Observed): -0.0343, Uncertainty-Error Corr (Missing): 0.2045
+  Training Time: 83.8404
+
+GP_VAE_1e-1_0.1_2:
+  RMSE (Observed): 0.0194, NLL (Observed): -2556.9619, ELBO (Observed): -137047.4443
+  RMSE (Missing): 0.5065, NLL (Missing): 2439.2941, ELBO (Missing): -142043.7004
+  Latent KS: N/A
+  Coverage (Overall): 0.9938, Coverage (Observed): 0.9992, Coverage (Missing): 0.9436
+  Uncertainty-Error Corr (Observed): 0.1081, Uncertainty-Error Corr (Missing): 0.0090
+  Training Time: 267.4017
+
+GP_VAE_1e-2_0.1_2:
+  RMSE (Observed): 0.0351, NLL (Observed): -2177.3895, ELBO (Observed): -75630.9386
+  RMSE (Missing): 0.4891, NLL (Missing): 2919.8525, ELBO (Missing): -80728.1806
+  Latent KS: N/A
+  Coverage (Overall): 0.9899, Coverage (Observed): 0.9979, Coverage (Missing): 0.9153
+  Uncertainty-Error Corr (Observed): 0.1489, Uncertainty-Error Corr (Missing): 0.1392
+  Training Time: 267.4017
+
+Mean_Imputation_0.1_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -2820.0807, ELBO (Observed): N/A
+  RMSE (Missing): 0.9885, NLL (Missing): 6342.6007, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.1_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -2820.0807, ELBO (Observed): N/A
+  RMSE (Missing): 0.9945, NLL (Missing): 6423.5088, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.1_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -2820.0807, ELBO (Observed): N/A
+  RMSE (Missing): 0.9945, NLL (Missing): 6423.5088, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.1_3:
+  RMSE (Observed): 0.0201, NLL (Observed): -2153.2728, ELBO (Observed): -24983.9616
+  RMSE (Missing): 0.4922, NLL (Missing): 3387.3504, ELBO (Missing): -30524.5848
+  Latent KS: N/A
+  Coverage (Overall): 0.9990, Coverage (Observed): 1.0000, Coverage (Missing): 0.9897
+  Uncertainty-Error Corr (Observed): 0.0059, Uncertainty-Error Corr (Missing): 0.1146
+  Training Time: 123.6119
+
+GP_VAE_1e-1_0.1_3:
+  RMSE (Observed): 0.0189, NLL (Observed): -2637.7187, ELBO (Observed): -165342.1563
+  RMSE (Missing): 0.5517, NLL (Missing): 4010.0076, ELBO (Missing): -171989.8826
+  Latent KS: N/A
+  Coverage (Overall): 0.9973, Coverage (Observed): 0.9989, Coverage (Missing): 0.9831
+  Uncertainty-Error Corr (Observed): 0.0575, Uncertainty-Error Corr (Missing): 0.0920
+  Training Time: 221.2060
+
+GP_VAE_1e-2_0.1_3:
+  RMSE (Observed): 0.0355, NLL (Observed): -2143.4936, ELBO (Observed): -101634.5611
+  RMSE (Missing): 0.4804, NLL (Missing): 2843.1139, ELBO (Missing): -106621.1686
+  Latent KS: N/A
+  Coverage (Overall): 0.9887, Coverage (Observed): 0.9959, Coverage (Missing): 0.9252
+  Uncertainty-Error Corr (Observed): 0.1259, Uncertainty-Error Corr (Missing): 0.1422
+  Training Time: 221.2060
+
+Mean_Imputation_0.1_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -2827.0513, ELBO (Observed): N/A
+  RMSE (Missing): 0.9779, NLL (Missing): 6063.5322, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.1_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -2827.0513, ELBO (Observed): N/A
+  RMSE (Missing): 0.9810, NLL (Missing): 6104.1340, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.1_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -2827.0513, ELBO (Observed): N/A
+  RMSE (Missing): 0.9810, NLL (Missing): 6104.1340, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.1_4:
+  RMSE (Observed): 0.0370, NLL (Observed): -1938.5904, ELBO (Observed): -21388.4174
+  RMSE (Missing): 0.4865, NLL (Missing): 2489.6706, ELBO (Missing): -25816.6784
+  Latent KS: N/A
+  Coverage (Overall): 0.9870, Coverage (Observed): 1.0000, Coverage (Missing): 0.8680
+  Uncertainty-Error Corr (Observed): -0.0128, Uncertainty-Error Corr (Missing): 0.2084
+  Training Time: 94.2808
+
+GP_VAE_1e-1_0.1_4:
+  RMSE (Observed): 0.0180, NLL (Observed): -2616.1038, ELBO (Observed): -175968.8649
+  RMSE (Missing): 0.5238, NLL (Missing): 3451.2335, ELBO (Missing): -182036.2022
+  Latent KS: N/A
+  Coverage (Overall): 0.9960, Coverage (Observed): 0.9986, Coverage (Missing): 0.9722
+  Uncertainty-Error Corr (Observed): 0.1333, Uncertainty-Error Corr (Missing): 0.0944
+  Training Time: 279.2356
+
+GP_VAE_1e-2_0.1_4:
+  RMSE (Observed): 0.0217, NLL (Observed): -2418.0536, ELBO (Observed): -132014.9464
+  RMSE (Missing): 0.5052, NLL (Missing): 4913.5005, ELBO (Missing): -139346.5005
+  Latent KS: N/A
+  Coverage (Overall): 0.9989, Coverage (Observed): 0.9994, Coverage (Missing): 0.9940
+  Uncertainty-Error Corr (Observed): 0.1435, Uncertainty-Error Corr (Missing): 0.1473
+  Training Time: 279.2356
+
+Mean_Imputation_0.3_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -2198.5337, ELBO (Observed): N/A
+  RMSE (Missing): 0.9923, NLL (Missing): 18942.4636, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.3_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -2198.5337, ELBO (Observed): N/A
+  RMSE (Missing): 0.9949, NLL (Missing): 19047.6401, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.3_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -2198.5337, ELBO (Observed): N/A
+  RMSE (Missing): 0.9949, NLL (Missing): 19047.6401, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.3_0:
+  RMSE (Observed): 0.0284, NLL (Observed): -1691.9096, ELBO (Observed): -19885.4302
+  RMSE (Missing): 0.7286, NLL (Missing): 23241.7330, ELBO (Missing): -44819.0728
+  Latent KS: N/A
+  Coverage (Overall): 0.9976, Coverage (Observed): 1.0000, Coverage (Missing): 0.9918
+  Uncertainty-Error Corr (Observed): -0.0125, Uncertainty-Error Corr (Missing): 0.3241
+  Training Time: 130.0092
+
+GP_VAE_1e-1_0.3_0:
+  RMSE (Observed): 0.0235, NLL (Observed): -2004.7697, ELBO (Observed): -126449.6288
+  RMSE (Missing): 0.6214, NLL (Missing): 12414.4228, ELBO (Missing): -140868.8213
+  Latent KS: N/A
+  Coverage (Overall): 0.9804, Coverage (Observed): 0.9978, Coverage (Missing): 0.9398
+  Uncertainty-Error Corr (Observed): 0.0881, Uncertainty-Error Corr (Missing): 0.1184
+  Training Time: 230.0922
+
+GP_VAE_1e-2_0.3_0:
+  RMSE (Observed): 0.0797, NLL (Observed): -1200.8851, ELBO (Observed): -62115.4196
+  RMSE (Missing): 0.5871, NLL (Missing): 10961.6514, ELBO (Missing): -74277.9561
+  Latent KS: N/A
+  Coverage (Overall): 0.9334, Coverage (Observed): 0.9702, Coverage (Missing): 0.8472
+  Uncertainty-Error Corr (Observed): -0.0072, Uncertainty-Error Corr (Missing): 0.2828
+  Training Time: 230.0922
+
+Mean_Imputation_0.3_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -2194.8160, ELBO (Observed): N/A
+  RMSE (Missing): 0.9900, NLL (Missing): 18926.1463, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.3_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -2194.8160, ELBO (Observed): N/A
+  RMSE (Missing): 0.9937, NLL (Missing): 19075.3868, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.3_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -2194.8160, ELBO (Observed): N/A
+  RMSE (Missing): 0.9937, NLL (Missing): 19075.3868, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.3_1:
+  RMSE (Observed): 0.0445, NLL (Observed): -1438.4508, ELBO (Observed): -17700.8617
+  RMSE (Missing): 0.6105, NLL (Missing): 13552.2672, ELBO (Missing): -32691.5797
+  Latent KS: N/A
+  Coverage (Overall): 0.9503, Coverage (Observed): 1.0000, Coverage (Missing): 0.8345
+  Uncertainty-Error Corr (Observed): -0.1613, Uncertainty-Error Corr (Missing): 0.3175
+  Training Time: 106.9816
+
+GP_VAE_1e-1_0.3_1:
+  RMSE (Observed): 0.0155, NLL (Observed): -2084.0643, ELBO (Observed): -132327.5920
+  RMSE (Missing): 0.6648, NLL (Missing): 16954.8008, ELBO (Missing): -151366.4570
+  Latent KS: N/A
+  Coverage (Overall): 0.9923, Coverage (Observed): 0.9989, Coverage (Missing): 0.9768
+  Uncertainty-Error Corr (Observed): -0.0487, Uncertainty-Error Corr (Missing): 0.0122
+  Training Time: 286.5731
+
+GP_VAE_1e-2_0.3_1:
+  RMSE (Observed): 0.1385, NLL (Observed): -276.7327, ELBO (Observed): -51560.0641
+  RMSE (Missing): 0.5649, NLL (Missing): 6762.0126, ELBO (Missing): -58598.8095
+  Latent KS: N/A
+  Coverage (Overall): 0.8437, Coverage (Observed): 0.9158, Coverage (Missing): 0.6756
+  Uncertainty-Error Corr (Observed): -0.3673, Uncertainty-Error Corr (Missing): 0.3217
+  Training Time: 286.5731
+
+Mean_Imputation_0.3_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -2192.2601, ELBO (Observed): N/A
+  RMSE (Missing): 0.9947, NLL (Missing): 19163.8398, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.3_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -2192.2601, ELBO (Observed): N/A
+  RMSE (Missing): 0.9979, NLL (Missing): 19294.4381, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.3_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -2192.2601, ELBO (Observed): N/A
+  RMSE (Missing): 0.9979, NLL (Missing): 19294.4381, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.3_2:
+  RMSE (Observed): 0.0457, NLL (Observed): -1413.8436, ELBO (Observed): -17595.8947
+  RMSE (Missing): 0.6046, NLL (Missing): 12822.5915, ELBO (Missing): -31832.3298
+  Latent KS: N/A
+  Coverage (Overall): 0.9516, Coverage (Observed): 1.0000, Coverage (Missing): 0.8394
+  Uncertainty-Error Corr (Observed): -0.0640, Uncertainty-Error Corr (Missing): 0.3176
+  Training Time: 77.7753
+
+GP_VAE_1e-1_0.3_2:
+  RMSE (Observed): 0.0332, NLL (Observed): -1893.9129, ELBO (Observed): -137057.2278
+  RMSE (Missing): 0.6065, NLL (Missing): 9384.2314, ELBO (Missing): -148335.3720
+  Latent KS: N/A
+  Coverage (Overall): 0.9261, Coverage (Observed): 0.9960, Coverage (Missing): 0.7638
+  Uncertainty-Error Corr (Observed): 0.0024, Uncertainty-Error Corr (Missing): 0.2483
+  Training Time: 157.0021
+
+GP_VAE_1e-2_0.3_2:
+  RMSE (Observed): 0.0725, NLL (Observed): -1289.2750, ELBO (Observed): -102358.6469
+  RMSE (Missing): 0.5730, NLL (Missing): 12641.2254, ELBO (Missing): -116289.1473
+  Latent KS: N/A
+  Coverage (Overall): 0.9432, Coverage (Observed): 0.9872, Coverage (Missing): 0.8411
+  Uncertainty-Error Corr (Observed): -0.0359, Uncertainty-Error Corr (Missing): 0.2373
+  Training Time: 157.0021
+
+Mean_Imputation_0.3_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -2189.7042, ELBO (Observed): N/A
+  RMSE (Missing): 1.0051, NLL (Missing): 19639.5236, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.3_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -2189.7042, ELBO (Observed): N/A
+  RMSE (Missing): 1.0076, NLL (Missing): 19743.9404, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.3_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -2189.7042, ELBO (Observed): N/A
+  RMSE (Missing): 1.0076, NLL (Missing): 19743.9404, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.3_3:
+  RMSE (Observed): 0.0467, NLL (Observed): -1420.6288, ELBO (Observed): -17606.9864
+  RMSE (Missing): 0.6249, NLL (Missing): 13300.6332, ELBO (Missing): -32328.2485
+  Latent KS: N/A
+  Coverage (Overall): 0.9532, Coverage (Observed): 0.9999, Coverage (Missing): 0.8452
+  Uncertainty-Error Corr (Observed): -0.0248, Uncertainty-Error Corr (Missing): 0.3252
+  Training Time: 61.9736
+
+GP_VAE_1e-1_0.3_3:
+  RMSE (Observed): 0.0225, NLL (Observed): -1996.1849, ELBO (Observed): -114495.2682
+  RMSE (Missing): 0.6238, NLL (Missing): 11660.6814, ELBO (Missing): -128152.1345
+  Latent KS: N/A
+  Coverage (Overall): 0.9812, Coverage (Observed): 0.9988, Coverage (Missing): 0.9404
+  Uncertainty-Error Corr (Observed): 0.0797, Uncertainty-Error Corr (Missing): 0.1286
+  Training Time: 254.6577
+
+GP_VAE_1e-2_0.3_3:
+  RMSE (Observed): 0.0780, NLL (Observed): -951.2336, ELBO (Observed): -82363.3914
+  RMSE (Missing): 0.5723, NLL (Missing): 7928.5077, ELBO (Missing): -91243.1327
+  Latent KS: N/A
+  Coverage (Overall): 0.9078, Coverage (Observed): 0.9849, Coverage (Missing): 0.7294
+  Uncertainty-Error Corr (Observed): -0.2335, Uncertainty-Error Corr (Missing): 0.3455
+  Training Time: 254.6577
+
+Mean_Imputation_0.3_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -2185.7542, ELBO (Observed): N/A
+  RMSE (Missing): 0.9738, NLL (Missing): 18453.8569, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.3_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -2185.7542, ELBO (Observed): N/A
+  RMSE (Missing): 0.9774, NLL (Missing): 18601.3380, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.3_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -2185.7542, ELBO (Observed): N/A
+  RMSE (Missing): 0.9774, NLL (Missing): 18601.3380, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.3_4:
+  RMSE (Observed): 0.0212, NLL (Observed): -1676.2976, ELBO (Observed): -19873.1477
+  RMSE (Missing): 0.7217, NLL (Missing): 22955.1844, ELBO (Missing): -44504.6297
+  Latent KS: N/A
+  Coverage (Overall): 0.9979, Coverage (Observed): 1.0000, Coverage (Missing): 0.9929
+  Uncertainty-Error Corr (Observed): 0.0187, Uncertainty-Error Corr (Missing): 0.3166
+  Training Time: 90.7623
+
+GP_VAE_1e-1_0.3_4:
+  RMSE (Observed): 0.0254, NLL (Observed): -1987.8653, ELBO (Observed): -110555.6816
+  RMSE (Missing): 0.6354, NLL (Missing): 12157.9623, ELBO (Missing): -124701.5091
+  Latent KS: N/A
+  Coverage (Overall): 0.9773, Coverage (Observed): 0.9976, Coverage (Missing): 0.9306
+  Uncertainty-Error Corr (Observed): 0.1055, Uncertainty-Error Corr (Missing): 0.1085
+  Training Time: 249.7867
+
+GP_VAE_1e-2_0.3_4:
+  RMSE (Observed): 0.1517, NLL (Observed): -700.9034, ELBO (Observed): -111276.1278
+  RMSE (Missing): 0.6011, NLL (Missing): 13052.7767, ELBO (Missing): -125029.8079
+  Latent KS: N/A
+  Coverage (Overall): 0.7787, Coverage (Observed): 0.7675, Coverage (Missing): 0.8045
+  Uncertainty-Error Corr (Observed): -0.4186, Uncertainty-Error Corr (Missing): 0.2368
+  Training Time: 249.7867
+
+Mean_Imputation_0.5_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -1557.9337, ELBO (Observed): N/A
+  RMSE (Missing): 0.9743, NLL (Missing): 30672.3329, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.5_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -1557.9337, ELBO (Observed): N/A
+  RMSE (Missing): 0.9775, NLL (Missing): 30885.7439, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.5_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -1557.9337, ELBO (Observed): N/A
+  RMSE (Missing): 0.9775, NLL (Missing): 30885.7439, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.5_0:
+  RMSE (Observed): 0.0717, NLL (Observed): -940.4247, ELBO (Observed): -12891.1867
+  RMSE (Missing): 0.7582, NLL (Missing): 36161.7147, ELBO (Missing): -49993.3261
+  Latent KS: N/A
+  Coverage (Overall): 0.9237, Coverage (Observed): 0.9997, Coverage (Missing): 0.8487
+  Uncertainty-Error Corr (Observed): 0.0872, Uncertainty-Error Corr (Missing): 0.3365
+  Training Time: 150.2393
+
+GP_VAE_1e-1_0.5_0:
+  RMSE (Observed): 0.0355, NLL (Observed): -1337.7324, ELBO (Observed): -113933.3457
+  RMSE (Missing): 0.7068, NLL (Missing): 20366.3883, ELBO (Missing): -135637.4664
+  Latent KS: N/A
+  Coverage (Overall): 0.8471, Coverage (Observed): 0.9867, Coverage (Missing): 0.7093
+  Uncertainty-Error Corr (Observed): -0.0014, Uncertainty-Error Corr (Missing): 0.1875
+  Training Time: 165.7807
+
+GP_VAE_1e-2_0.5_0:
+  RMSE (Observed): 0.1469, NLL (Observed): -182.6309, ELBO (Observed): -56291.5137
+  RMSE (Missing): 0.6510, NLL (Missing): 18871.0850, ELBO (Missing): -75345.2295
+  Latent KS: N/A
+  Coverage (Overall): 0.7758, Coverage (Observed): 0.8811, Coverage (Missing): 0.6718
+  Uncertainty-Error Corr (Observed): -0.3967, Uncertainty-Error Corr (Missing): 0.3456
+  Training Time: 165.7807
+
+Mean_Imputation_0.5_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -1556.0748, ELBO (Observed): N/A
+  RMSE (Missing): 1.0000, NLL (Missing): 32436.8758, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.5_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -1556.0748, ELBO (Observed): N/A
+  RMSE (Missing): 1.0032, NLL (Missing): 32654.5655, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.5_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -1556.0748, ELBO (Observed): N/A
+  RMSE (Missing): 1.0032, NLL (Missing): 32654.5655, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.5_1:
+  RMSE (Observed): 0.0502, NLL (Observed): -1026.0109, ELBO (Observed): -12997.0770
+  RMSE (Missing): 0.7654, NLL (Missing): 38139.4790, ELBO (Missing): -52162.5669
+  Latent KS: N/A
+  Coverage (Overall): 0.9244, Coverage (Observed): 1.0000, Coverage (Missing): 0.8499
+  Uncertainty-Error Corr (Observed): -0.0894, Uncertainty-Error Corr (Missing): 0.3325
+  Training Time: 82.9433
+
+GP_VAE_1e-1_0.5_1:
+  RMSE (Observed): 0.0248, NLL (Observed): -1425.1937, ELBO (Observed): -110437.6345
+  RMSE (Missing): 0.7506, NLL (Missing): 24992.8381, ELBO (Missing): -136855.6662
+  Latent KS: N/A
+  Coverage (Overall): 0.9347, Coverage (Observed): 0.9981, Coverage (Missing): 0.8724
+  Uncertainty-Error Corr (Observed): 0.0247, Uncertainty-Error Corr (Missing): -0.0128
+  Training Time: 242.9166
+
+GP_VAE_1e-2_0.5_1:
+  RMSE (Observed): 0.1515, NLL (Observed): -158.7611, ELBO (Observed): -76030.5045
+  RMSE (Missing): 0.6639, NLL (Missing): 18890.7313, ELBO (Missing): -95079.9970
+  Latent KS: N/A
+  Coverage (Overall): 0.7680, Coverage (Observed): 0.8796, Coverage (Missing): 0.6581
+  Uncertainty-Error Corr (Observed): -0.3942, Uncertainty-Error Corr (Missing): 0.3880
+  Training Time: 242.9166
+
+Mean_Imputation_0.5_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -1560.0248, ELBO (Observed): N/A
+  RMSE (Missing): 0.9923, NLL (Missing): 31832.9803, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.5_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -1560.0248, ELBO (Observed): N/A
+  RMSE (Missing): 0.9941, NLL (Missing): 31957.1515, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.5_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -1560.0248, ELBO (Observed): N/A
+  RMSE (Missing): 0.9941, NLL (Missing): 31957.1515, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.5_2:
+  RMSE (Observed): 0.1014, NLL (Observed): -761.7677, ELBO (Observed): -12555.7801
+  RMSE (Missing): 0.7544, NLL (Missing): 32384.6585, ELBO (Missing): -45702.2063
+  Latent KS: N/A
+  Coverage (Overall): 0.8884, Coverage (Observed): 0.9367, Coverage (Missing): 0.8406
+  Uncertainty-Error Corr (Observed): -0.3709, Uncertainty-Error Corr (Missing): 0.3205
+  Training Time: 58.0710
+
+GP_VAE_1e-1_0.5_2:
+  RMSE (Observed): 0.0318, NLL (Observed): -1416.4788, ELBO (Observed): -126608.9430
+  RMSE (Missing): 0.7405, NLL (Missing): 26153.8460, ELBO (Missing): -154179.2679
+  Latent KS: N/A
+  Coverage (Overall): 0.9415, Coverage (Observed): 0.9936, Coverage (Missing): 0.8899
+  Uncertainty-Error Corr (Observed): 0.0882, Uncertainty-Error Corr (Missing): -0.0142
+  Training Time: 233.9309
+
+GP_VAE_1e-2_0.5_2:
+  RMSE (Observed): 0.1619, NLL (Observed): 28.1035, ELBO (Observed): -55060.6503
+  RMSE (Missing): 0.6699, NLL (Missing): 18024.8126, ELBO (Missing): -73057.3595
+  Latent KS: N/A
+  Coverage (Overall): 0.7578, Coverage (Observed): 0.8536, Coverage (Missing): 0.6630
+  Uncertainty-Error Corr (Observed): -0.3790, Uncertainty-Error Corr (Missing): 0.3972
+  Training Time: 233.9309
+
+Mean_Imputation_0.5_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -1556.3072, ELBO (Observed): N/A
+  RMSE (Missing): 0.9950, NLL (Missing): 32087.2675, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.5_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -1556.3072, ELBO (Observed): N/A
+  RMSE (Missing): 0.9965, NLL (Missing): 32192.2792, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.5_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -1556.3072, ELBO (Observed): N/A
+  RMSE (Missing): 0.9965, NLL (Missing): 32192.2792, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.5_3:
+  RMSE (Observed): 0.0248, NLL (Observed): -1181.1541, ELBO (Observed): -14153.4182
+  RMSE (Missing): 0.8746, NLL (Missing): 54658.9658, ELBO (Missing): -69993.5381
+  Latent KS: N/A
+  Coverage (Overall): 0.9927, Coverage (Observed): 0.9999, Coverage (Missing): 0.9857
+  Uncertainty-Error Corr (Observed): 0.0148, Uncertainty-Error Corr (Missing): 0.1806
+  Training Time: 68.9575
+
+GP_VAE_1e-1_0.5_3:
+  RMSE (Observed): 0.0267, NLL (Observed): -1404.2060, ELBO (Observed): -131379.6065
+  RMSE (Missing): 0.7850, NLL (Missing): 27760.6634, ELBO (Missing): -160544.4759
+  Latent KS: N/A
+  Coverage (Overall): 0.9290, Coverage (Observed): 0.9984, Coverage (Missing): 0.8606
+  Uncertainty-Error Corr (Observed): 0.0453, Uncertainty-Error Corr (Missing): 0.1100
+  Training Time: 170.0345
+
+GP_VAE_1e-2_0.5_3:
+  RMSE (Observed): 0.1464, NLL (Observed): -226.0945, ELBO (Observed): -104154.5305
+  RMSE (Missing): 0.6644, NLL (Missing): 19562.4036, ELBO (Missing): -123943.0286
+  Latent KS: N/A
+  Coverage (Overall): 0.7689, Coverage (Observed): 0.8735, Coverage (Missing): 0.6658
+  Uncertainty-Error Corr (Observed): -0.4076, Uncertainty-Error Corr (Missing): 0.3815
+  Training Time: 170.0345
+
+Mean_Imputation_0.5_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -1571.8749, ELBO (Observed): N/A
+  RMSE (Missing): 0.9948, NLL (Missing): 31758.9084, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.5_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -1571.8749, ELBO (Observed): N/A
+  RMSE (Missing): 0.9966, NLL (Missing): 31879.7498, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.5_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -1571.8749, ELBO (Observed): N/A
+  RMSE (Missing): 0.9966, NLL (Missing): 31879.7498, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.5_4:
+  RMSE (Observed): 0.0533, NLL (Observed): -1022.6632, ELBO (Observed): -13058.7685
+  RMSE (Missing): 0.7612, NLL (Missing): 38067.6610, ELBO (Missing): -52149.0927
+  Latent KS: N/A
+  Coverage (Overall): 0.9279, Coverage (Observed): 0.9999, Coverage (Missing): 0.8557
+  Uncertainty-Error Corr (Observed): -0.1331, Uncertainty-Error Corr (Missing): 0.3427
+  Training Time: 148.0931
+
+GP_VAE_1e-1_0.5_4:
+  RMSE (Observed): 0.0266, NLL (Observed): -1430.9702, ELBO (Observed): -90549.5142
+  RMSE (Missing): 0.7871, NLL (Missing): 27976.6555, ELBO (Missing): -119957.1399
+  Latent KS: N/A
+  Coverage (Overall): 0.9409, Coverage (Observed): 0.9984, Coverage (Missing): 0.8831
+  Uncertainty-Error Corr (Observed): 0.1021, Uncertainty-Error Corr (Missing): 0.0078
+  Training Time: 169.4421
+
+GP_VAE_1e-2_0.5_4:
+  RMSE (Observed): 0.1127, NLL (Observed): -809.5751, ELBO (Observed): -73431.2452
+  RMSE (Missing): 0.7012, NLL (Missing): 30300.8986, ELBO (Missing): -104541.7189
+  Latent KS: N/A
+  Coverage (Overall): 0.8637, Coverage (Observed): 0.8885, Coverage (Missing): 0.8388
+  Uncertainty-Error Corr (Observed): -0.3415, Uncertainty-Error Corr (Missing): 0.2618
+  Training Time: 169.4421
+
+Mean_Imputation_0.7_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -931.2749, ELBO (Observed): N/A
+  RMSE (Missing): 0.9913, NLL (Missing): 44429.2342, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.7_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -931.2749, ELBO (Observed): N/A
+  RMSE (Missing): 0.9942, NLL (Missing): 44701.2177, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.7_0:
+  RMSE (Observed): 0.0000, NLL (Observed): -931.2749, ELBO (Observed): N/A
+  RMSE (Missing): 0.9942, NLL (Missing): 44701.2177, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.7_0:
+  RMSE (Observed): 0.0769, NLL (Observed): -574.7775, ELBO (Observed): -7922.8475
+  RMSE (Missing): 0.8996, NLL (Missing): 70733.5403, ELBO (Missing): -79231.1653
+  Latent KS: N/A
+  Coverage (Overall): 0.9095, Coverage (Observed): 0.9683, Coverage (Missing): 0.8846
+  Uncertainty-Error Corr (Observed): -0.2966, Uncertainty-Error Corr (Missing): 0.2697
+  Training Time: 161.4732
+
+GP_VAE_1e-1_0.7_0:
+  RMSE (Observed): 0.0430, NLL (Observed): -781.2199, ELBO (Observed): -83230.4363
+  RMSE (Missing): 0.8317, NLL (Missing): 37549.3628, ELBO (Missing): -121561.0191
+  Latent KS: N/A
+  Coverage (Overall): 0.7801, Coverage (Observed): 0.9743, Coverage (Missing): 0.6981
+  Uncertainty-Error Corr (Observed): -0.1795, Uncertainty-Error Corr (Missing): 0.2542
+  Training Time: 187.7783
+
+GP_VAE_1e-2_0.7_0:
+  RMSE (Observed): 0.1085, NLL (Observed): -536.6347, ELBO (Observed): -60329.6582
+  RMSE (Missing): 0.8253, NLL (Missing): 56485.2787, ELBO (Missing): -117351.5716
+  Latent KS: N/A
+  Coverage (Overall): 0.8553, Coverage (Observed): 0.8720, Coverage (Missing): 0.8483
+  Uncertainty-Error Corr (Observed): -0.5335, Uncertainty-Error Corr (Missing): 0.2688
+  Training Time: 187.7783
+
+Mean_Imputation_0.7_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -936.8514, ELBO (Observed): N/A
+  RMSE (Missing): 0.9972, NLL (Missing): 44879.7264, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.7_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -936.8514, ELBO (Observed): N/A
+  RMSE (Missing): 1.0003, NLL (Missing): 45164.8976, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.7_1:
+  RMSE (Observed): 0.0000, NLL (Observed): -936.8514, ELBO (Observed): N/A
+  RMSE (Missing): 1.0003, NLL (Missing): 45164.8976, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.7_1:
+  RMSE (Observed): 0.0767, NLL (Observed): -571.5621, ELBO (Observed): -7902.3832
+  RMSE (Missing): 0.9125, NLL (Missing): 71024.0876, ELBO (Missing): -79498.0329
+  Latent KS: N/A
+  Coverage (Overall): 0.9063, Coverage (Observed): 0.9732, Coverage (Missing): 0.8778
+  Uncertainty-Error Corr (Observed): -0.2758, Uncertainty-Error Corr (Missing): 0.2596
+  Training Time: 74.9044
+
+GP_VAE_1e-1_0.7_1:
+  RMSE (Observed): 0.0740, NLL (Observed): -728.6871, ELBO (Observed): -87523.4379
+  RMSE (Missing): 0.8422, NLL (Missing): 39099.5434, ELBO (Missing): -127351.6684
+  Latent KS: N/A
+  Coverage (Overall): 0.7621, Coverage (Observed): 0.9278, Coverage (Missing): 0.6915
+  Uncertainty-Error Corr (Observed): -0.2454, Uncertainty-Error Corr (Missing): 0.2930
+  Training Time: 187.7284
+
+GP_VAE_1e-2_0.7_1:
+  RMSE (Observed): 0.1514, NLL (Observed): -200.8875, ELBO (Observed): -47293.1750
+  RMSE (Missing): 0.8187, NLL (Missing): 42878.0454, ELBO (Missing): -90372.1079
+  Latent KS: N/A
+  Coverage (Overall): 0.7512, Coverage (Observed): 0.8557, Coverage (Missing): 0.7067
+  Uncertainty-Error Corr (Observed): -0.3980, Uncertainty-Error Corr (Missing): 0.3630
+  Training Time: 187.7284
+
+Mean_Imputation_0.7_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -948.0044, ELBO (Observed): N/A
+  RMSE (Missing): 0.9936, NLL (Missing): 44306.1332, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.7_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -948.0044, ELBO (Observed): N/A
+  RMSE (Missing): 0.9964, NLL (Missing): 44569.0400, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.7_2:
+  RMSE (Observed): 0.0000, NLL (Observed): -948.0044, ELBO (Observed): N/A
+  RMSE (Missing): 0.9964, NLL (Missing): 44569.0400, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.7_2:
+  RMSE (Observed): 0.0485, NLL (Observed): -650.7932, ELBO (Observed): -8213.2332
+  RMSE (Missing): 0.8894, NLL (Missing): 71784.8846, ELBO (Missing): -80648.9109
+  Latent KS: N/A
+  Coverage (Overall): 0.9205, Coverage (Observed): 0.9998, Coverage (Missing): 0.8862
+  Uncertainty-Error Corr (Observed): -0.2312, Uncertainty-Error Corr (Missing): 0.2865
+  Training Time: 101.4203
+
+GP_VAE_1e-1_0.7_2:
+  RMSE (Observed): 0.0844, NLL (Observed): -677.6368, ELBO (Observed): -87302.3945
+  RMSE (Missing): 0.8147, NLL (Missing): 35213.6903, ELBO (Missing): -123193.7216
+  Latent KS: N/A
+  Coverage (Overall): 0.7241, Coverage (Observed): 0.9186, Coverage (Missing): 0.6399
+  Uncertainty-Error Corr (Observed): -0.2662, Uncertainty-Error Corr (Missing): 0.3140
+  Training Time: 167.8957
+
+GP_VAE_1e-2_0.7_2:
+  RMSE (Observed): 0.1006, NLL (Observed): -583.9629, ELBO (Observed): -86571.9746
+  RMSE (Missing): 0.8267, NLL (Missing): 61759.7383, ELBO (Missing): -148915.6758
+  Latent KS: N/A
+  Coverage (Overall): 0.8728, Coverage (Observed): 0.8863, Coverage (Missing): 0.8670
+  Uncertainty-Error Corr (Observed): -0.5347, Uncertainty-Error Corr (Missing): 0.2433
+  Training Time: 167.8957
+
+Mean_Imputation_0.7_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -929.1837, ELBO (Observed): N/A
+  RMSE (Missing): 0.9992, NLL (Missing): 45224.0233, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.7_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -929.1837, ELBO (Observed): N/A
+  RMSE (Missing): 1.0016, NLL (Missing): 45452.4915, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.7_3:
+  RMSE (Observed): 0.0000, NLL (Observed): -929.1837, ELBO (Observed): N/A
+  RMSE (Missing): 1.0016, NLL (Missing): 45452.4915, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.7_3:
+  RMSE (Observed): 0.0692, NLL (Observed): -584.2194, ELBO (Observed): -7901.5834
+  RMSE (Missing): 0.8989, NLL (Missing): 70088.8649, ELBO (Missing): -78574.6676
+  Latent KS: N/A
+  Coverage (Overall): 0.9206, Coverage (Observed): 0.9957, Coverage (Missing): 0.8890
+  Uncertainty-Error Corr (Observed): 0.0860, Uncertainty-Error Corr (Missing): 0.2945
+  Training Time: 163.5241
+
+GP_VAE_1e-1_0.7_3:
+  RMSE (Observed): 0.0428, NLL (Observed): -788.9017, ELBO (Observed): -74458.1061
+  RMSE (Missing): 0.8686, NLL (Missing): 42180.0120, ELBO (Missing): -117427.0198
+  Latent KS: N/A
+  Coverage (Overall): 0.7881, Coverage (Observed): 0.9820, Coverage (Missing): 0.7065
+  Uncertainty-Error Corr (Observed): -0.1140, Uncertainty-Error Corr (Missing): 0.2339
+  Training Time: 165.4195
+
+GP_VAE_1e-2_0.7_3:
+  RMSE (Observed): 0.1061, NLL (Observed): -546.6413, ELBO (Observed): -105542.4446
+  RMSE (Missing): 0.8301, NLL (Missing): 53064.4932, ELBO (Missing): -159153.5791
+  Latent KS: N/A
+  Coverage (Overall): 0.8479, Coverage (Observed): 0.8707, Coverage (Missing): 0.8382
+  Uncertainty-Error Corr (Observed): -0.6404, Uncertainty-Error Corr (Missing): 0.2871
+  Training Time: 165.4195
+
+Mean_Imputation_0.7_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -958.6927, ELBO (Observed): N/A
+  RMSE (Missing): 0.9979, NLL (Missing): 44496.6738, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+KNN_Imputation_0.7_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -958.6927, ELBO (Observed): N/A
+  RMSE (Missing): 1.0009, NLL (Missing): 44773.4271, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+MICE_Imputation_0.7_4:
+  RMSE (Observed): 0.0000, NLL (Observed): -958.6927, ELBO (Observed): N/A
+  RMSE (Missing): 1.0009, NLL (Missing): 44773.4271, ELBO (Missing): N/A
+  Latent KS: N/A
+  Coverage (Overall): N/A, Coverage (Observed): N/A, Coverage (Missing): N/A
+  Uncertainty-Error Corr (Observed): N/A, Uncertainty-Error Corr (Missing): N/A
+  Training Time: N/A
+
+Posterior_Consistency_0.7_4:
+  RMSE (Observed): 0.0513, NLL (Observed): -643.3318, ELBO (Observed): -8196.6779
+  RMSE (Missing): 0.8889, NLL (Missing): 70733.9160, ELBO (Missing): -79573.9258
+  Latent KS: N/A
+  Coverage (Overall): 0.9218, Coverage (Observed): 1.0000, Coverage (Missing): 0.8873
+  Uncertainty-Error Corr (Observed): -0.0214, Uncertainty-Error Corr (Missing): 0.2874
+  Training Time: 195.6388
+
+GP_VAE_1e-1_0.7_4:
+  RMSE (Observed): 0.0283, NLL (Observed): -863.4889, ELBO (Observed): -65787.4330
+  RMSE (Missing): 0.8660, NLL (Missing): 41387.2232, ELBO (Missing): -108038.1451
+  Latent KS: N/A
+  Coverage (Overall): 0.8408, Coverage (Observed): 0.9976, Coverage (Missing): 0.7718
+  Uncertainty-Error Corr (Observed): -0.0276, Uncertainty-Error Corr (Missing): 0.1246
+  Training Time: 242.3710
+
+GP_VAE_1e-2_0.7_4:
+  RMSE (Observed): 0.1052, NLL (Observed): -570.5004, ELBO (Observed): -75652.8980
+  RMSE (Missing): 0.8567, NLL (Missing): 56109.5755, ELBO (Missing): -132332.9740
+  Latent KS: N/A
+  Coverage (Overall): 0.8633, Coverage (Observed): 0.8934, Coverage (Missing): 0.8501
+  Uncertainty-Error Corr (Observed): -0.5176, Uncertainty-Error Corr (Missing): 0.2589
+  Training Time: 242.3710
+

@@ -1,0 +1,512 @@
+Missing Rate: 0.1
+  Alpha: 1.0000e-02
+    Observed Metrics:
+      RMSE: 0.0320
+      NLL: -12834.4419
+      ELBO: -616212.3706
+      Coverage: 0.5675
+      Uncertainty-Error Corr: 0.0392
+    Missing Metrics:
+      RMSE: 0.5880
+      NLL: 9501.9671
+      ELBO: -638548.7796
+      Coverage: 0.1981
+      Uncertainty-Error Corr: 0.0912
+    Latent Calibration:
+      Average KS Statistic: 0.2956
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.5314
+    Training Time: 177.63 sec
+  Alpha: 3.1623e-02
+    Observed Metrics:
+      RMSE: 0.0294
+      NLL: -12885.1159
+      ELBO: -521560.6966
+      Coverage: 0.4501
+      Uncertainty-Error Corr: 0.0928
+    Missing Metrics:
+      RMSE: 0.5817
+      NLL: 11072.9218
+      ELBO: -545518.7343
+      Coverage: 0.4606
+      Uncertainty-Error Corr: 0.0829
+    Latent Calibration:
+      Average KS Statistic: 0.4519
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.4512
+    Training Time: 175.52 sec
+  Alpha: 1.0000e-01
+    Observed Metrics:
+      RMSE: 0.0307
+      NLL: -12843.1493
+      ELBO: -467708.9757
+      Coverage: 0.5233
+      Uncertainty-Error Corr: 0.1133
+    Missing Metrics:
+      RMSE: 0.5737
+      NLL: 12623.3022
+      ELBO: -493175.4272
+      Coverage: 0.6721
+      Uncertainty-Error Corr: 0.0764
+    Latent Calibration:
+      Average KS Statistic: 0.4272
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.5379
+    Training Time: 181.45 sec
+  Alpha: 3.1623e-01
+    Observed Metrics:
+      RMSE: 0.0247
+      NLL: -12917.6009
+      ELBO: -442529.9616
+      Coverage: 0.6643
+      Uncertainty-Error Corr: 0.1725
+    Missing Metrics:
+      RMSE: 0.5671
+      NLL: 18127.6669
+      ELBO: -473575.2294
+      Coverage: 0.8558
+      Uncertainty-Error Corr: 0.0569
+    Latent Calibration:
+      Average KS Statistic: 0.4457
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.6830
+    Training Time: 155.06 sec
+  Alpha: 1.0000e+00
+    Observed Metrics:
+      RMSE: 0.0361
+      NLL: -12502.4964
+      ELBO: -271185.9098
+      Coverage: 0.5420
+      Uncertainty-Error Corr: 0.1555
+    Missing Metrics:
+      RMSE: 0.5536
+      NLL: 24375.6208
+      ELBO: -308064.0270
+      Coverage: 0.9265
+      Uncertainty-Error Corr: 0.0555
+    Latent Calibration:
+      Average KS Statistic: 0.4475
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.5796
+    Training Time: 158.22 sec
+  Alpha: 3.1623e+00
+    Observed Metrics:
+      RMSE: 0.0671
+      NLL: -7601.3447
+      ELBO: -172280.3896
+      Coverage: 0.9807
+      Uncertainty-Error Corr: 0.2740
+    Missing Metrics:
+      RMSE: 0.5490
+      NLL: 11459.1167
+      ELBO: -191340.8510
+      Coverage: 0.5622
+      Uncertainty-Error Corr: 0.0837
+    Latent Calibration:
+      Average KS Statistic: 0.2539
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.9398
+    Training Time: 172.75 sec
+  Alpha: 1.0000e+01
+    Observed Metrics:
+      RMSE: 0.0632
+      NLL: -10143.2700
+      ELBO: -201679.2925
+      Coverage: 0.6987
+      Uncertainty-Error Corr: 0.1609
+    Missing Metrics:
+      RMSE: 0.5828
+      NLL: 38089.4917
+      ELBO: -249912.0542
+      Coverage: 0.9125
+      Uncertainty-Error Corr: 0.1262
+    Latent Calibration:
+      Average KS Statistic: 0.4921
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.7196
+    Training Time: 165.85 sec
+
+Missing Rate: 0.3
+  Alpha: 1.0000e-02
+    Observed Metrics:
+      RMSE: 0.0248
+      NLL: -10099.0991
+      ELBO: -549403.5259
+      Coverage: 0.6241
+      Uncertainty-Error Corr: 0.0960
+    Missing Metrics:
+      RMSE: 0.6706
+      NLL: 42506.0124
+      ELBO: -602008.6374
+      Coverage: 0.4104
+      Uncertainty-Error Corr: 0.1436
+    Latent Calibration:
+      Average KS Statistic: 0.3255
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.5604
+    Training Time: 184.45 sec
+  Alpha: 3.1623e-02
+    Observed Metrics:
+      RMSE: 0.0309
+      NLL: -10038.3154
+      ELBO: -486113.1534
+      Coverage: 0.4965
+      Uncertainty-Error Corr: 0.0286
+    Missing Metrics:
+      RMSE: 0.6533
+      NLL: 44345.5909
+      ELBO: -540497.0596
+      Coverage: 0.5836
+      Uncertainty-Error Corr: 0.1287
+    Latent Calibration:
+      Average KS Statistic: 0.4091
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.5225
+    Training Time: 161.38 sec
+  Alpha: 1.0000e-01
+    Observed Metrics:
+      RMSE: 0.0258
+      NLL: -10093.0424
+      ELBO: -313216.8951
+      Coverage: 0.5712
+      Uncertainty-Error Corr: 0.0447
+    Missing Metrics:
+      RMSE: 0.6515
+      NLL: 53808.8551
+      ELBO: -377118.7926
+      Coverage: 0.7648
+      Uncertainty-Error Corr: 0.1063
+    Latent Calibration:
+      Average KS Statistic: 0.4525
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.6289
+    Training Time: 186.09 sec
+  Alpha: 3.1623e-01
+    Observed Metrics:
+      RMSE: 0.0252
+      NLL: -10062.4050
+      ELBO: -314151.6887
+      Coverage: 0.7187
+      Uncertainty-Error Corr: 0.0307
+    Missing Metrics:
+      RMSE: 0.6515
+      NLL: 70257.2528
+      ELBO: -394471.3465
+      Coverage: 0.8901
+      Uncertainty-Error Corr: 0.0732
+    Latent Calibration:
+      Average KS Statistic: 0.4405
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.7698
+    Training Time: 155.00 sec
+  Alpha: 1.0000e+00
+    Observed Metrics:
+      RMSE: 0.0313
+      NLL: -9945.2319
+      ELBO: -245850.6275
+      Coverage: 0.6923
+      Uncertainty-Error Corr: 0.0553
+    Missing Metrics:
+      RMSE: 0.6116
+      NLL: 99244.1669
+      ELBO: -355040.0263
+      Coverage: 0.9758
+      Uncertainty-Error Corr: 0.0477
+    Latent Calibration:
+      Average KS Statistic: 0.5022
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.7768
+    Training Time: 156.42 sec
+  Alpha: 3.1623e+00
+    Observed Metrics:
+      RMSE: 0.0758
+      NLL: -8099.2243
+      ELBO: -175314.2444
+      Coverage: 0.8579
+      Uncertainty-Error Corr: -0.0351
+    Missing Metrics:
+      RMSE: 0.7404
+      NLL: 97480.7377
+      ELBO: -280894.2064
+      Coverage: 0.7662
+      Uncertainty-Error Corr: -0.0106
+    Latent Calibration:
+      Average KS Statistic: 0.5402
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.8305
+    Training Time: 209.72 sec
+  Alpha: 1.0000e+01
+    Observed Metrics:
+      RMSE: 0.0871
+      NLL: -6953.7137
+      ELBO: -128421.6769
+      Coverage: 0.8239
+      Uncertainty-Error Corr: -0.0495
+    Missing Metrics:
+      RMSE: 0.6875
+      NLL: 105837.7620
+      ELBO: -241213.1526
+      Coverage: 0.8251
+      Uncertainty-Error Corr: 0.0098
+    Latent Calibration:
+      Average KS Statistic: 0.4554
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.8243
+    Training Time: 147.70 sec
+
+Missing Rate: 0.5
+  Alpha: 1.0000e-02
+    Observed Metrics:
+      RMSE: 0.0248
+      NLL: -7235.7149
+      ELBO: -312561.1289
+      Coverage: 0.5529
+      Uncertainty-Error Corr: 0.0193
+    Missing Metrics:
+      RMSE: 0.8282
+      NLL: 113851.9297
+      ELBO: -433648.7735
+      Coverage: 0.4531
+      Uncertainty-Error Corr: 0.1523
+    Latent Calibration:
+      Average KS Statistic: 0.4065
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.5032
+    Training Time: 155.69 sec
+  Alpha: 3.1623e-02
+    Observed Metrics:
+      RMSE: 0.0232
+      NLL: -7240.3915
+      ELBO: -280652.0460
+      Coverage: 0.6316
+      Uncertainty-Error Corr: 0.0270
+    Missing Metrics:
+      RMSE: 0.7950
+      NLL: 114600.4813
+      ELBO: -402492.9188
+      Coverage: 0.5933
+      Uncertainty-Error Corr: 0.1181
+    Latent Calibration:
+      Average KS Statistic: 0.4303
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.6125
+    Training Time: 223.55 sec
+  Alpha: 1.0000e-01
+    Observed Metrics:
+      RMSE: 0.0333
+      NLL: -7131.5401
+      ELBO: -229418.8192
+      Coverage: 0.5988
+      Uncertainty-Error Corr: 0.0761
+    Missing Metrics:
+      RMSE: 0.7521
+      NLL: 121135.6109
+      ELBO: -357685.9703
+      Coverage: 0.7824
+      Uncertainty-Error Corr: 0.0762
+    Latent Calibration:
+      Average KS Statistic: 0.4561
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.6902
+    Training Time: 171.01 sec
+  Alpha: 3.1623e-01
+    Observed Metrics:
+      RMSE: 0.0329
+      NLL: -7120.1526
+      ELBO: -203819.4099
+      Coverage: 0.6528
+      Uncertainty-Error Corr: -0.1449
+    Missing Metrics:
+      RMSE: 0.7691
+      NLL: 157062.0829
+      ELBO: -368001.6454
+      Coverage: 0.8888
+      Uncertainty-Error Corr: 0.0326
+    Latent Calibration:
+      Average KS Statistic: 0.5442
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.7703
+    Training Time: 172.07 sec
+  Alpha: 1.0000e+00
+    Observed Metrics:
+      RMSE: 0.0358
+      NLL: -7019.2243
+      ELBO: -172482.2601
+      Coverage: 0.7784
+      Uncertainty-Error Corr: -0.0292
+    Missing Metrics:
+      RMSE: 0.7204
+      NLL: 189635.3701
+      ELBO: -369136.8545
+      Coverage: 0.9657
+      Uncertainty-Error Corr: 0.0256
+    Latent Calibration:
+      Average KS Statistic: 0.4952
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.8717
+    Training Time: 286.80 sec
+  Alpha: 3.1623e+00
+    Observed Metrics:
+      RMSE: 0.0421
+      NLL: -6659.8273
+      ELBO: -152947.0165
+      Coverage: 0.9270
+      Uncertainty-Error Corr: 0.1854
+    Missing Metrics:
+      RMSE: 0.6825
+      NLL: 181051.3273
+      ELBO: -340658.1711
+      Coverage: 0.9562
+      Uncertainty-Error Corr: 0.0621
+    Latent Calibration:
+      Average KS Statistic: 0.5459
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.9415
+    Training Time: 177.83 sec
+  Alpha: 1.0000e+01
+    Observed Metrics:
+      RMSE: 0.1478
+      NLL: 1371.4231
+      ELBO: -69645.9856
+      Coverage: 0.9217
+      Uncertainty-Error Corr: -0.1293
+    Missing Metrics:
+      RMSE: 0.6158
+      NLL: 74318.0997
+      ELBO: -142592.6622
+      Coverage: 0.5814
+      Uncertainty-Error Corr: 0.1084
+    Latent Calibration:
+      Average KS Statistic: 0.3318
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.7522
+    Training Time: 153.23 sec
+
+Missing Rate: 0.7
+  Alpha: 1.0000e-02
+    Observed Metrics:
+      RMSE: 0.0420
+      NLL: -4218.0517
+      ELBO: -210392.6046
+      Coverage: 0.3362
+      Uncertainty-Error Corr: 0.1175
+    Missing Metrics:
+      RMSE: 0.9220
+      NLL: 193750.0586
+      ELBO: -408360.7148
+      Coverage: 0.4084
+      Uncertainty-Error Corr: 0.1234
+    Latent Calibration:
+      Average KS Statistic: 0.3991
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.3867
+    Training Time: 177.44 sec
+  Alpha: 3.1623e-02
+    Observed Metrics:
+      RMSE: 0.0300
+      NLL: -4295.1498
+      ELBO: -147280.5377
+      Coverage: 0.5864
+      Uncertainty-Error Corr: 0.1931
+    Missing Metrics:
+      RMSE: 0.8873
+      NLL: 195584.3378
+      ELBO: -347160.0253
+      Coverage: 0.5696
+      Uncertainty-Error Corr: 0.0795
+    Latent Calibration:
+      Average KS Statistic: 0.4198
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.5746
+    Training Time: 405.44 sec
+  Alpha: 1.0000e-01
+    Observed Metrics:
+      RMSE: 0.0234
+      NLL: -4321.8604
+      ELBO: -101739.9365
+      Coverage: 0.8163
+      Uncertainty-Error Corr: 0.0507
+    Missing Metrics:
+      RMSE: 0.8870
+      NLL: 227982.7573
+      ELBO: -334044.5542
+      Coverage: 0.7446
+      Uncertainty-Error Corr: 0.0029
+    Latent Calibration:
+      Average KS Statistic: 0.4453
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.7662
+    Training Time: 168.34 sec
+  Alpha: 3.1623e-01
+    Observed Metrics:
+      RMSE: 0.0202
+      NLL: -4325.1603
+      ELBO: -136187.4491
+      Coverage: 0.9203
+      Uncertainty-Error Corr: 0.0232
+    Missing Metrics:
+      RMSE: 0.8648
+      NLL: 244795.8429
+      ELBO: -385308.4523
+      Coverage: 0.8398
+      Uncertainty-Error Corr: 0.0000
+    Latent Calibration:
+      Average KS Statistic: 0.5045
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.8640
+    Training Time: 170.05 sec
+  Alpha: 1.0000e+00
+    Observed Metrics:
+      RMSE: 0.0500
+      NLL: -3966.0041
+      ELBO: -104747.2615
+      Coverage: 0.8487
+      Uncertainty-Error Corr: 0.4426
+    Missing Metrics:
+      RMSE: 0.8504
+      NLL: 271978.3032
+      ELBO: -380691.5688
+      Coverage: 0.8381
+      Uncertainty-Error Corr: 0.0856
+    Latent Calibration:
+      Average KS Statistic: 0.5347
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.8413
+    Training Time: 163.01 sec
+  Alpha: 3.1623e+00
+    Observed Metrics:
+      RMSE: 0.0760
+      NLL: -2753.8518
+      ELBO: -60039.8201
+      Coverage: 0.9803
+      Uncertainty-Error Corr: 0.2719
+    Missing Metrics:
+      RMSE: 0.7563
+      NLL: 213085.1960
+      ELBO: -275878.8679
+      Coverage: 0.6476
+      Uncertainty-Error Corr: 0.1518
+    Latent Calibration:
+      Average KS Statistic: 0.3963
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.7476
+    Training Time: 166.58 sec
+  Alpha: 1.0000e+01
+    Observed Metrics:
+      RMSE: 0.0775
+      NLL: -2726.1989
+      ELBO: -55451.0629
+      Coverage: 0.9704
+      Uncertainty-Error Corr: 0.1981
+    Missing Metrics:
+      RMSE: 0.8138
+      NLL: 303573.7005
+      ELBO: -361750.9622
+      Coverage: 0.8499
+      Uncertainty-Error Corr: 0.1127
+    Latent Calibration:
+      Average KS Statistic: 0.4947
+    Reconstruction Overall Coverage:
+      Overall Coverage: 0.8861
+    Training Time: 164.32 sec
+

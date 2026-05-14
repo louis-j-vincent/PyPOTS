@@ -96,12 +96,13 @@ class _GP_VAE(nn.Module):
         self.gp = gp
 
     def forward(self, inputs, training=True, n_sampling_times=10, use_GP=False, gp = None):
+        
         X, missing_mask = inputs["X"], inputs["missing_mask"]
+        
+        # Replace nans by zeros
         if torch.isnan(X).any():
-            X[X!=X] = 0. #replace nans by zeros
+            X[X!=X] = 0. 
         results = {}
-
-        n_sampling_times = n_sampling_times
 
         missing_mask = (X!=0)
 
@@ -111,7 +112,7 @@ class _GP_VAE(nn.Module):
             qz_x = self.backbone.encode(X, missing_mask)
 
             # corrupt X and get emebdding for X corrupted
-            X_corrupted = mcar(X, self.p)
+            X_corrupted = torch.nan_to_num(mcar(X, self.p), 0)
             X_corrupted = torch.nan_to_num(X_corrupted, 0)
             missing_mask_corrupted = (X_corrupted!=0)
             qz_x_corrupted = self.backbone.encode(X_corrupted, missing_mask_corrupted)

@@ -209,7 +209,6 @@ class GP_VAE(BaseNNImputer):
                             n_dims = self.n_features,
                             latent_size = self.latent_size)
 
-
     def _assemble_input_for_training(self, data: list) -> dict:
         # fetch data
         (
@@ -250,175 +249,6 @@ class GP_VAE(BaseNNImputer):
 
     def _assemble_input_for_testing(self, data: list) -> dict:
         return self._assemble_input_for_training(data)
-
-    def _train_model_OLD(
-        self,
-        training_loader: DataLoader,
-        val_loader: DataLoader = None,
-    ) -> None:
-        # each training starts from the very beginning, so reset the loss and model dict here
-        self.best_loss = float("inf")
-        self.best_model_dict = None
-
-        try:
-            training_step = 0.
-            for epoch in range(1, self.epochs + 1):
-                self.model.train()
-                self.model.backbone.temperature = epoch / (self.epochs + 1)
-                epoch_train_loss_collector = []
-                for idx, data in enumerate(training_loader):
-                    training_step += 1
-                    inputs = self._assemble_input_for_training(data)
-                    self.optimizer.zero_grad()
-
-                    if self.train_gp:
-                        imputed_data = self.impute_with_gp(inputs, add_mcar = True)
-
-                        results = {}
-
-                        results['loss'] = calc_mse(
-                                imputed_data,
-                                inputs["X"],
-                                (inputs["X"]==inputs["X"]), #modified this
-                            )
-
-                    else:
-
-                        results = self.model.forward(inputs)
-
-                        # use sum() before backward() in case of multi-gpu training
-                    results["loss"].sum().backward()
-                        #clip gradients
-                    #torch.nn.utils.clip_grad_norm_(v_1, max_norm=1.0, norm_type=2)
-                    self.optimizer.step()
-
-                    epoch_train_loss_collector.append(results["loss"].sum().item())
-
-                    # save training loss logs into the tensorboard file for every step if in need
-                    if self.summary_writer is not None:
-                        self._save_log_into_tb_file(training_step, "training", results)
-
-                # mean training loss of the current epoch
-                mean_train_loss = np.mean(epoch_train_loss_collector)
-
-                #
-                if self.train_gp:
-                    self._fit_kernel(training_loader, val_loader)  # train the model on the dataset
-
-                if val_loader is not None:
-                    self.model.eval()
-                    imputation_loss_collector = []
-                    with torch.no_grad():
-                        for idx, data in enumerate(val_loader):
-
-                            inputs = self._assemble_input_for_validating(data)
-
-                            if self.train_gp:
-
-                                imputed_data = self.impute_with_gp(inputs, add_mcar = False)
-                                results = self.model.forward(inputs, training=False, n_sampling_times=1)
-                                imputed_data = results["imputed_data"].mean(axis=1)
-                                imputation_mse = (
-                                    calc_mse(
-                                        imputed_data,
-                                        inputs["X_ori"],
-                                        (inputs["X_ori"]==inputs["X_ori"]), #modified this
-                                    )
-                                    .sum()
-                                    .detach()
-                                    .item()
-                                )
-
-                                imputation_loss_collector.append(imputation_mse)
-
-
-                            else:
-                                results = self.model.forward(inputs, training=False, n_sampling_times=1)
-   
-
-                                imputation_loss_collector.append(results['loss'].sum().item())
-
-
-                            #imputation_loss_collector.append(imputation_mse)
-
-                            #inputs = self._assemble_input_for_validating(data)
-                            
-                            #elbo_loss_val = self.model.forward(inputs, training=False, n_sampling_times=1)
-                            #imputation_loss_collector.append(elbo_loss_val['loss'].sum().item())
-                            
-                            
-                            #imputed_data = results["imputed_data"].mean(axis=1)
-
-                        if False:
-                            plt.plot(imputed_data[0].detach())
-                            plt.gca().set_prop_cycle(None)
-                            plt.plot(inputs["X_ori"][0].detach(),'o')
-                            plt.show()
-
-                    mean_val_loss = np.mean(imputation_loss_collector)
-
-                    # save validation loss logs into the tensorboard file for every epoch if in need
-                    if self.summary_writer is not None:
-                        val_loss_dict = {
-                            "imputation_loss": mean_val_loss,
-                        }
-                        self._save_log_into_tb_file(epoch, "validating", val_loss_dict)
-
-                    logger.info(
-                        f"Epoch {epoch:03d} - "
-                        f"training loss: {mean_train_loss:.4f}, "
-                        f"validation loss: {mean_val_loss:.4f}"
-                    )
-                    mean_loss = mean_val_loss
-                else:
-                    logger.info(f"Epoch {epoch:03d} - training loss: {mean_train_loss:.4f}")
-                    mean_loss = mean_train_loss
-
-                if np.isnan(mean_loss):
-                    logger.warning(f"‼️ Attention: got NaN loss in Epoch {epoch}. This may lead to unexpected errors.")
-
-                if mean_loss < self.best_loss:
-                    self.best_epoch = epoch
-                    self.best_loss = mean_loss
-                    self.best_model_dict = self.model.state_dict()
-                    self.patience = self.original_patience
-                else:
-                    self.patience -= 1
-
-                # save the model if necessary
-                self._auto_save_model_if_necessary(
-                    confirm_saving=self.best_epoch == epoch and self.model_saving_strategy == "better",
-                    saving_name=f"{self.__class__.__name__}_epoch{epoch}_loss{mean_loss:.4f}",
-                )
-
-                if os.getenv("enable_tuning", False):
-                    nni.report_intermediate_result(mean_loss)
-                    if epoch == self.epochs - 1 or self.patience == 0:
-                        nni.report_final_result(self.best_loss)
-
-                if self.patience == 0:
-                    logger.info("Exceeded the training patience. Terminating the training procedure...")
-                    break
-
-        except KeyboardInterrupt:  # if keyboard interrupt, only warning
-            logger.warning("‼️ Training got interrupted by the user. Exist now ...")
-        except Exception as e:  # other kind of exception follows below processing
-            logger.error(f"❌ Exception: {e}")
-            if self.best_model_dict is None:  # if no best model, raise error
-                raise RuntimeError(
-                    "Training got interrupted. Model was not trained. Please investigate the error printed above."
-                )
-            else:
-                RuntimeWarning(
-                    "Training got interrupted. Please investigate the error printed above.\n"
-                    "Model got trained and will load the best checkpoint so far for testing.\n"
-                    "If you don't want it, please try fit() again."
-                )
-
-        if np.isnan(self.best_loss):
-            raise ValueError("Something is wrong. best_loss is Nan after training.")
-
-        logger.info(f"Finished training. The best model is from epoch#{self.best_epoch}.")
 
     def _train_model(
         self,
@@ -594,14 +424,12 @@ class GP_VAE(BaseNNImputer):
         self.model.load_state_dict(self.best_model_dict)
         self.model.eval()  # set the model as eval status to freeze it.
 
-        #self.fit_kernel(train_set, val_set)  # train the model on the dataset
-
         # Step 3: save the model if necessary
         self._auto_save_model_if_necessary(confirm_saving=self.model_saving_strategy == "best")
 
         # Step 2bis: learn the kernel
         print('fitting kernel')
-        self._fit_kernel(training_loader, val_loader, training_iter = 50)
+        self.gp.fit_kernel(training_loader, val_loader, training_iter = 50)
 
     def impute_with_gp(self,
                     inputs,
@@ -756,7 +584,7 @@ class GP_VAE(BaseNNImputer):
         
         # Step 2bis: learn the kernel
         print('fitting kernel')
-        self._fit_kernel(training_loader, val_loader = val_loader, training_iter = training_iter)
+        self.gp.fit_kernel(training_loader, val_loader = val_loader, training_iter = training_iter)
 
         # Step 3: save the model if necessary
         self._auto_save_model_if_necessary(confirm_saving=self.model_saving_strategy == "best")

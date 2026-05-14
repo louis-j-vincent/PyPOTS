@@ -19,7 +19,11 @@ docs/_build
 # ignore specific kinds of files like all PDFs
 *.pdf
 *TODO
+*.png
 
 # ignore executable and config files
 *.sh
 *.yml
+
+# ignore locally saved weights for gpvae
+*gpvae_p_dataset_*

@@ -86,6 +86,7 @@ class ProbabilisticGP:
         self.optimizer.init_optimizer(self.kernel_params_estimator.parameters())
 
         self.p = .3
+        self.alpha = 0.01
 
         self.kernel_params_history = {'a':[],'b':[],'c':[],'d':[]}
 
@@ -110,7 +111,8 @@ class ProbabilisticGP:
             var_importance = 0. + torch.sigmoid((params[3]))
 
             length_scale = 10. ** (params[0]).clip(min = -5, max = 1)
-            sigma = 10 ** (params[1]).clip(-5, 1)
+            sigma = 10 ** (params[1]).clip(-2, 1)
+            #sigma = 1.
             noise = 10. ** (params[2]).clip(min = -5, max = -1)
             var_importance = 0. + torch.sigmoid((params[3]))
 
@@ -180,7 +182,7 @@ class ProbabilisticGP:
 
 
                 # Construct the observed covariance matrix
-                K_obs = K + torch.diag(z_var[b, :, j]) * var_importance + noise
+                K_obs = K + torch.diag(z_var[b, :, j]) ** var_importance + noise
 
                 # Compute correction matrix
                 correction_matrix = torch.linalg.solve(K_obs + 1e-5 * torch.eye(K_obs.size(0), device=K_obs.device), K)
@@ -378,7 +380,7 @@ class ProbabilisticGP:
 
                 # Reconstruct and compute reconstruction error
                 x_recon = self.decode(z_samples).mean
-                x_recon += torch.rand(x_recon.shape) * 1e-2  # Add small noise
+                #x_recon += torch.rand(x_recon.shape) * 1e-2  # Add small noise
                 l2_error = (x_recon - x_input[None]).pow(2)[(x_input != 0).unsqueeze(0).repeat(n_samples,1,1,1)].clip(max=10)
 
                 z = self.encode(x_input).mean
@@ -387,7 +389,7 @@ class ProbabilisticGP:
                 # Compute loss
                 loss = l2_error.mean()
                 #loss += torch.exp(-latent_log_prob).mean()
-                alpha = .1
+                alpha = self.alpha
                 loss += self.prior_for_kernel_params(kernel_params) * alpha  # Regularization
 
                 assert not torch.isnan(loss), print(x_recon)
@@ -471,14 +473,16 @@ class ProbabilisticGP:
                 print(f"Epoch {epoch+1}/{training_iter}: Training Loss = {avg_train_loss:.6f}")
 
             if self.plot_while_training:
-                mu = z_star.detach()[0].numpy()
-                var = z_star_var.detach()[0].numpy()
-                z_true = z_mu.detach()[0].numpy()
-                z_var = z_var.detach()[0].numpy()
+                mu = z_star.detach()[0].detach().cpu().float().numpy()
+                var = (z_star_var.detach()[0]).detach().cpu().float().numpy()
+                z_true = (z_mu.detach()[0]).detach().cpu().float().numpy()
+                #z_var = (z_var.detach()[0]).detach().cpu().float().numpy()
+                z_var = np.array(z_var.detach()[0].detach().cpu().float().numpy())
+
                 #plt.scatter(z_true, 'o', alpha = np.array(z_var/torch.max(z_var)))
                 plt.plot(mu)
                 for j in range(mu.shape[-1]):
-                    normalized_variance = np.array(z_var[:,j]/np.max(z_var[:,j]))**.5
+                    normalized_variance = (z_var[:,j]/z_var[:,j].max())**.5
                     plt.scatter(np.arange(z_true.shape[0]), z_true[:,j], s = (1 - normalized_variance)*100 )
 
                 #    plt.fill_between(np.arange(30),z_true[:,j] - 2*z_var[:,j], z_true[:,j] + 2*z_var[:,j], color = 'r', alpha = .05)
